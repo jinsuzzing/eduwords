@@ -67,7 +67,7 @@ function main() {
       </div>
       <main>
         <img src={background} id="back"></img>
-        <section id="home">
+        <section id="text">
           <h1 class="bold-text">우리 아이와 함께 하는 AI 친구, 에듀워즈!</h1>
           <p>
             에듀워즈는 최신 인공지능 기술을 활용하여, 학습자들이 영어 실력을

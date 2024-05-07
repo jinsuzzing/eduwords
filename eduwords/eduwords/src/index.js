@@ -1,14 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-//import Main from "./main";
+import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
+import Main from "./main";
 import Join from "./join"
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Join />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Main />} /> 
+        <Route path="/join" element={<Join />} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 
