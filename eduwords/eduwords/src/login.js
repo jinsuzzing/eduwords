@@ -5,7 +5,7 @@ import lg from "./img/logo.png";
 
 const login = () => {
   return (
-    <div>
+    <div className="logindiv">
       <Navbar />
       <img src={lg} id="logoImg"></img>
       <br></br>

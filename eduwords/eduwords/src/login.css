@@ -31,7 +31,7 @@
   margin-right: 10px; /* 오른쪽에 마진을 추가하여 아이템 간 간격을 조정 */
 }
 
-input {
+.logindiv input {
   display: flex;
   margin: auto;
   border-radius: 5px;

@@ -20,7 +20,7 @@ function Join() {
     }
   }, [confirmPassword, password]);
   return (
-    <div>
+    <div className="joindiv">
       <Navbar />
       <br />
       <br />

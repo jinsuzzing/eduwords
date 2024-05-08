@@ -9,7 +9,7 @@ const Termspage = () => {
       <Navbar />
       <div className="terms-container">
         <div className="terms-content">
-          <h2>이용약관</h2>
+          <h2 className="how">이용약관</h2>
           <div className="scrollable-content">
             제1조(목적)
             <br />본 약관은 에듀워드 학습지 회사(이하 '회사'라 한다)와 동 회사가
@@ -67,7 +67,7 @@ const Termspage = () => {
           </div>
           <br></br>
           <br></br>
-          <h2>개인정보 수집 및 이용에 대한 안내</h2>
+          <h2 className="how">개인정보 수집 및 이용에 대한 안내</h2>
           <div className="scrollable-content2">
             개인(신용)정보 수집·이용에 대한 동의 · 개인(신용)정보를 아래와 같이
             수집·이용하는 것에 동의합니다.
