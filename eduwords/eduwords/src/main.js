@@ -5,6 +5,7 @@ import banner2 from "./img/banner2.png";
 import banner3 from "./img/banner3.png";
 import back from "./img/background.png";
 import Navbar from "./Component/Navbar";
+import Footer from "./Component/Footer";
 
 const images = [banner1, banner2, banner3];
 const background = [back];
@@ -42,8 +43,9 @@ function main() {
         <button id="second">직접 문제 생성하기</button>
         <button id="third">AI 문제 생성하기</button>
       </div>
+      <br />
+
       <main>
-        <img src={background} id="back"></img>
         <section id="text">
           <h1 class="bold-text">우리 아이와 함께 하는 AI 친구, 에듀워즈!</h1>
           <p>
@@ -56,7 +58,9 @@ function main() {
           </p>
           <p>사용자의 학습 상태를 분석하여 맞춤형 학습 계획을 제시해줍니다.</p>
         </section>
+        <img src={background} id="back"></img>
       </main>
+      <Footer />
     </div>
   );
 }

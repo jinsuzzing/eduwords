@@ -48,7 +48,6 @@ div #bar {
   border-radius: 5px;
 }
 #back {
-  position: absolute;
   width: 100vw;
   z-index: 1;
 }
