@@ -102,7 +102,7 @@ const Termspage = () => {
           <a href="#">선생님 가입하기</a>
         </div>
         <div className="button-container">
-          <button>다음으로</button>
+          <button id="next">다음으로</button>
         </div>
       </div>
       <Footer />

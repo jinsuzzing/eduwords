@@ -6,6 +6,7 @@ import Join from "./join";
 import Login from "./login";
 import Tp from "./termspage";
 import reportWebVitals from "./reportWebVitals";
+import Joinsuccess from "./joinsuccess";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,6 +17,7 @@ root.render(
         <Route path="/join" element={<Join />} />
         <Route path="/login" element={<Login />} />
         <Route path="/tp" element={<Tp />} />
+        <Route path="/js" element={<Joinsuccess />} />
       </Routes>
     </Router>
   </React.StrictMode>
