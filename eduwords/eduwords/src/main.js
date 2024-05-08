@@ -1,12 +1,11 @@
 import "./main.css";
 import React, { useState, useEffect } from "react";
-import logo from "./img/logo.png";
 import banner1 from "./img/banner1.png";
 import banner2 from "./img/banner2.png";
 import banner3 from "./img/banner3.png";
 import back from "./img/background.png";
+import Navbar from "./Component/Navbar";
 
-const lg = [logo];
 const images = [banner1, banner2, banner3];
 const background = [back];
 
@@ -30,28 +29,6 @@ function Banner() {
 }
 
 // 메뉴바
-function Navbar() {
-  return (
-    <nav className="navbar">
-      <div id="bar">로그인해주세요</div>
-      <ul>
-        <img src={lg} id="logo"></img>
-        <li>
-          <a href="#home">에듀워즈 소개</a>
-        </li>
-        <li>
-          <a href="#study">공부방</a>
-        </li>
-        <li>
-          <a href="#wordbook">내 단어장</a>
-        </li>
-        <li>
-          <a href="#result">공부 기록</a>
-        </li>
-      </ul>
-    </nav>
-  );
-}
 
 function main() {
   return (

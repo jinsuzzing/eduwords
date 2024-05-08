@@ -1,5 +1,5 @@
 import React from "react";
-import  Navbar  from './main';
+import Navbar from "./Component/Navbar";
 import "./main.css";
 
 function Join() {
