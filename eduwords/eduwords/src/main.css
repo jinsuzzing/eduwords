@@ -11,7 +11,7 @@ div #bar {
   display: flex;
   align-items: center;
   font-family: "Nanum Gothic Coding";
-  font-size: 20px;
+  font-size: 18px;
   background-color: #239aff;
   color: white;
   padding: 20px;
@@ -29,7 +29,7 @@ div #bar {
 }
 #logo {
   margin-top: 50px;
-  width: 80px;
+  width: 60px;
   height: auto;
   position: absolute;
   left: 10%;

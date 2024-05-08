@@ -38,26 +38,10 @@ function main() {
         <Navbar />
       </header>
       <Banner />
-      <div id="btn">
-        <button id="first">내 학생 관리하기</button>
-        <button id="second">직접 문제 생성하기</button>
-        <button id="third">AI 문제 생성하기</button>
-      </div>
+
       <br />
 
       <main>
-        <section id="text">
-          <h1 class="bold-text">우리 아이와 함께 하는 AI 친구, 에듀워즈!</h1>
-          <p>
-            에듀워즈는 최신 인공지능 기술을 활용하여, 학습자들이 영어 실력을
-            향상시킬 수 있도록 도와줍니다.
-          </p>
-          <p>
-            문법, 어휘, 독해 등 다양한 영역의 문제를 제공하여 사용자의 수준에
-            맞는 학습을 제공하며,
-          </p>
-          <p>사용자의 학습 상태를 분석하여 맞춤형 학습 계획을 제시해줍니다.</p>
-        </section>
         <img src={background} id="back"></img>
       </main>
       <Footer />
