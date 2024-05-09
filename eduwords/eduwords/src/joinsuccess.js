@@ -12,11 +12,15 @@ const joinsuccess = () => {
       <br />
       <br />
       <br />
+      <br />
+      <br />
       <h1 className="welcome">에듀워즈 회원가입이 완료되었습니다!</h1>
-      <table>
-        <tr>가입한 아이디 : {""}</tr>
-        <tr>가입한 날짜 : {""}</tr>
+      <table className="jstable">
+        <tr className="jid">가입한 아이디 : {""}</tr>
+        <tr className="jday">가입한 날짜 : {""}</tr>
       </table>
+      <br />
+      <br />
       <button id="gomain">메인으로</button>
     </div>
   );

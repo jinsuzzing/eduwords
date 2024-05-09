@@ -43,6 +43,7 @@
   background-color: #239aff;
   padding-right: 10px;
   height: 40px;
+  padding-top: 10px;
 }
 #joinTable input {
   width: 50%;
@@ -51,6 +52,8 @@
   margin-left: 10%;
   border-radius: 5px;
   border: 2px solid #239aff; /* 테두리 색상, 스타일, 두께를 한 줄로 통합 */
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 #joinTable input:focus {
   border-color: #239aff; /* 포커스 상태에서의 테두리 색상 */
