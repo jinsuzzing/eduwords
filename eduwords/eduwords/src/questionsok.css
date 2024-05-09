@@ -1,0 +1,33 @@
+.questions {
+  display: flex;
+  justify-content: center;
+}
+
+.questionsh2-title {
+  text-align: center;
+  color: #239aff;
+}
+
+.questions-box {
+  align-items: center;
+  width: 30%;
+  height: 50%;
+  border: 5px solid #239aff;
+  border-radius: 20px;
+  margin-top: 12%;
+  margin-bottom: 3%;
+}
+
+.questionsbtn1 {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  font-size: 13pt;
+  border: none;
+  background-color: #239aff;
+  width: 200px;
+  height: 50px;
+  border-radius: 15px;
+  color: white;
+}

@@ -15,23 +15,27 @@ div #bar {
   padding: 20px;
   font-size: 18px;
   justify-content: center;
+  margin: 0px;
 }
 
 #div1 {
   width: 300px;
   flex: 1;
+  margin: 0px;
 }
 
 #div2 {
   flex: 1;
   display: flex;
   justify-content: center;
+  margin: 0px;
 }
 
 #div3 {
   display: flex;
   justify-content: flex-end;
   flex: 1;
+  margin: 0px;
 }
 
 span.tryLogin {
