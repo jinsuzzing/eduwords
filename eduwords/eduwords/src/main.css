@@ -34,9 +34,6 @@ div #bar {
   flex: 1;
 }
 
-span.tryLogin {
-}
-
 a.startLogin {
   margin-inline: 50px;
   text-decoration: none;
@@ -61,7 +58,7 @@ a.startJoin {
 }
 #logo {
   margin-top: 50px;
-  width: 60px;
+  width: 80px;
   height: auto;
   position: absolute;
   left: 10%;

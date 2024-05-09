@@ -8,6 +8,7 @@ import Tp from "./termspage";
 import reportWebVitals from "./reportWebVitals";
 import Joinsuccess from "./joinsuccess";
 import Createhome from "./createhome";
+import Find from "./find";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,6 +21,7 @@ root.render(
         <Route path="/tp" element={<Tp />} />
         <Route path="/js" element={<Joinsuccess />} />
         <Route path="/createhome" element={<Createhome />} />
+        <Route path="/find" element={<Find />} />
       </Routes>
     </Router>
   </React.StrictMode>
