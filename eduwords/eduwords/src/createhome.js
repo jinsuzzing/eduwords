@@ -11,14 +11,15 @@ const createhome = () => {
       <Navbar />
       <div className="contentbox1">
         <div className="gptbutton">
-          <img src={gptbtn}></img>
+          <img src={gptbtn} className="gptimg"></img>
         </div>
-        <br />
-        <div className="button1">
-          <img src={btn1}></img>
-        </div>
-        <div className="button2">
-          <img src={btn2}></img>
+        <div className="bottombtn">
+          <div className="button1">
+            <img src={btn1}></img>
+          </div>
+          <div className="button2">
+            <img src={btn2}></img>
+          </div>
         </div>
       </div>
     </div>

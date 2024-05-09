@@ -6,12 +6,21 @@
   align-items: center;
 }
 
+.gptimg {
+  display: flex;
+  margin: auto;
+}
+
+.bottombtn {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
 .button1 {
-  float: left;
-  margin-left: 2%;
+  padding: 20px;
 }
 
 .button2 {
-  display: flex;
-  padding-left: 1%;
+  padding: 20px;
 }
