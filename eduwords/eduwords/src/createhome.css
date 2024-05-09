@@ -1,0 +1,17 @@
+.gptbutton {
+  align-content: center;
+  margin-top: 13%;
+  align-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.button1 {
+  float: left;
+  margin-left: 2%;
+}
+
+.button2 {
+  display: flex;
+  padding-left: 1%;
+}
