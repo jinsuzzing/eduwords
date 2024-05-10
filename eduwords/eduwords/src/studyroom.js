@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import tb from "../src/img/tb.png";
+import sb from "../src/img/sb.png";
 import Navbar from "./Component/Navbar";
-import "../src/questionslist.css";
+import "../src/studyroom.css";
 
-const QuestionsList = () => {
+const StudyRoom = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -68,11 +68,11 @@ const QuestionsList = () => {
           </tr>
         </tbody>
       </table>
-      <div className="tb-bg">
-        <img src={tb} className="tbimg"></img>
+      <div className="sb-bg">
+        <img src={sb} className="sbimg"></img>
       </div>
     </div>
   );
 };
 
-export default QuestionsList;
+export default StudyRoom;
