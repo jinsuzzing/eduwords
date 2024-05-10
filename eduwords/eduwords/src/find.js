@@ -66,6 +66,9 @@ const find = () => {
                 ></input>
               </td>
             </tr>
+            <tr>
+              <th colSpan={2}>이름</th>
+            </tr>
           </tbody>
         </table>
       </div>
