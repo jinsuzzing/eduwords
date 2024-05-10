@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <div>
       <nav className="navbar">
-        <div id="bar" className="aa">
+        <div id="bar">
           <div id="div1"></div>
           <div id="div2">로그인 해주세요</div>
           <div id="div3">
@@ -17,10 +17,12 @@ const Navbar = () => {
               회원가입
             </Link>
           </div>
+          <Link to="/">
+            <img src={lg} id="logo" alt="logo" />
+          </Link>
         </div>
 
         <ul>
-          <img src={lg} id="logo" alt="logo"></img>
           <li>
             <a href="#home" id="navA">
               에듀워즈 소개

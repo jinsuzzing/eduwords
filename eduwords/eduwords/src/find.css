@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic+Coding&family=Poor+Story&display=swap");
+
+.nanum-gothic-coding-regular {
+  font-family: "Nanum Gothic Coding", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.idFont {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  color: #239aff;
+}
+
+.pwFont {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  color: #239aff;
+}
+
+.idDiv {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+#idTable {
+  font-family: "Nanum Gothic Coding";
+  justify-content: center;
+  width: 40%;
+  margin: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid #239aff;
+  border-radius: 10px;
+}
+
+#idTable th {
+  font-family: "Nanum Gothic Coding";
+  color: white;
+  text-align: right;
+  background-color: #239aff;
+  padding-right: 10px;
+  height: 40px;
+  padding-top: 10px;
+}
+
+#idTable input {
+  width: 50%;
+  height: 25px;
+  text-align: center;
+  margin-left: 10%;
+  border-radius: 5px;
+  border: 2px solid #239aff; /* 테두리 색상, 스타일, 두께를 한 줄로 통합 */
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#idTable input[type="date"] {
+  font-family: "Nanum Gothic Coding";
+}
+#pwTable input {
+  width: 50%;
+  height: 25px;
+  text-align: center;
+  margin-left: 10%;
+  border-radius: 5px;
+  border: 2px solid #239aff; /* 테두리 색상, 스타일, 두께를 한 줄로 통합 */
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#pwTable input[type="date"] {
+  font-family: "Nanum Gothic Coding";
+}
+.findIdBtn {
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  display: flex;
+  font-family: "Nanum Gothic Coding";
+  font-size: 18px;
+  width: 120px;
+  height: 40px;
+  border-radius: 15px;
+  border: 2px solid #239aff;
+  background-color: #239aff;
+  color: white;
+}
+
+#pwTable {
+  font-family: "Nanum Gothic Coding";
+  justify-content: center;
+  width: 40%;
+  margin: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid #239aff;
+  border-radius: 10px;
+}
+#pwTable th {
+  font-family: "Nanum Gothic Coding";
+  color: white;
+  text-align: right;
+  background-color: #239aff;
+  padding-right: 10px;
+  height: 40px;
+  padding-top: 10px;
+}
+.findPwBtn {
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  display: flex;
+  font-family: "Nanum Gothic Coding";
+  font-size: 15px;
+  width: 120px;
+  height: 40px;
+  border-radius: 15px;
+  border: 2px solid #239aff;
+  background-color: #239aff;
+  color: white;
+}
