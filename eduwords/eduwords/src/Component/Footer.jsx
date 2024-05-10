@@ -1,6 +1,5 @@
 import React from "react";
 import "../footer.css";
-import "../css/footer.css";
 import lg2 from "../img/logo2.png";
 
 const Footer = () => {
