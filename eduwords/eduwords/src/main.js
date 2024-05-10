@@ -44,6 +44,7 @@ function main() {
       <main>
         <img src={background} id="back"></img>
       </main>
+
       <Footer />
     </div>
   );
