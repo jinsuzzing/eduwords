@@ -1,0 +1,30 @@
+.aipreview-title {
+  font-size: 30px;
+  color: #239aff;
+  margin-top: 30vb;
+  margin-left: 5%;
+}
+
+.aipreview-box {
+  width: 120vh;
+  height: 500px;
+  border: solid 5px;
+  border-color: #239aff;
+  border-radius: 30px;
+  display: flex;
+  margin: auto;
+}
+
+.aipreview-btn {
+  width: 15vh;
+  height: 5vb;
+  border-radius: 10px;
+  border: 2px solid #239aff;
+  background-color: #239aff;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
