@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Navbar from "./Component/Navbar";
 import "./join.css";
+import { Link } from "react-router-dom";
 
 // 비밀번호 재 확인시 일치하면 문구를 출력해주는 이벤트리스너
 
@@ -121,9 +122,11 @@ function Join() {
         </tbody>
       </table>
 
-      <button class="container" onClick={""}>
-        다음으로
-      </button>
+      <Link to="/js">
+        <button class="container" onClick={""}>
+          다음으로
+        </button>
+      </Link>
     </div>
   );
 }

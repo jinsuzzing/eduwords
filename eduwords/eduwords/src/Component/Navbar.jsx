@@ -13,7 +13,7 @@ const Navbar = () => {
             <Link to="/login" className="startLogin">
               로그인
             </Link>
-            <Link to="/join" className="startJoin">
+            <Link to="/tp" className="startJoin">
               회원가입
             </Link>
           </div>

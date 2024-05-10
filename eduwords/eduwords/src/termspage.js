@@ -2,6 +2,7 @@ import React from "react";
 import "./termspage.css";
 import Navbar from "./Component/Navbar";
 import Footer from "./Component/Footer";
+import { Link } from "react-router-dom";
 
 const Termspage = () => {
   return (
@@ -102,7 +103,9 @@ const Termspage = () => {
           <a href="#">선생님 가입하기</a>
         </div>
         <div className="button-container">
-          <button id="next">다음으로</button>
+          <Link to="/join">
+            <button id="next">다음으로</button>
+          </Link>
         </div>
       </div>
       <Footer />

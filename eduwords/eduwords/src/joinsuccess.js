@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Component/Navbar";
 import "./joinsuccess.css";
+import { Link } from "react-router-dom";
 
 const joinsuccess = () => {
   return (
@@ -21,7 +22,9 @@ const joinsuccess = () => {
       </table>
       <br />
       <br />
-      <button id="gomain">메인으로</button>
+      <Link to="/" component="button" id="gomain">
+        메인으로
+      </Link>
     </div>
   );
 };
