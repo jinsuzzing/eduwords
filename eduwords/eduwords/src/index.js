@@ -13,7 +13,7 @@ import Createai from "./createai";
 import Questionsok from "./questionsok";
 import Questionslist from "./questionslist";
 import StudyRoom from "./studyroom";
-import Preview from "./preview";
+import Aipreview from "./aipreview";
 import Createaproblem from "./createaproblem";
 import Infostudent from "./infostudent";
 
@@ -33,7 +33,7 @@ root.render(
         <Route path="/questionsok" element={<Questionsok />} />
         <Route path="/questionslist" element={<Questionslist />} />
         <Route path="/studyRoom" element={<StudyRoom />} />
-        <Route path="/preview" element={<Preview />} />
+        <Route path="/aipreview" element={<Aipreview />} />
         <Route path="/createaproblem" element={<Createaproblem />} />
         <Route path="/is" element={<Infostudent />} />
       </Routes>
