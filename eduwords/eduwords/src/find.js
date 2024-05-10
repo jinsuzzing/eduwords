@@ -61,7 +61,7 @@ const find = () => {
                 <input
                   type="text"
                   name="username"
-                  placeholder="아이디를 입력해주세요"
+                  placeholder="아이디를 입력해주세요!"
                   required
                 ></input>
               </td>
