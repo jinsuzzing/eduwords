@@ -1,14 +1,6 @@
 import React from "react";
-<<<<<<< Updated upstream
-
-const aipreview = () => {
-  return <div>aipreview</div>;
-};
-
-export default aipreview;
-=======
-import Navbar from "./Component/Navbar";
 import "../src/aipreview.css";
+import Navbar from "./Component/Navbar";
 
 const Aipreview = () => {
   return (
@@ -29,4 +21,3 @@ const Aipreview = () => {
 };
 
 export default Aipreview;
->>>>>>> Stashed changes
