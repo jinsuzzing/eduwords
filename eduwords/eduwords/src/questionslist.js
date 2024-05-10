@@ -49,9 +49,9 @@ const QuestionsList = () => {
     <div>
       <Navbar />
 
-      <table className="listtable">
+      <table className="t-listtable">
         <thead>
-          <tr>
+          <tr className="t-listtable-th">
             <th colSpan={2}>
               {startDate} ~ {endDate}
             </th>
@@ -60,7 +60,7 @@ const QuestionsList = () => {
         <tbody>
           <tr>
             {data.map((item, index) => (
-              <td key={index}>
+              <td key={index} className="t-listtable-td">
                 <p>{item.date}</p>
                 <p>{item.name}</p>
               </td>

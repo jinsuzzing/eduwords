@@ -49,9 +49,9 @@ const StudyRoom = () => {
     <div>
       <Navbar />
 
-      <table className="listtable">
+      <table className="s-listtable">
         <thead>
-          <tr>
+          <tr className="s-listtable-tr">
             <th colSpan={2}>
               {startDate} ~ {endDate}
             </th>
@@ -60,7 +60,7 @@ const StudyRoom = () => {
         <tbody>
           <tr>
             {data.map((item, index) => (
-              <td key={index}>
+              <td key={index} className="s-listtable-td">
                 <p>{item.date}</p>
                 <p>{item.name}</p>
               </td>
