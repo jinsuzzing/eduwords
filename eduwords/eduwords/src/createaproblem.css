@@ -6,7 +6,6 @@
 }
 
 .createproblem-table {
-  font-family: "Nanum Gothic Coding";
   justify-content: center;
   width: 50%;
   margin: auto;
@@ -21,12 +20,30 @@
   text-align: right;
   background-color: #239aff;
   padding-right: 10px;
-  border-top-left-radius: 7px;
-  border-bottom-left-radius: 7px;
   height: 40px;
 }
 
-.createproblem-table input {
+.createproblem-th1 {
+  color: white;
+  text-align: right;
+  background-color: #239aff;
+  padding-right: 10px;
+  border-top-left-radius: 7px;
+  height: 40px;
+}
+
+.createproblem-table input[type="text"] {
+  width: 80%;
+  height: 25px;
+  text-align: center;
+  margin-left: 5%;
+  border-radius: 5px;
+  border: 2px solid #239aff; /* 테두리 색상, 스타일, 두께를 한 줄로 통합 */
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.createproblem-table input[type="number"] {
   width: 80%;
   height: 25px;
   text-align: center;
@@ -38,12 +55,49 @@
 }
 
 .createproblem-btn {
-  width: 50px;
-  height: 29px;
-  border-radius: 5px;
-  margin-left: 10px;
+  margin: auto;
+  border-radius: 10px;
   border: 2px solid #239aff;
   background-color: #239aff;
   color: white;
-  font-size: 14px;
+  width: 20vh;
+  height: 5vh;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.createproblem-table input[type="radio"] {
+  margin-left: 5%;
+  border-radius: 5px;
+  border: 2px solid #239aff; /* 테두리 색상, 스타일, 두께를 한 줄로 통합 */
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.createproble-radio {
+  width: 80%;
+  height: 25px;
+  margin-left: 5%;
+  color: #239aff;
+}
+
+.createproblem-p {
+  margin-left: 5%;
+  color: #239aff;
+}
+
+.createproblem-table input[type="number"] {
+  width: 20%;
+  margin-left: 5%;
+  border-radius: 5px;
+  border: 2px solid #239aff; /* 테두리 색상, 스타일, 두께를 한 줄로 통합 */
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.createproblem-questions {
+  width: 50%;
+  height: 50%;
 }
