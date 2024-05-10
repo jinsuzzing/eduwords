@@ -5,3 +5,46 @@
   font-weight: 400;
   font-style: normal;
 }
+.titleText {
+  font-family: "Nanum Gothic Coding";
+  color: #239aff;
+  font-weight: bold;
+  position: absolute;
+  left: 10%;
+}
+.infoBody {
+  padding-top: 100px;
+  padding-bottom: 50px;
+  margin: auto;
+  width: 60%;
+  border: 1px solid #239aff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between; /* 왼쪽 오른쪽으로 정렬 */
+}
+
+.infoBody th {
+  font-family: "Nanum Gothic Coding";
+  color: #239aff;
+  font-size: 20px;
+}
+.infoBody tr {
+  font-family: "Nanum Gothic Coding";
+  line-height: 2.5; /* 줄 간격 조정 */
+}
+.stuName {
+  color: #239aff;
+  margin-left: 20%;
+  margin-bottom: 2%;
+  font-family: "Nanum Gothic Coding";
+}
+.doneHomework {
+  margin-left: 15%;
+}
+.lookEasy {
+  margin-right: 15%;
+}
+.lookEasy h3 {
+  font-family: "Nanum Gothic Coding";
+  color: #239aff;
+}

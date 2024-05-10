@@ -133,3 +133,9 @@ section h1 {
   background-color: #8eccff; /* 배경색 지정 */
   display: flex;
 }
+.navbar a:hover,
+.navbar a.active {
+  font-family: "Nanum Gothic Coding";
+  color: #239aff;
+  font-weight: bold;
+}

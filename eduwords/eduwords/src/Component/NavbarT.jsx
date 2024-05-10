@@ -1,6 +1,7 @@
 import React from "react";
 import lg from "../img/logo.png";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const NavbarT = () => {
   return (
@@ -29,9 +30,9 @@ const NavbarT = () => {
             </a>
           </li>
           <li>
-            <a href="/is" id="navA">
+            <NavLink to="/is" id="navA" activeClassName="active">
               내 학생관리
-            </a>
+            </NavLink>
           </li>
           <li>
             <a href="#createp" id="navA">
