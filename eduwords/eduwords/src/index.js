@@ -9,6 +9,9 @@ import reportWebVitals from "./reportWebVitals";
 import Joinsuccess from "./joinsuccess";
 import Createhome from "./createhome";
 import Find from "./find";
+import Createai from "./createai";
+import Questionsok from "./questionsok";
+import Questionslist from "./questionslist";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,6 +25,9 @@ root.render(
         <Route path="/js" element={<Joinsuccess />} />
         <Route path="/createhome" element={<Createhome />} />
         <Route path="/find" element={<Find />} />
+        <Route path="/createai" element={<Createai />} />
+        <Route path="/questionsok" element={<Questionsok />} />
+        <Route path="/questionslist" element={<Questionslist />} />
       </Routes>
     </Router>
   </React.StrictMode>
