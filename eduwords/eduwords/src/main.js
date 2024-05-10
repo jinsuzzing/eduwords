@@ -37,6 +37,7 @@ function main() {
       <header>
         <Navbar />
       </header>
+
       <Banner />
 
       <br />

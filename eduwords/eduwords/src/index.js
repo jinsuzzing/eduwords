@@ -15,6 +15,7 @@ import Questionslist from "./questionslist";
 import StudyRoom from "./studyroom";
 import Preview from "./preview";
 import Createaproblem from "./createaproblem";
+import Infostudent from "./infostudent";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -34,6 +35,7 @@ root.render(
         <Route path="/studyRoom" element={<StudyRoom />} />
         <Route path="/preview" element={<Preview />} />
         <Route path="/createaproblem" element={<Createaproblem />} />
+        <Route path="/is" element={<Infostudent />} />
       </Routes>
     </Router>
   </React.StrictMode>
