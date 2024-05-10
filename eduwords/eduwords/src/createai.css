@@ -1,0 +1,84 @@
+.gpttrubo {
+  align-content: center;
+  margin-top: 7%;
+}
+
+.truboimg {
+  display: flex;
+  margin: auto;
+}
+
+.gpttable {
+  font-family: "Nanum Gothic Coding";
+  justify-content: center;
+  width: 30%;
+  margin: auto;
+  margin-top: 4%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid #239aff;
+  border-radius: 10px;
+}
+
+.gptinputbox {
+  width: 55%;
+  height: 25px;
+  border-radius: 10px;
+}
+
+.container {
+  margin: auto;
+  margin-top: 100px;
+  display: flex;
+  font-family: "Nanum Gothic Coding";
+  font-size: 15pt;
+  border: 2px solid #239aff;
+  background-color: #239aff;
+  width: 10%;
+  height: 50px;
+  border-radius: 20px;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.gpttable th {
+  font-family: "Nanum Gothic Coding";
+  color: white;
+  text-align: right;
+  background-color: #239aff;
+  padding-right: 10px;
+  height: 40px;
+  padding-top: 10px;
+}
+
+.gpttable td {
+  padding: 15px;
+  display: flex;
+}
+
+.gpttable input {
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 2px solid #239aff; /* 테두리 색상, 스타일, 두께를 한 줄로 통합 */
+}
+
+.gpttabie hr {
+  margin: 0;
+}
+
+.gpttitle {
+  padding: 10px;
+}
+
+.gptbtn1 {
+  font-size: 13pt;
+  border: none;
+  background-color: #239aff;
+  width: 80px;
+  height: 30px;
+  margin-left: 15px;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+}
