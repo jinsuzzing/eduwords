@@ -4,7 +4,7 @@ import banner1 from "./img/banner1.png";
 import banner2 from "./img/banner2.png";
 import banner3 from "./img/banner3.png";
 import back from "./img/background.png";
-import Navbar from "./Component/Navbar";
+import NavbarT from "./Component/NavbarT";
 import Footer from "./Component/Footer";
 
 const images = [banner1, banner2, banner3];
@@ -35,7 +35,7 @@ function main() {
   return (
     <div className="bodytext">
       <header>
-        <Navbar />
+        <NavbarT />
       </header>
 
       <Banner />
