@@ -13,6 +13,8 @@ import Createai from "./createai";
 import Questionsok from "./questionsok";
 import Questionslist from "./questionslist";
 import StudyRoom from "./studyroom";
+import Preview from "./preview";
+import Createaproblem from "./createaproblem";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -30,6 +32,8 @@ root.render(
         <Route path="/questionsok" element={<Questionsok />} />
         <Route path="/questionslist" element={<Questionslist />} />
         <Route path="/studyRoom" element={<StudyRoom />} />
+        <Route path="/preview" element={<Preview />} />
+        <Route path="/createaproblem" element={<Createaproblem />} />
       </Routes>
     </Router>
   </React.StrictMode>
