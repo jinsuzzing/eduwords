@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import sb from "../src/img/sb.png";
 import Navbar from "./Component/Navbar";
 import "../src/studyroom.css";
+import NavbarT from "./Component/NavbarT";
 
 const StudyRoom = () => {
   const [data, setData] = useState([]);
@@ -47,7 +48,7 @@ const StudyRoom = () => {
 
   return (
     <div>
-      <Navbar />
+      <NavbarT />
 
       <table className="s-listtable">
         <thead>

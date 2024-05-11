@@ -16,6 +16,8 @@ import StudyRoom from "./studyroom";
 import Aipreview from "./aipreview";
 import Createaproblem from "./createaproblem";
 import Infostudent from "./infostudent";
+import Vocabularynote from "./vocabularynote";
+import Membershipout from "./membershipout";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -36,6 +38,8 @@ root.render(
         <Route path="/aipreview" element={<Aipreview />} />
         <Route path="/createaproblem" element={<Createaproblem />} />
         <Route path="/is" element={<Infostudent />} />
+        <Route path="/vocabularynote" element={<Vocabularynote />} />
+        <Route path="/membershipout" element={<Membershipout />} />
       </Routes>
     </Router>
   </React.StrictMode>
