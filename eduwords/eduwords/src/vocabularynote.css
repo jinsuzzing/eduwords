@@ -1,0 +1,55 @@
+.vocabularynote-title {
+  font-size: 50px;
+  color: #239aff;
+  margin-top: 10vb;
+  margin-left: 5%;
+}
+
+.vn-scroll {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.vn-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 130vh;
+  height: 50vh;
+  overflow: auto;
+  border: 5px solid #239aff;
+  border-radius: 20px;
+  margin-top: 3%;
+}
+
+.vn-th1 {
+  font-size: 3vh;
+  color: #239aff;
+}
+
+.vn-th2 {
+  font-size: 3vh;
+  color: #239aff;
+}
+
+.vn-td-word {
+  font-size: 2vh;
+  color: #239aff;
+}
+
+.vn-td-meaning {
+  font-size: 2vh;
+  color: #239aff;
+}
+
+.vn-th1,
+.vn-td-word {
+  width: 25%; /* 4열로 나누어서 25%로 수정 */
+}
+
+.vn-th2,
+.vn-td-meaning {
+  width: 25%; /* 4열로 나누어서 25%로 수정 */
+}
