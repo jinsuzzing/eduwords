@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import Navbar from "./Component/Navbar";
+import React, { useEffect, useState } from "react";
+import NavbarT from "./Component/NavbarT";
 import "./join.css";
 import { Link } from "react-router-dom";
 
@@ -22,7 +22,7 @@ function Join() {
   }, [confirmPassword, password]);
   return (
     <div className="joindiv">
-      <Navbar />
+      <NavbarT />
       <br />
       <br />
       <br />
@@ -122,10 +122,8 @@ function Join() {
         </tbody>
       </table>
 
-      <Link to="/js">
-        <button class="container" onClick={""}>
-          다음으로
-        </button>
+      <Link to="/" component="button" className="container">
+        다음으로
       </Link>
     </div>
   );
