@@ -26,13 +26,13 @@ const login = () => {
       <div className="tool">
         <ul>
           <li>
-            <a href="findId">ID 찾기 </a>
+            <a href="/find">ID 찾기 </a>
           </li>
           <li>
-            <a href="findPw">PW 찾기 </a>
+            <a href="/find">PW 찾기 </a>
           </li>
           <li>
-            <a href="JoinId">회원가입</a>
+            <a href="/tp">회원가입</a>
           </li>
         </ul>
       </div>
