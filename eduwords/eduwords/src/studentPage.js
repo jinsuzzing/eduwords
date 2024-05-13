@@ -90,7 +90,9 @@ function StudentPage() {
             </td>
           </tr>
         </table>
-
+        <Link to="/out" component="button" className="outservice">
+          회원탈퇴
+        </Link>
         <Link to="/" component="button" className="container">
           입력완료
         </Link>

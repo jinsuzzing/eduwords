@@ -61,3 +61,19 @@
 hr {
   margin: 0;
 }
+.outservice {
+  margin-left: 65.5%;
+  margin-top: 10px;
+  display: flex;
+  font-family: "Nanum Gothic Coding";
+  font-size: 10pt;
+  border: 2px solid #239aff;
+  background-color: #239aff;
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
