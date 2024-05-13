@@ -13,6 +13,7 @@
 @media (prefers-reduced-motion: no-preference) {
   .loadingImg {
     animation: loadingImg-spin infinite 10s linear;
+    width: 20vw;
   }
 }
 
@@ -29,4 +30,20 @@
   font-family: "Nanum Gothic Coding";
   color: #239aff;
   font-size: 2vw;
+}
+
+#LoadingNow {
+  width: 30vw;
+  margin: auto;
+  border: 3px solid #239aff;
+  border-radius: 20px;
+  padding: 30px;
+  align-items: center;
+  color: #239aff;
+}
+#Load1,
+#Load2 {
+  font-family: "Nanum Gothic Coding";
+  font-weight: bold;
+  font-size: 20px;
 }
