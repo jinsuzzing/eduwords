@@ -34,7 +34,7 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href="/vocabularynote" id="navA">
+            <a href="/note" id="navA">
               내 단어장
             </a>
           </li>

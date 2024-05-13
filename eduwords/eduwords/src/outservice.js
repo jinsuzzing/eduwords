@@ -18,7 +18,13 @@ const outservice = () => {
           placeholder="삭제하실 아이디 입력"
           required
         ></input>
+        <br />
+        <input type="radio" />
+        예, 탈퇴에 동의합니다.
       </div>
+      <Link to="/outsuccess" component="button" className="outBtn">
+        탈퇴하기
+      </Link>
     </div>
   );
 };
