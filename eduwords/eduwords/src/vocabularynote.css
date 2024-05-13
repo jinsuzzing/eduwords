@@ -1,5 +1,4 @@
 .vocabularynote-title {
-  font-size: 50px;
   color: #239aff;
   margin-top: 10vb;
   margin-left: 5%;
@@ -11,45 +10,102 @@
   overflow: auto;
 }
 
+.vn-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.vn-th {
+  font-size: 3vh;
+  color: #239aff;
+  text-align: left;
+}
+
+.vn-td {
+  font-size: 20px;
+  color: #239aff;
+  margin: auto;
+}
+
+.note-hr {
+  border-left: 3px solid #239aff;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
 .vn-box {
+  width: 120vh;
+  height: 500px;
+  border: solid 5px;
+  border-color: #239aff;
+  border-radius: 30px;
+  overflow-y: auto;
   display: flex;
+  margin: auto;
+  position: relative;
+}
+
+.vn-set {
   align-items: center;
   justify-content: center;
-  margin: auto;
-  width: 130vh;
-  height: 50vh;
-  overflow: auto;
-  border: 5px solid #239aff;
+  display: contents;
+}
+
+.vn-btn {
+  font-size: 13pt;
+  border: 1px solid #239aff;
+  background-color: #239aff;
+  width: 10vh;
+  height: 40px;
+  border-radius: 10px;
+  color: white;
+  margin-left: 74%;
+  position: absolute;
+}
+
+/* Webkit (Chrome, Safari 등) */
+.vn-box::-webkit-scrollbar {
+  width: 8px;
   border-radius: 20px;
-  margin-top: 3%;
+  margin-right: 8px;
 }
 
-.vn-th1 {
-  font-size: 3vh;
-  color: #239aff;
+.vn-box::-webkit-scrollbar-thumb {
+  height: 30%;
+  background: #217af4;
+  border-radius: 20px;
 }
 
-.vn-th2 {
-  font-size: 3vh;
-  color: #239aff;
+.aipreview-box::-webkit-scrollbar-track {
+  background: rgba(33, 122, 244, 0.1);
+  border-radius: 10px;
 }
 
-.vn-td-word {
-  font-size: 2vh;
-  color: #239aff;
+/* Firefox */
+.vn-box {
+  scrollbar-width: thin;
+  scrollbar-color: #217af4 rgba(33, 122, 244, 0.1);
 }
 
-.vn-td-meaning {
-  font-size: 2vh;
-  color: #239aff;
+/* IE */
+.vn-box {
+  -ms-overflow-style: none; /* IE에서 기본 스크롤바 숨기기 */
 }
 
-.vn-th1,
-.vn-td-word {
-  width: 25%; /* 4열로 나누어서 25%로 수정 */
+.vn-box::-ms-scrollbar {
+  width: 8px;
+  border-radius: 20px;
 }
 
-.vn-th2,
-.vn-td-meaning {
-  width: 25%; /* 4열로 나누어서 25%로 수정 */
+.vn-box::-ms-scrollbar-thumb {
+  height: 30%;
+  background: #217af4;
+  border-radius: 20px;
+}
+
+.vn-box::-ms-scrollbar-track {
+  background: rgba(33, 122, 244, 0.1);
 }
