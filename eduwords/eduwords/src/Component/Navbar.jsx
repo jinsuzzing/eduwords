@@ -24,23 +24,28 @@ const Navbar = () => {
 
         <ul>
           <li>
-            <a href="#home" id="navA">
+            <a href="/" id="navA">
               에듀워즈 소개
             </a>
           </li>
           <li>
-            <a href="#study" id="navA">
+            <a href="/studyroom" id="navA">
               공부방
             </a>
           </li>
           <li>
-            <a href="#wordbook" id="navA">
+            <a href="/vocabularynote" id="navA">
               내 단어장
             </a>
           </li>
           <li>
             <a href="#result" id="navA">
               공부 기록
+            </a>
+          </li>
+          <li>
+            <a href="/sp" id="navA">
+              마이 페이지
             </a>
           </li>
         </ul>

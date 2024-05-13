@@ -6,26 +6,13 @@
   font-style: normal;
 }
 
-.joindiv h1 {
+.studiv h1 {
   font-family: "Nanum Gothic Coding";
   text-align: center;
   color: #239aff;
 }
 
-#joinTable button {
-  font-family: "Nanum Gothic Coding";
-  margin-left: 10px;
-  border-radius: 5px;
-  border: 2px solid #239aff;
-  background-color: #239aff;
-  color: white;
-}
-
-#passwordMessage {
-  font-family: "Nanum Gothic Coding";
-  margin-left: 10px;
-}
-#joinTable {
+#infoTable {
   font-family: "Nanum Gothic Coding";
   justify-content: center;
   width: 40%;
@@ -35,8 +22,20 @@
   border: 2px solid #239aff;
   border-radius: 10px;
 }
+#infoTable tr {
+  align-items: center;
+}
+#infoId,
+#infoName {
+  font-family: "Nanum Gothic Coding";
+  display: flex;
+  margin-left: 10%;
+  margin-top: 20px;
+  align-items: center;
+  color: #239aff;
+}
 
-#joinTable th {
+#infoTable th {
   font-family: "Nanum Gothic Coding";
   color: white;
   text-align: right;
@@ -45,7 +44,7 @@
   height: 40px;
   padding-top: 10px;
 }
-#joinTable input {
+#infoTable input {
   width: 50%;
   height: 25px;
   text-align: center;
@@ -55,26 +54,10 @@
   margin-top: 5px;
   margin-bottom: 5px;
 }
-#joinTable input:focus {
+#infoTable input:focus {
   border-color: #239aff; /* 포커스 상태에서의 테두리 색상 */
   outline: none; /* 대부분의 브라우저에서 추가되는 아웃라인 제거 */
 }
 hr {
   margin: 0;
-}
-.container {
-  margin: auto;
-  margin-top: 100px;
-  display: flex;
-  font-family: "Nanum Gothic Coding";
-  font-size: 15pt;
-  border: 2px solid #239aff;
-  background-color: #239aff;
-  width: 10%;
-  height: 50px;
-  border-radius: 20px;
-  color: white;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
 }
