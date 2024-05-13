@@ -1,0 +1,41 @@
+.vd-title {
+  color: #239aff;
+  margin-top: 10vb;
+  margin-left: 5%;
+}
+
+.vd-box {
+  width: 120vh;
+  height: 500px;
+  border: solid 5px;
+  border-color: #239aff;
+  border-radius: 30px;
+  overflow-y: auto;
+  display: flex;
+  margin: auto;
+  position: relative;
+}
+
+.vd-th {
+  font-size: 3vh;
+  color: #239aff;
+  text-align: left;
+}
+
+.vd-td {
+  font-size: 20px;
+  color: #239aff;
+  margin: auto;
+}
+
+.vd-btn {
+  font-size: 13pt;
+  border: 1px solid #239aff;
+  background-color: #239aff;
+  width: 10vh;
+  height: 40px;
+  border-radius: 10px;
+  color: white;
+  margin-left: 74%;
+  position: absolute;
+}
