@@ -22,6 +22,7 @@ import StudentPage from "./studentPage";
 import Outservice from "./outservice";
 import Loading from "./loading";
 import Vd from "./vocabularydetails";
+import Outsuccess from "./outsuccess";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -48,6 +49,7 @@ root.render(
         <Route path="/out" element={<Outservice />} />
         <Route path="/loading" element={<Loading />} />
         <Route path="/vd" element={<Vd />} />
+        <Route path="/os" element={<Outsuccess />} />
       </Routes>
     </Router>
   </React.StrictMode>

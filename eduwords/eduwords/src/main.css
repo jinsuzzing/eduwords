@@ -139,3 +139,11 @@ section h1 {
   color: #239aff;
   font-weight: bold;
 }
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-in-visible {
+  opacity: 5;
+}

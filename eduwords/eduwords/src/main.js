@@ -1,5 +1,5 @@
 import "./main.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import banner1 from "./img/banner1.png";
 import banner2 from "./img/banner2.png";
 import banner3 from "./img/banner3.png";
@@ -12,12 +12,14 @@ const background = [back];
 
 function Banner() {
   const [index, setIndex] = useState(0);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIndex((index + 1) % images.length); // 순환 로직
     }, 3000); // 3초 간격으로 이미지 전환
     return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 제거
   }, [index]); // index 변경 시 useEffect 재실행
+
   return (
     <div>
       <img
@@ -31,7 +33,36 @@ function Banner() {
 
 // 메뉴바
 
-function main() {
+function Main() {
+  const backgroundRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in-visible");
+          } else {
+            entry.target.classList.remove("fade-in-visible");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    if (backgroundRef.current) {
+      observer.observe(backgroundRef.current);
+    }
+
+    return () => {
+      if (backgroundRef.current) {
+        observer.unobserve(backgroundRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="bodytext">
       <header>
@@ -43,11 +74,17 @@ function main() {
       <br />
 
       <main>
-        <img src={background} id="back"></img>
+        <img
+          src={background}
+          id="back"
+          ref={backgroundRef}
+          className="fade-in"
+        ></img>
       </main>
 
       <Footer />
     </div>
   );
 }
-export default main;
+
+export default Main;

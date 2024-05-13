@@ -40,7 +40,7 @@ const outservice = () => {
         </label>
       </div>
       <br />
-      <Link to="/outsuccess" component="button" className="container">
+      <Link to="/os" component="button" className="container">
         탈퇴하기
       </Link>
     </div>
