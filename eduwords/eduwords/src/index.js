@@ -40,7 +40,7 @@ root.render(
         <Route path="/aipreview" element={<Aipreview />} />
         <Route path="/createaproblem" element={<Createaproblem />} />
         <Route path="/is" element={<Infostudent />} />
-        <Route path="/vocabularynote" element={<Vocabularynote />} />
+        <Route path="/note" element={<Vocabularynote />} />
         <Route path="/membershipout" element={<Membershipout />} />
         <Route path="/sp" element={<StudentPage />} />
         <Route path="/out" element={<Outservice />} />
