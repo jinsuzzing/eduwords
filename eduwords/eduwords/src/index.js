@@ -21,6 +21,7 @@ import Membershipout from "./membershipout";
 import StudentPage from "./studentPage";
 import Outservice from "./outservice";
 import Loading from "./loading";
+import Vocabularydetails from "./vocabularydetails";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -46,6 +47,7 @@ root.render(
         <Route path="/sp" element={<StudentPage />} />
         <Route path="/out" element={<Outservice />} />
         <Route path="/loading" element={<Loading />} />
+        <Route path="/vocadetails" element={<Vocabularydetails />} />
       </Routes>
     </Router>
   </React.StrictMode>

@@ -10,9 +10,30 @@
   overflow: auto;
 }
 
+.vn-box {
+  width: 120vh;
+  height: 500px;
+  border: solid 5px;
+  border-color: #239aff;
+  border-radius: 30px;
+  overflow-y: auto;
+  display: flex;
+  margin: auto;
+  position: relative;
+}
+
 .vn-table {
   width: 100%;
   border-collapse: collapse;
+}
+
+.note-hr {
+  border-left: 3px solid #239aff;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
 }
 
 .vn-th {
@@ -27,30 +48,7 @@
   margin: auto;
 }
 
-.note-hr {
-  border-left: 3px solid #239aff;
-  height: 100%;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-}
-
-.vn-box {
-  width: 120vh;
-  height: 500px;
-  border: solid 5px;
-  border-color: #239aff;
-  border-radius: 30px;
-  overflow-y: auto;
-  display: flex;
-  margin: auto;
-  position: relative;
-}
-
 .vn-set {
-  align-items: center;
-  justify-content: center;
   display: contents;
 }
 

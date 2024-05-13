@@ -22,7 +22,7 @@ const VocabularyNote = () => {
     {
       id: 6,
       word: "whimsical",
-      meaning: "재밌거나, 귀찮은, 특이하고 이상한",
+      meaning: "재밌거나, 귀찮은",
       checked: false,
     },
     { id: 7, word: "twilight", meaning: "일몰, 황혼", checked: false },
@@ -79,6 +79,7 @@ const VocabularyNote = () => {
                 <th className="vn-th">단어</th>
                 <th className="vn-th">뜻</th>
               </tr>
+              <br></br>
             </thead>
             <tbody>
               {wordSets1.map((wordSet) => (
@@ -106,6 +107,7 @@ const VocabularyNote = () => {
                 <th className="vn-th">단어</th>
                 <th className="vn-th">뜻</th>
               </tr>
+              <br></br>
             </thead>
             <tbody>
               {wordSets2.map((wordSet) => (
