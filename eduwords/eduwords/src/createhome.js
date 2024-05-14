@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./Component/Navbar";
+import NavbarT from "./Component/NavbarT";
 import gptbtn from "../src/img/gptbtn.png";
 import btn1 from "../src/img/btn1.png";
 import btn2 from "../src/img/btn2.png";
@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const createhome = () => {
   return (
     <div>
-      <Navbar />
+      <NavbarT />
       <div className="contentbox1">
         <div className="gptbutton">
           <Link to="/createai">
