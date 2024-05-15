@@ -45,7 +45,7 @@ const Teacherpage = () => {
         <NavbarT />
       </header>
       <br />
-      <h2 className="titleText">· 내 학생관리</h2>
+      <h2 className="titleText">·내 학생관리</h2>
       <br />
       <br />
       <br />
@@ -76,10 +76,7 @@ const Teacherpage = () => {
         </tbody>
       </table>
       <br />
-      <h3 className="titleText">· 문제 생성</h3>
-      <br />
-      <br />
-      <br />
+      <h2 className="questionText">· 문제 생성</h2>
       <br />
       <Link to="/createai">
         <img src={gptbtn} className="gptimg"></img>

@@ -1,7 +1,41 @@
 import React from "react";
 import NavbarT from "./Component/NavbarT";
 import "./infostudent.css";
+import { Bar } from "react-chartjs-2";
+// chart.js import
+// 설치 : npm install `--save react-chartjs-2 chart.js
 
+const chartData = [
+  { data: "2024-05-01", score: 60 },
+  { data: "2024-05-03", score: 88 },
+  { data: "2024-05-04", score: 72 },
+  { data: "2024-05-05", score: 48 },
+  { data: "2024-05-06", score: 80 },
+];
+const ScoreChart = ({ data }) => {
+  const chartIn = {
+    labels: data.map((item) => item.data), // 날짜 표기
+    datasets: [
+      {
+        label: "점수",
+        data: data.map((item) => item.score), // 점수
+        backgroundColor: "white",
+        borderColor: "#239aff",
+        borderWidth: 2,
+      },
+    ],
+  };
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+    maintainAspectRatio: false,
+  };
+
+  return <Bar data={chartIn} options={options} />;
+};
 const infostudent = () => {
   return (
     <div>
@@ -31,12 +65,7 @@ const infostudent = () => {
           <th>· 최근 성적 한눈에 보기</th>
           <br />
           <br />
-          <tr>{"표가 들어갈 자리입니다."}</tr>
-          <tr>{"표가 들어갈 자리입니다."}</tr>
-          <tr>{"표가 들어갈 자리입니다."}</tr>
-          <tr>{"표가 들어갈 자리입니다."}</tr>
-          <tr>{"표가 들어갈 자리입니다."}</tr>
-          <tr>{"표가 들어갈 자리입니다."}</tr>
+          <ScoreChart data={chartData} />
           <h3>5월 평균 점수 : {"75점"}</h3>
         </div>
       </div>
