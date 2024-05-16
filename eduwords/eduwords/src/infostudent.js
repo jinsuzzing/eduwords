@@ -5,7 +5,7 @@ import { Bar } from "react-chartjs-2";
 import { Chart, Ticks, registerables } from "chart.js";
 Chart.register(...registerables);
 // chart.js import
-// 설치 : npm install `--save react-chartjs-2 chart.js
+// 설치 : ,
 
 const chartData = [
   { data: "05-01", score: 60 },
