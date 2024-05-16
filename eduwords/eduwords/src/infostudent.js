@@ -50,6 +50,7 @@ const ScoreChart = ({ data }) => {
   return <Bar data={chartIn} options={options} />;
 };
 const infostudent = () => {
+  const average = chartData.reduce((a, b) => a + b.score, 0) / chartData.length;
   return (
     <div>
       <header>
@@ -79,7 +80,7 @@ const infostudent = () => {
           <br />
           <br />
           <ScoreChart data={chartData} />
-          <h3>5월 평균 점수 : {"75점"}</h3>
+          <h3>5월 평균 점수 : {average.toFixed(2) + "점"}</h3>
         </div>
       </div>
     </div>
