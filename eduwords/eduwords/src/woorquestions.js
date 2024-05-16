@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import "../src/woorquestions.css";
 import NavbarT from "./Component/NavbarT";
+import { useNavigate } from "react-router-dom";
 
 const WoorQuestions = () => {
-  // 예시 문제 데이터
   const questions = Array.from({ length: 25 }, (_, index) => ({
     id: index + 1,
     content: `문제 ${index + 1}`,
   }));
 
-  // 선택된 문제 수를 추적하기 위한 상태
   const [selectedCount, setSelectedCount] = useState(0);
+  const [selectedQuestions, setSelectedQuestions] = useState([]);
+  const navigate = useNavigate();
 
-  // 2열로 나누기 위한 함수
   const divideIntoColumns = (arr, columns) => {
     const divided = [];
     const chunkSize = Math.ceil(arr.length / columns);
@@ -22,8 +22,15 @@ const WoorQuestions = () => {
     return divided;
   };
 
-  const handleSelect = () => {
-    setSelectedCount(selectedCount + 1);
+  const handleSelect = (question) => {
+    if (!selectedQuestions.includes(question)) {
+      setSelectedQuestions([...selectedQuestions, question]);
+      setSelectedCount(selectedCount + 1);
+    }
+  };
+
+  const handleGenerate = () => {
+    navigate("/allpreview", { state: { selectedQuestions } });
   };
 
   const columns = divideIntoColumns(questions, 2);
@@ -39,7 +46,10 @@ const WoorQuestions = () => {
               {column.map((question) => (
                 <div key={question.id} className="aipreview-question">
                   <p>{question.content}</p>
-                  <button className="wq-btn1" onClick={handleSelect}>
+                  <button
+                    className="wq-btn1"
+                    onClick={() => handleSelect(question)}
+                  >
                     선택
                   </button>
                   <button className="wq-btn2">삭제</button>
@@ -54,7 +64,9 @@ const WoorQuestions = () => {
       <br />
       <br />
       <div>
-        <button className="wq-btn">문제생성</button>
+        <button className="wq-btn" onClick={handleGenerate}>
+          문제생성
+        </button>
       </div>
     </div>
   );
