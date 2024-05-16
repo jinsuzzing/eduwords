@@ -2,15 +2,17 @@ import React from "react";
 import NavbarT from "./Component/NavbarT";
 import "./infostudent.css";
 import { Bar } from "react-chartjs-2";
+import { Chart, Ticks, registerables } from "chart.js";
+Chart.register(...registerables);
 // chart.js import
 // 설치 : npm install `--save react-chartjs-2 chart.js
 
 const chartData = [
-  { data: "2024-05-01", score: 60 },
-  { data: "2024-05-03", score: 88 },
-  { data: "2024-05-04", score: 72 },
-  { data: "2024-05-05", score: 48 },
-  { data: "2024-05-06", score: 80 },
+  { data: "05-01", score: 60 },
+  { data: "05-03", score: 88 },
+  { data: "05-04", score: 72 },
+  { data: "05-05", score: 48 },
+  { data: "05-06", score: 80 },
 ];
 const ScoreChart = ({ data }) => {
   const chartIn = {
@@ -19,7 +21,7 @@ const ScoreChart = ({ data }) => {
       {
         label: "점수",
         data: data.map((item) => item.score), // 점수
-        backgroundColor: "white",
+        backgroundColor: "#239aff",
         borderColor: "#239aff",
         borderWidth: 2,
       },
@@ -27,8 +29,19 @@ const ScoreChart = ({ data }) => {
   };
   const options = {
     scales: {
+      x: {
+        ticks: {
+          maxRotation: 0, // 최대 회전 각도
+          minRotation: 0, // 최소 회전 각도
+          font: {
+            size: 14,
+          },
+          color: "#239aff",
+        },
+      },
       y: {
         beginAtZero: true,
+        max: 100,
       },
     },
     maintainAspectRatio: false,

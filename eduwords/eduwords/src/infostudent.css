@@ -14,9 +14,10 @@
 }
 .infoBody {
   padding-top: 100px;
-  padding-bottom: 50px;
+  padding-bottom: 120px;
   margin: auto;
   width: 60%;
+  height: 500px;
   border: 1px solid #239aff;
   border-radius: 10px;
   display: flex;
