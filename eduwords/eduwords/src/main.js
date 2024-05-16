@@ -65,10 +65,7 @@ function Main() {
 
   return (
     <div className="bodytext">
-      <header>
-        <NavbarT />
-      </header>
-
+      <NavbarT />
       <Banner />
 
       <br />
