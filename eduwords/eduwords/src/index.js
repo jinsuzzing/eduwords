@@ -23,6 +23,8 @@ import Loading from "./loading";
 import Vd from "./vocabularydetails";
 import Outsuccess from "./outsuccess";
 import Teacherpage from "./teacherpage";
+import Wq from "./woorquestions";
+import Markpage from "./markpage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -50,6 +52,8 @@ root.render(
         <Route path="/vd" element={<Vd />} />
         <Route path="/os" element={<Outsuccess />} />
         <Route path="/teacher" element={<Teacherpage />} />
+        <Route path="/wq" element={<Wq />} />
+        <Route path="/markpage" element={<Markpage />} />
       </Routes>
     </Router>
   </React.StrictMode>
