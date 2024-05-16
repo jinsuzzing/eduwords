@@ -5,3 +5,47 @@
   font-weight: 400;
   font-style: normal;
 }
+.goodTitle {
+  font-family: "Nanum Gothic Coding";
+  color: #239aff;
+  font-weight: bold;
+  position: absolute;
+  left: 10%;
+}
+.gooddiv {
+  text-align: center;
+}
+.smileimg {
+  width: 250px;
+  height: auto;
+}
+.goodText {
+  font-family: "Nanum Gothic Coding";
+  color: #239aff;
+  font-weight: bold;
+  font-size: 2vw;
+}
+
+.goodText2 {
+  font-family: "Nanum Gothic Coding";
+  display: flex;
+  justify-content: center;
+  color: rgb(151, 151, 151);
+  font-size: 1vw;
+  font-weight: bold;
+}
+.gomainBtn {
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  display: flex;
+  font-family: "Nanum Gothic Coding";
+  font-size: 15px;
+  width: 120px;
+  height: 40px;
+  border-radius: 15px;
+  border: 2px solid #239aff;
+  background-color: #239aff;
+  color: white;
+  text-decoration: none;
+}

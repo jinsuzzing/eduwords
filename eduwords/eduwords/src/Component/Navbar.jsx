@@ -48,11 +48,6 @@ const Navbar = () => {
 
         <ul>
           <li>
-            <a href="/" id="navA">
-              에듀워즈 소개
-            </a>
-          </li>
-          <li>
             <a href="/studyroom" id="navA">
               공부방
             </a>

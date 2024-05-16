@@ -48,11 +48,6 @@ const NavbarT = () => {
 
         <ul>
           <li>
-            <a href="/" id="navA">
-              에듀워즈 소개
-            </a>
-          </li>
-          <li>
             <NavLink to="/is" id="navA" activeClassName="active">
               내 학생관리
             </NavLink>
