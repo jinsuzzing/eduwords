@@ -17,7 +17,6 @@ import Aipreview from "./aipreview";
 import Createaproblem from "./createaproblem";
 import Infostudent from "./infostudent";
 import Vocabularynote from "./vocabularynote";
-import Membershipout from "./membershipout";
 import StudentPage from "./studentPage";
 import Outservice from "./outservice";
 import Loading from "./loading";
@@ -45,7 +44,6 @@ root.render(
         <Route path="/createaproblem" element={<Createaproblem />} />
         <Route path="/is" element={<Infostudent />} />
         <Route path="/note" element={<Vocabularynote />} />
-        <Route path="/membershipout" element={<Membershipout />} />
         <Route path="/sp" element={<StudentPage />} />
         <Route path="/out" element={<Outservice />} />
         <Route path="/loading" element={<Loading />} />
