@@ -21,6 +21,13 @@
   margin: auto;
 }
 
+.wq-question {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
 /* Webkit (Chrome, Safari 등) */
 .wq-box::-webkit-scrollbar {
   width: 8px;
@@ -73,13 +80,6 @@
   padding: 20px;
 }
 
-.aipreview-question {
-  background-color: #f0f0f0;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
 .wq-btn {
   width: 15vh;
   height: 5vh;
@@ -92,11 +92,6 @@
   margin: auto;
   justify-content: center;
   align-items: center;
-}
-
-.wq-question:hover {
-  border: 5px solid #239aff;
-  background-color: #f0f0f0;
 }
 
 .wq-btn1 {

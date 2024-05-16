@@ -1,0 +1,94 @@
+.all-title {
+  font-size: 30px;
+  color: #239aff;
+  margin-top: 10vb;
+  margin-left: 5%;
+}
+
+.all-p {
+  color: #239aff;
+  margin-left: 20%;
+}
+
+.all-box {
+  width: 120vh;
+  height: 500px;
+  border: solid 5px;
+  border-color: #239aff;
+  border-radius: 30px;
+  overflow-y: auto;
+  display: flex;
+  margin: auto;
+}
+
+.all-question {
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Webkit (Chrome, Safari 등) */
+.all-box::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 20px;
+  margin-right: 8px;
+}
+
+.all-box::-webkit-scrollbar-thumb {
+  height: 30%;
+  background: #217af4;
+  border-radius: 20px;
+}
+
+.all-box::-webkit-scrollbar-track {
+  background: rgba(33, 122, 244, 0.1);
+  border-radius: 10px;
+}
+
+/* Firefox */
+.all-box {
+  scrollbar-width: thin;
+  scrollbar-color: #217af4 rgba(33, 122, 244, 0.1);
+}
+
+/* IE */
+.all-box {
+  -ms-overflow-style: none; /* IE에서 기본 스크롤바 숨기기 */
+}
+
+.all-box::-ms-scrollbar {
+  width: 8px;
+  border-radius: 20px;
+}
+
+.all-box::-ms-scrollbar-thumb {
+  height: 30%;
+  background: #217af4;
+  border-radius: 20px;
+}
+
+.all-box::-ms-scrollbar-track {
+  background: rgba(33, 122, 244, 0.1);
+}
+
+.all-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.all-btn {
+  width: 15vh;
+  height: 5vh;
+  border-radius: 10px;
+  border: 2px solid #239aff;
+  background-color: #239aff;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}

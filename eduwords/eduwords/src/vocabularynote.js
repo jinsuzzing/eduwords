@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import NavbarT from "./Component/NavbarT";
+import { useNavigate } from "react-router-dom";
 import "../src/vocabularynote.css";
 
 const VocabularyNote = () => {
@@ -43,6 +44,14 @@ const VocabularyNote = () => {
     { id: 9, word: "baker", meaning: "제빵사", checked: false },
     { id: 10, word: "writer", meaning: "작가", checked: false },
   ]);
+
+  const navigate = useNavigate();
+
+  const handleWordClick = (word, meaning) => {
+    setWordSets1(word);
+    setWordSets2(meaning);
+    navigate(`/vd/${word}/${meaning}`); // 선택된 단어 정보가 포함된 URL로 이동
+  };
 
   const toggleCheckbox1 = (id) => {
     const updatedWordSets = wordSets1.map((wordSet) =>
@@ -91,8 +100,22 @@ const VocabularyNote = () => {
                       onChange={() => toggleCheckbox1(wordSet.id)}
                     />
                   </td>
-                  <td className="vn-td">{wordSet.word}</td>
-                  <td className="vn-td">{wordSet.meaning}</td>
+                  <td
+                    className="vn-td"
+                    onClick={() =>
+                      handleWordClick(wordSet.word, wordSet.meaning)
+                    }
+                  >
+                    {wordSet.word}
+                  </td>
+                  <td
+                    className="vn-td"
+                    onClick={() =>
+                      handleWordClick(wordSet.word, wordSet.meaning)
+                    }
+                  >
+                    {wordSet.meaning}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -119,8 +142,22 @@ const VocabularyNote = () => {
                       onChange={() => toggleCheckbox2(wordSet.id)}
                     />
                   </td>
-                  <td className="vn-td">{wordSet.word}</td>
-                  <td className="vn-td">{wordSet.meaning}</td>
+                  <td
+                    className="vn-td"
+                    onClick={() =>
+                      handleWordClick(wordSet.word, wordSet.meaning)
+                    }
+                  >
+                    {wordSet.word}
+                  </td>
+                  <td
+                    className="vn-td"
+                    onClick={() =>
+                      handleWordClick(wordSet.word, wordSet.meaning)
+                    }
+                  >
+                    {wordSet.meaning}
+                  </td>
                 </tr>
               ))}
             </tbody>

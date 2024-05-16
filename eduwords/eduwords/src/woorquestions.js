@@ -1,17 +1,28 @@
 import React, { useState } from "react";
 import "../src/woorquestions.css";
 import NavbarT from "./Component/NavbarT";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const WoorQuestions = () => {
-  const questions = Array.from({ length: 25 }, (_, index) => ({
-    id: index + 1,
-    content: `문제 ${index + 1}`,
-  }));
-
   const [selectedCount, setSelectedCount] = useState(0);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
+  const location = useLocation();
+  const previewQuestions = location.state
+    ? location.state.previewQuestions
+    : [];
   const navigate = useNavigate();
+
+  // 문제합치기
+  const allQuestions = [...previewQuestions];
+
+  // 예시 문제 데이터
+  const additionalQuestions = Array.from({ length: 25 }, (_, index) => ({
+    id: index + 1,
+    content: `추가 문제 ${index + 1}`,
+  }));
+
+  // 합친 문제 리스트
+  const questions = [...allQuestions, ...additionalQuestions];
 
   const divideIntoColumns = (arr, columns) => {
     const divided = [];
@@ -29,11 +40,15 @@ const WoorQuestions = () => {
     }
   };
 
-  const handleGenerate = () => {
-    navigate("/allpreview", { state: { selectedQuestions } });
-  };
-
   const columns = divideIntoColumns(questions, 2);
+
+  const handleGenerate = () => {
+    navigate("/allpreview", {
+      state: {
+        selectedQuestions: selectedQuestions,
+      },
+    });
+  };
 
   return (
     <div>
@@ -44,7 +59,7 @@ const WoorQuestions = () => {
           {columns.map((column, index) => (
             <div key={index} className="wq-column">
               {column.map((question) => (
-                <div key={question.id} className="aipreview-question">
+                <div key={question.id} className="wq-question">
                   <p>{question.content}</p>
                   <button
                     className="wq-btn1"
@@ -60,8 +75,6 @@ const WoorQuestions = () => {
         </div>
         <p className="wq-p">현재 선택된 문제 수: {selectedCount}</p>
       </div>
-      <br />
-      <br />
       <br />
       <div>
         <button className="wq-btn" onClick={handleGenerate}>

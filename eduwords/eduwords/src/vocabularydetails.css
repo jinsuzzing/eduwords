@@ -14,6 +14,21 @@
   display: flex;
   margin: auto;
   position: relative;
+  flex-wrap: wrap;
+}
+
+.vd-box > div {
+  flex: 1 1 50%; /* 2열로 나누기 위해 50% 너비로 설정 */
+}
+
+.vd-h1 {
+  color: #239aff;
+  font-size: 50pt;
+}
+
+.vd-p {
+  color: #000000;
+  font-size: 18pt;
 }
 
 .vd-th {
