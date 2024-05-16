@@ -13,8 +13,18 @@
   overflow-y: auto;
   display: flex;
   margin: auto;
-  position: relative;
-  flex-wrap: wrap;
+}
+
+.vd-pin {
+  background-image: url("../src/img/notepin1.png"); /* 이미지 경로 설정 (올바른 url 함수 사용) */
+  background-size: 150px;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: 20%; /* 상단에 고정 */
+  left: 50%; /* 가로 중앙 */
+  transform: translateX(-50%); /* 중앙 정렬 */
+  z-index: 1000;
 }
 
 .vd-box > div {

@@ -52,6 +52,18 @@
   display: contents;
 }
 
+.vn-pin {
+  background-image: ("../src/img/notepin1.png");
+  background-size: 150px;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
 .vn-btn {
   font-size: 13pt;
   border: 1px solid #239aff;

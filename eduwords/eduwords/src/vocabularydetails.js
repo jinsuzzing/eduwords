@@ -1,6 +1,7 @@
 import React from "react";
 import NavbarT from "./Component/NavbarT";
 import "../src/vocabularydetails.css";
+import pin from "../src/img/notepin1.png";
 import { useLocation } from "react-router-dom";
 
 const Vd = () => {
@@ -17,6 +18,7 @@ const Vd = () => {
       <h1 className="vd-title">· 단어 상세 정보</h1>
 
       <div className="vd-box">
+        <img src={pin} className="vd-pin" alt="Pin" />
         <div className="wordbox">
           <h2>{word}</h2>
         </div>

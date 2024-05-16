@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NavbarT from "./Component/NavbarT";
 import { useNavigate } from "react-router-dom";
 import "../src/vocabularynote.css";
+import pin from "../src/img/notepin1.png";
 
 const VocabularyNote = () => {
   const [wordSets1, setWordSets1] = useState([
@@ -78,13 +79,14 @@ const VocabularyNote = () => {
       <h1 className="vocabularynote-title">· 단어장</h1>
 
       <div className="vn-box">
+        <img src={pin} className="vn-pin" alt="Pin" />
         <div className="vn-set">
           <table className="vn-table">
             <thead>
               <tr>
                 <th className="vn-th"></th>
                 <th className="vn-th">단어</th>
-                <th className="vn-th">뜻</th>
+                <th className="vn-th"></th>
               </tr>
               <br></br>
             </thead>
