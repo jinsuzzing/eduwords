@@ -1,26 +1,34 @@
 import React from "react";
 import NavbarT from "./Component/NavbarT";
 import "../src/vocabularydetails.css";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-const VocabularyDetails = () => {
-  const { word, meaning } = useParams(); // URL에서 단어와 뜻을 가져옴
+const Vd = () => {
+  const location = useLocation();
+  const { word, meaning } = location.state || {};
+  if (!word || !meaning) {
+    console.error("No state provided");
+    return <p>No word details provided!</p>;
+  }
 
   return (
     <div>
       <NavbarT />
-      <h1 className="vd-title">· 내 단어장</h1>
+      <h1 className="vd-title">· 단어 상세 정보</h1>
 
       <div className="vd-box">
-        <div>
-          <h1 className="vd-h1">{word}dd</h1>
+        <div className="wordbox">
+          <h2>{word}</h2>
         </div>
-        <div>
-          <p className="vd-p">뜻: {meaning}</p>
+        <div className="meaningbox">
+          <h2>{meaning}</h2>
         </div>
       </div>
+      <br></br>
+      <br></br>
+      <button className="vd-btn">확인</button>
     </div>
   );
 };
 
-export default VocabularyDetails;
+export default Vd;

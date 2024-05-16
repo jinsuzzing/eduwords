@@ -48,9 +48,7 @@ const VocabularyNote = () => {
   const navigate = useNavigate();
 
   const handleWordClick = (word, meaning) => {
-    setWordSets1(word);
-    setWordSets2(meaning);
-    navigate(`/vd/${word}/${meaning}`); // 선택된 단어 정보가 포함된 URL로 이동
+    navigate("/vd", { state: { word, meaning } });
   };
 
   const toggleCheckbox1 = (id) => {

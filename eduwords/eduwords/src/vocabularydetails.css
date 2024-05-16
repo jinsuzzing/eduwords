@@ -21,6 +21,25 @@
   flex: 1 1 50%; /* 2열로 나누기 위해 50% 너비로 설정 */
 }
 
+.wordbox {
+  color: #239aff;
+  font-size: 50pt;
+  margin: auto;
+  align-items: center;
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.meaningbox {
+  font-size: 18pt;
+  margin: auto;
+  align-items: center;
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
 .vd-h1 {
   color: #239aff;
   font-size: 50pt;
