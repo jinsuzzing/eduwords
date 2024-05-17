@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import sb from "../src/img/sb.png";
+import sb from "../src/img/stb1.png";
 import Navbar from "./Component/Navbar";
 import "../src/studyroom.css";
 
@@ -48,29 +48,23 @@ const StudyRoom = () => {
   return (
     <div>
       <Navbar />
-
+      <img src={sb} className="sbimg"></img>
       <table className="s-listtable">
-        <thead>
-          <tr className="s-listtable-tr">
-            <th colSpan={2}>
-              {startDate} ~ {endDate}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            {data.map((item, index) => (
-              <td key={index} className="s-listtable-td">
-                <p>{item.date}</p>
-                <p>{item.name}</p>
-              </td>
-            ))}
-          </tr>
-        </tbody>
+        <tr className="s-listtable-tr1">
+          <th colSpan={2}>
+            {startDate} ~ {endDate}
+          </th>
+        </tr>
+
+        <tr className="s-listtable-tr2">
+          {data.map((item, index) => (
+            <td key={index} className="s-listtable-td">
+              <p>{item.date}dd</p>
+              <p>{item.name}dd</p>
+            </td>
+          ))}
+        </tr>
       </table>
-      <div className="sb-bg">
-        <img src={sb} className="sbimg"></img>
-      </div>
     </div>
   );
 };

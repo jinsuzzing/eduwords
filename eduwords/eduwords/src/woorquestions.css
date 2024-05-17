@@ -28,6 +28,16 @@
   margin-bottom: 10px;
 }
 
+.wq-question:hover {
+  border: 5px solid #239aff;
+  background-color: #f0f0f0;
+}
+
+.wq-selected {
+  border: 5px solid #239aff;
+  background-color: #e0f0ff;
+}
+
 /* Webkit (Chrome, Safari 등) */
 .wq-box::-webkit-scrollbar {
   width: 8px;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import tb from "../src/img/tb.png";
 import Navbar from "./Component/Navbar";
 import "../src/questionslist.css";
+import NavbarT from "./Component/NavbarT";
 
 const QuestionsList = () => {
   const [data, setData] = useState([]);
@@ -47,30 +48,24 @@ const QuestionsList = () => {
 
   return (
     <div>
-      <Navbar />
-
+      <NavbarT />
+      <img src={tb} className="tbimg"></img>
       <table className="t-listtable">
-        <thead>
-          <tr className="t-listtable-th">
-            <th colSpan={2}>
-              {startDate} ~ {endDate}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            {data.map((item, index) => (
-              <td key={index} className="t-listtable-td">
-                <p>{item.date}</p>
-                <p>{item.name}</p>
-              </td>
-            ))}
-          </tr>
-        </tbody>
+        <tr className="t-listtable-tr1">
+          <th colSpan={2}>
+            {startDate} ~ {endDate}
+          </th>
+        </tr>
+
+        <tr className="t-listtable-tr2">
+          {data.map((item, index) => (
+            <td key={index} className="t-listtable-td">
+              <p>{item.date}dd</p>
+              <p>{item.name}dd</p>
+            </td>
+          ))}
+        </tr>
       </table>
-      <div className="tb-bg">
-        <img src={tb} className="tbimg"></img>
-      </div>
     </div>
   );
 };
