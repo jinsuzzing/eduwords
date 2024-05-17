@@ -113,3 +113,28 @@
   width: 50px;
   border-radius: 5px;
 }
+.A1,
+.A2,
+.A3,
+.A4,
+.A5 {
+  color: #363636;
+}
+.editQ {
+  border: 2px solid #239aff;
+  border-radius: 5px;
+  padding: 5px;
+  width: 23vw;
+  height: auto;
+}
+.editA1,
+.editA2,
+.editA3,
+.editA4,
+.editA5 {
+  border: 2px solid #239aff;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
