@@ -21,12 +21,24 @@
 }
 
 .gptinputbox {
-  width: 55%;
+  width: 10vw;
   height: 25px;
   border-radius: 10px;
 }
-
-.container {
+.gptinputbox::-webkit-inner-spin-button {
+  background-color: #239aff;
+}
+.gptinputbox::-webkit-inner-spin-button {
+  width: 45px;
+  height: 45px;
+}
+.movetr {
+  margin-left: 50px;
+}
+.maketd {
+  color: #239aff;
+}
+.createNext {
   margin: auto;
   margin-top: 100px;
   display: flex;
@@ -40,6 +52,7 @@
   color: white;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
 }
 
 .gpttable th {
