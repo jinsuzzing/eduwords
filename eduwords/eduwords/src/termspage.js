@@ -107,6 +107,10 @@ const Termspage = () => {
             <button id="next">다음으로</button>
           </Link>
         </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </div>
       <Footer />
     </div>

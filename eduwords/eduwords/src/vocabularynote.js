@@ -77,9 +77,8 @@ const VocabularyNote = () => {
     <div>
       <NavbarT />
       <h1 className="vocabularynote-title">· 단어장</h1>
-
+      <img src={pin} className="vn-pin" alt="Pin" />
       <div className="vn-box">
-        <img src={pin} className="vn-pin" alt="Pin" />
         <div className="vn-set">
           <table className="vn-table">
             <thead>

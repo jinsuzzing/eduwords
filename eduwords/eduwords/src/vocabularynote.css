@@ -1,6 +1,6 @@
 .vocabularynote-title {
   color: #239aff;
-  margin-top: 10vb;
+  margin-top: 10vh;
   margin-left: 5%;
 }
 
@@ -53,12 +53,12 @@
 }
 
 .vn-pin {
-  background-image: ("../src/img/notepin1.png");
+  background-image: url("../src/img/notepin1.png");
   background-size: 150px;
   width: 150px;
   height: 150px;
   position: absolute;
-  top: 20%;
+  top: 22%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
@@ -89,7 +89,7 @@
   border-radius: 20px;
 }
 
-.aipreview-box::-webkit-scrollbar-track {
+.vn-box::-webkit-scrollbar-track {
   background: rgba(33, 122, 244, 0.1);
   border-radius: 10px;
 }

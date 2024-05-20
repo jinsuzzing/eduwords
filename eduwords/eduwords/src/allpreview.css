@@ -92,3 +92,19 @@
   justify-content: center;
   align-items: center;
 }
+.aipreview-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.aipreview-column {
+  width: 48%;
+}
+.all-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.all-column {
+  width: 48%;
+}

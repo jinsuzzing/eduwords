@@ -4,14 +4,19 @@ import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 const NavbarT = () => {
-  //로그인 상태를 관리하는 useState
-  //로그인 상태를 통해 메뉴바를 로그인 회원가입 -> 로그아웃 마이페이지 로 바꾸려는 동작 수행
-  const [loginIn, setloginIn] = useState(false);
+  const [loginIn, setLoginIn] = useState(false);
 
-  //로그아웃 함수
   const handleLogout = () => {
-    setloginIn(false);
+    setLoginIn(false);
   };
+
+  const handleLoginClick = (e) => {
+    if (!loginIn) {
+      e.preventDefault(); // 클릭 이벤트의 기본 동작 중지
+      alert("로그인 해주세요.");
+    }
+  };
+
   return (
     <div>
       <nav className="navbar">
@@ -48,22 +53,27 @@ const NavbarT = () => {
 
         <ul>
           <li>
-            <NavLink to="/is" id="navA" activeClassName="active">
+            <NavLink
+              to="/is"
+              id="navA"
+              activeClassName="active"
+              onClick={handleLoginClick}
+            >
               내 학생관리
             </NavLink>
           </li>
           <li>
-            <a href="#createp" id="navA">
+            <a href="#createp" id="navA" onClick={handleLoginClick}>
               문제 생성
             </a>
           </li>
           <li>
-            <a href="#plist" id="navA">
+            <a href="#plist" id="navA" onClick={handleLoginClick}>
               문제 리스트
             </a>
           </li>
           <li>
-            <a href="#result" id="navA">
+            <a href="#result" id="navA" onClick={handleLoginClick}>
               내 정보 수정
             </a>
           </li>

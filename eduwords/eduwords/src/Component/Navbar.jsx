@@ -3,13 +3,22 @@ import lg from "../img/logo.png";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  //로그인 상태를 관리하는 useState
-  //로그인 상태를 통해 메뉴바를 로그인 회원가입 -> 로그아웃 마이페이지 로 바꾸려는 동작 수행
-  const [loginIn, setloginIn] = useState(false);
+  const [loginIn, setLoginIn] = useState(false);
 
-  //로그아웃 함수
   const handleLogout = () => {
-    setloginIn(false);
+    setLoginIn(false);
+  };
+
+  const handleLoginClick = () => {
+    if (!loginIn) {
+      alert("로그인이 필요합니다!");
+    }
+  };
+
+  const handleMenuClick = () => {
+    if (!loginIn) {
+      alert("로그인이 필요합니다!");
+    }
   };
 
   return (
@@ -23,7 +32,7 @@ const Navbar = () => {
           <div id="div3">
             {loginIn ? (
               <>
-                <Link to="/sp" className="startLogin">
+                <Link to="/sp" className="startLogin" onClick={handleMenuClick}>
                   마이 페이지
                 </Link>
                 <button onClick={handleLogout} className="startJoin">
@@ -32,7 +41,11 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Link to="/login" className="startLogin">
+                <Link
+                  to="/login"
+                  className="startLogin"
+                  onClick={handleLoginClick}
+                >
                   로그인
                 </Link>
                 <Link to="/tp" className="startJoin">
@@ -48,22 +61,22 @@ const Navbar = () => {
 
         <ul>
           <li>
-            <a href="/studyroom" id="navA">
+            <a href="/studyroom" id="navA" onClick={handleLoginClick}>
               공부방
             </a>
           </li>
           <li>
-            <a href="/note" id="navA">
+            <a href="/note" id="navA" onClick={handleLoginClick}>
               내 단어장
             </a>
           </li>
           <li>
-            <a href="#result" id="navA">
+            <a href="#result" id="navA" onClick={handleLoginClick}>
               공부 기록
             </a>
           </li>
           <li>
-            <a href="/sp" id="navA">
+            <a href="/sp" id="navA" onClick={handleLoginClick}>
               마이 페이지
             </a>
           </li>

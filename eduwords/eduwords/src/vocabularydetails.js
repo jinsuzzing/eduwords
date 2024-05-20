@@ -16,9 +16,8 @@ const Vd = () => {
     <div>
       <NavbarT />
       <h1 className="vd-title">· 단어 상세 정보</h1>
-
+      <img src={pin} className="vd-pin" alt="Pin" />
       <div className="vd-box">
-        <img src={pin} className="vd-pin" alt="Pin" />
         <div className="wordbox">
           <h2>{word}</h2>
         </div>

@@ -27,6 +27,7 @@ const Aipreview = () => {
   const navigate = useNavigate();
 
   const handleGenerateai = () => {
+    console.log("Navigating with previewQuestions:", previewQuestions);
     navigate("/wq", {
       state: {
         previewQuestions: previewQuestions,

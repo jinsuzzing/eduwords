@@ -5,8 +5,7 @@ import { useLocation } from "react-router-dom";
 
 const AllPreview = () => {
   const location = useLocation();
-  const selectedQuestions = location.state.selectedQuestions || [];
-  const previewQuestions = location.state.previewQuestions || [];
+  const selectedQuestions = location.state?.selectedQuestions || [];
 
   const divideIntoColumns = (arr, columns) => {
     const divided = [];
@@ -17,9 +16,7 @@ const AllPreview = () => {
     return divided;
   };
 
-  const allQuestions = [...selectedQuestions, ...previewQuestions];
-
-  const selectedColumns = divideIntoColumns(allQuestions, 2);
+  const selectedColumns = divideIntoColumns(selectedQuestions, 2);
 
   return (
     <div>

@@ -1,28 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../src/woorquestions.css";
 import NavbarT from "./Component/NavbarT";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const WoorQuestions = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [selectedCount, setSelectedCount] = useState(0);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
-  const location = useLocation();
-  const previewQuestions = location.state
-    ? location.state.previewQuestions
-    : [];
-  const navigate = useNavigate();
 
-  // 문제합치기
-  const allQuestions = [...previewQuestions];
+  // Aipreview에서 전달된 문제 리스트를 받아옵니다.
+  const previewQuestions = location.state?.previewQuestions || [];
+
+  useEffect(() => {
+    console.log("Received preview questions:", previewQuestions);
+  }, [previewQuestions]);
 
   // 예시 문제 데이터
   const additionalQuestions = Array.from({ length: 25 }, (_, index) => ({
-    id: index + 1,
+    id: index + 1 + previewQuestions.length,
     content: `추가 문제 ${index + 1}`,
   }));
 
   // 합친 문제 리스트
-  const questions = [...allQuestions, ...additionalQuestions];
+  const questions = [...previewQuestions, ...additionalQuestions];
 
   const divideIntoColumns = (arr, columns) => {
     const divided = [];
@@ -73,14 +74,15 @@ const WoorQuestions = () => {
             </div>
           ))}
         </div>
-        <p className="wq-p">현재 선택된 문제 수: {selectedCount}</p>
       </div>
-      <br />
+      <p className="wq-p">현재 선택된 문제 수: {selectedCount}</p>
       <div>
         <button className="wq-btn" onClick={handleGenerate}>
           문제생성
         </button>
       </div>
+      <br></br>
+      <br></br>
     </div>
   );
 };
