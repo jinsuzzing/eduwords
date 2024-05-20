@@ -2,18 +2,23 @@ import React, { useState, useEffect } from "react";
 import tb from "../img/tb.png";
 import "../css/questionslist.css";
 import NavbarT from "../Component/NavbarT";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const QuestionsList = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const examInfo = location.state?.examInfo || {};
   const { examName, startDate, endDate } = examInfo;
+
+  const handleTableClick = () => {
+    navigate("/namelist");
+  };
 
   return (
     <div>
       <NavbarT />
       <img src={tb} className="tbimg" alt="table"></img>
-      <table className="t-listtable">
+      <table className="t-listtable" onClick={handleTableClick}>
         <tbody>
           <tr className="t-listtable-tr1">
             <th colSpan={2}>

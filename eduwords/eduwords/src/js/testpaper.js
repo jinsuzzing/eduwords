@@ -20,9 +20,8 @@ const TestPaper = () => {
 
   // 제출하기 버튼을 클릭할 때 실행되는 함수
   const handleSubmit = () => {
-    // 여기서 selectedAnswers 상태를 goodboy.js로 전달하고, 데이터베이스에 저장하는 코드를 추가하세요.
-    console.log("Selected Answers:", selectedAnswers);
-    navigate("/goodboy");
+    navigate("/namelist", { state: { selectedAnswers: selectedAnswers } });
+    navigate("/good");
   };
 
   return (
