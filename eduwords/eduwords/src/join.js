@@ -2,39 +2,44 @@ import React, { useEffect, useState } from "react";
 import NavbarT from "./Component/NavbarT";
 import "../src/css/join.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Join() {
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [mem_pw, setPassword] = useState("");
+  const [mem_id, setUsername] = useState("");
   const [usernameMessage, setUsernameMessage] = useState("");
   const [usernameMessageStyle, setUsernameMessageStyle] = useState({});
   const [isUsernameValid, setIsUsernameValid] = useState(false);
-  const [fullname, setFullname] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [email, setEmail] = useState("");
+  const [mem_name, setFullname] = useState("");
+  const [mem_number, setPhone] = useState("");
+  const [mem_address, setAddress] = useState("");
+  const [mem_email, setEmail] = useState("");
+  const [mem_type, setType] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const messageElement = document.getElementById("passwordMessage");
 
-    if (confirmPassword === password) {
+    if (confirmPassword === mem_pw) {
       messageElement.textContent = "비밀번호가 일치합니다.";
       messageElement.style.color = "#239aff";
     } else {
       messageElement.textContent = "일치하지 않습니다";
       messageElement.style.color = "red";
+      setIsUsernameValid(false);
     }
-  }, [confirmPassword, password]);
+  }, [confirmPassword, mem_pw]);
 
   const handleUsernameCheck = async () => {
     try {
-      const response = await fetch(`/api/check-username?username=${username}`);
-      const data = await response.json();
+      console.log(mem_id);
+      const response = await axios.post("http://localhost:8081/check", {
+        mem_id,
+      });
 
-      if (data.exists) {
+      if (response.data.exists) {
         setUsernameMessage("이미 사용 중인 아이디입니다.");
         setUsernameMessageStyle({ color: "red", fontSize: "12px" });
         setIsUsernameValid(false);
@@ -50,11 +55,27 @@ function Join() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isUsernameValid && password === confirmPassword) {
-      const joinDate = new Date().toLocaleDateString();
-      navigate("/joinsuccess", { state: { username, joinDate } });
+    if (isUsernameValid && mem_pw === confirmPassword) {
+      const joined_at = new Date().toLocaleDateString();
+      const member = {
+        mem_id,
+        mem_pw,
+        mem_name,
+        mem_number,
+        mem_address,
+        mem_type,
+        mem_email,
+        joined_at,
+      };
+      console.log(member);
+      try {
+        await axios.post("http://localhost:8081/register", member);
+        navigate("/joinsuccess", { state: { mem_id, joined_at } });
+      } catch (error) {
+        alert("회원 가입에 실패했습니다. 다시 시도해주세요.");
+      }
     } else {
       alert("모든 정보를 올바르게 입력해주세요.");
     }
@@ -78,7 +99,7 @@ function Join() {
                   name="username"
                   placeholder="아이디를 입력하세요"
                   required
-                  value={username}
+                  value={mem_id}
                   onChange={(e) => setUsername(e.target.value)}
                 />
                 <button type="button" onClick={handleUsernameCheck} id="idbtn">
@@ -98,7 +119,7 @@ function Join() {
                   id="password"
                   placeholder="비밀번호를 입력하세요"
                   required
-                  value={password}
+                  value={mem_pw}
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </td>
@@ -129,7 +150,7 @@ function Join() {
                   name="fullname"
                   placeholder="이름을 입력하세요"
                   required
-                  value={fullname}
+                  value={mem_name}
                   onChange={(e) => setFullname(e.target.value)}
                 />
               </td>
@@ -142,7 +163,7 @@ function Join() {
                   name="phone"
                   placeholder="연락처를 입력하세요"
                   required
-                  value={phone}
+                  value={mem_number}
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </td>
@@ -155,7 +176,7 @@ function Join() {
                   name="address"
                   placeholder="주소를 입력하세요"
                   required
-                  value={address}
+                  value={mem_address}
                   onChange={(e) => setAddress(e.target.value)}
                 />
               </td>
@@ -168,7 +189,7 @@ function Join() {
                   name="email"
                   placeholder="이메일을 입력하세요"
                   required
-                  value={email}
+                  value={mem_email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </td>
