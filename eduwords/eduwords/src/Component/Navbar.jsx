@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import lg from "../img/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [loginIn, setLoginIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     setLoginIn(false);
@@ -12,12 +13,14 @@ const Navbar = () => {
   const handleLoginClick = () => {
     if (!loginIn) {
       alert("로그인이 필요합니다!");
+      navigate("/login");
     }
   };
 
   const handleMenuClick = () => {
     if (!loginIn) {
       alert("로그인이 필요합니다!");
+      navigate("/login");
     }
   };
 

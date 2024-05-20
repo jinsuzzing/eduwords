@@ -57,7 +57,7 @@ root.render(
         <Route path="/wq" element={<Wq />} />
         <Route path="/markpage" element={<Markpage />} />
         <Route path="/good" element={<Goodboy />} />
-        <Route path="allpreview" element={<All />} />
+        <Route path="/allpreview" element={<All />} />
       </Routes>
     </Router>
   </React.StrictMode>

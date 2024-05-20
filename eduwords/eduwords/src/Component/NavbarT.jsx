@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import lg from "../img/logo.png";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const NavbarT = () => {
   const [loginIn, setLoginIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     setLoginIn(false);
@@ -14,6 +14,7 @@ const NavbarT = () => {
     if (!loginIn) {
       e.preventDefault(); // 클릭 이벤트의 기본 동작 중지
       alert("로그인 해주세요.");
+      navigate("/login");
     }
   };
 
