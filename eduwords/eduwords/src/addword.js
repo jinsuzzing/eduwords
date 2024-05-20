@@ -28,10 +28,30 @@ const AddWord = () => {
     } catch (error) {
       console.error(error);
       setTranslation("번역 오류");
-      setError("번역 서버에 문제가 있습니다. 나중에 다시 시도해 주세요.");
+      setError("번역 서버에 문제가 있습니다.  다시 시도해 주세요.");
     }
   };
 
+  const handleAddWord = () => {
+    if (word && translation) {
+      const newWord = {
+        id: Date.now(),
+        word,
+        meaning: translation,
+        checked: false,
+      };
+      const existingWords = JSON.parse(localStorage.getItem("wordSets2")) || [];
+      localStorage.setItem(
+        "wordSets2",
+        JSON.stringify([...existingWords, newWord])
+      );
+      setWord("");
+      setTranslation("");
+      setError(null);
+    } else {
+      setError("단어와 번역을 입력해주세요.");
+    }
+  };
   return (
     <div>
       <Navbar />
@@ -57,7 +77,7 @@ const AddWord = () => {
                 </button>
               </td>
               <td>
-                <button onClick={""} id="addbtn">
+                <button onClick={handleAddWord} id="addbtn">
                   단어장에 추가
                 </button>
               </td>
@@ -78,7 +98,7 @@ const AddWord = () => {
         </table>
       </div>
       <br />
-      <Link to="/" component="button" id="govoca">
+      <Link to="/note" component="button" id="govoca">
         단어장으로
       </Link>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavbarT from "./Component/NavbarT";
 import { useNavigate } from "react-router-dom";
 import "../src/vocabularynote.css";
@@ -48,6 +48,13 @@ const VocabularyNote = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const storedWordSets2 = JSON.parse(localStorage.getItem("wordSets2"));
+    if (storedWordSets2) {
+      setWordSets2(storedWordSets2);
+    }
+  }, []);
+
   const handleWordClick = (word, meaning) => {
     navigate("/vd", { state: { word, meaning } });
   };
@@ -71,6 +78,7 @@ const VocabularyNote = () => {
     const updatedWordSets2 = wordSets2.filter((wordSet) => !wordSet.checked);
     setWordSets1(updatedWordSets1);
     setWordSets2(updatedWordSets2);
+    localStorage.setItem("wordSets2", JSON.stringify(updatedWordSets2));
   };
 
   return (
@@ -87,7 +95,7 @@ const VocabularyNote = () => {
                 <th className="vn-th">단어</th>
                 <th className="vn-th"></th>
               </tr>
-              <br></br>
+              <br />
             </thead>
             <tbody>
               {wordSets1.map((wordSet) => (
@@ -129,7 +137,7 @@ const VocabularyNote = () => {
                 <th className="vn-th">단어</th>
                 <th className="vn-th">뜻</th>
               </tr>
-              <br></br>
+              <br />
             </thead>
             <tbody>
               {wordSets2.map((wordSet) => (
@@ -163,8 +171,8 @@ const VocabularyNote = () => {
           </table>
         </div>
       </div>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
       <button className="vn-btn" onClick={deleteWordSets}>
         삭제
       </button>
