@@ -1,8 +1,8 @@
 import React from "react";
-import NavbarT from "./Component/NavbarT";
+import NavbarT from "../Component/NavbarT";
 import { Bar } from "react-chartjs-2";
 import { Chart, Ticks, registerables } from "chart.js";
-import "../src/css/infostudent.css";
+import "../css/infostudent.css";
 Chart.register(...registerables);
 
 const chartData = [

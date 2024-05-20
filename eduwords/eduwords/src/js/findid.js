@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Navbar from "./Component/Navbar";
-import "../src/css/findid.css";
+import Navbar from "../Component/Navbar";
+import "../css/findid.css";
 
 const FindId = () => {
   const location = useLocation();

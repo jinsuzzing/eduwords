@@ -2,34 +2,36 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Main from "./main";
-import Join from "./join";
-import Login from "./login";
-import Tp from "./termspage";
+import Join from "./js/join";
+import Login from "./js/login";
+import Tp from "./js/termspage";
 import reportWebVitals from "./reportWebVitals";
-import Joinsuccess from "./joinsuccess";
-import Createhome from "./createhome";
-import Find from "./find";
-import Createai from "./createai";
-import Questionsok from "./questionsok";
-import Questionslist from "./questionslist";
-import StudyRoom from "./studyroom";
-import Aipreview from "./aipreview";
-import Createaproblem from "./createaproblem";
-import Infostudent from "./infostudent";
+import Joinsuccess from "./js/joinsuccess";
+import Createhome from "./js/createhome";
+import Find from "./js/find";
+import Createai from "./js/createai";
+import Questionsok from "./js/questionsok";
+import Questionslist from "./js/questionslist";
+import StudyRoom from "./js/studyroom";
+import Aipreview from "./js/aipreview";
+import Createaproblem from "./js/createaproblem";
+import Infostudent from "./js/infostudent";
 import Vocabularynote from "./vocabularynote";
-import StudentPage from "./studentPage";
-import Outservice from "./outservice";
-import Loading from "./loading";
+import StudentPage from "./js/studentPage";
+import Outservice from "./js/outservice";
+import Loading from "./js/loading";
 import Vd from "./vocabularydetails";
-import Outsuccess from "./outsuccess";
-import Teacherpage from "./teacherpage";
+import Outsuccess from "./js/outsuccess";
+import Teacherpage from "./js/teacherpage";
 import Wq from "./woorquestions";
-import Markpage from "./markpage";
-import Goodboy from "./goodboy";
-import All from "./allpreview";
-import Addword from "./addword";
-import Findid from "./findid";
-import Findpw from "./findpw";
+import Mp from "./js/markpage";
+import Goodboy from "./js/goodboy";
+import All from "./js/allpreview";
+import Addword from "./js/addword";
+import Findid from "./js/findid";
+import Findpw from "./js/findpw";
+import Testpaper from "./js/testpaper";
+import Namelist from "./js/namelist";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -60,10 +62,12 @@ root.render(
         <Route path="/os" element={<Outsuccess />} />
         <Route path="/teacher" element={<Teacherpage />} />
         <Route path="/wq" element={<Wq />} />
-        <Route path="/markpage" element={<Markpage />} />
+        <Route path="/markpage" element={<Mp />} />
         <Route path="/good" element={<Goodboy />} />
         <Route path="/allpreview" element={<All />} />
         <Route path="/aw" element={<Addword />} />
+        <Route path="/testpaper" element={<Testpaper />} />
+        <Route path="/namelist" element={<Namelist />} />
       </Routes>
     </Router>
   </React.StrictMode>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import NavbarT from "./Component/NavbarT";
-import "../src/css/createaproblem.css";
+import NavbarT from "../Component/NavbarT";
+import "../css/createaproblem.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const CreateAProblem = () => {

@@ -18,9 +18,31 @@ body {
   margin-left: 20%;
 }
 
+.all-info {
+  color: #239aff;
+  margin-left: 20%;
+}
+
+.date-picker {
+  color: #239aff;
+  margin-left: 20%;
+  margin: auto;
+}
+
 .all-box {
   width: 120vh;
   height: 500px;
+  border: solid 5px;
+  border-color: #239aff;
+  border-radius: 30px;
+  overflow-y: auto;
+  display: flex;
+  margin: auto;
+}
+
+.all-box2 {
+  width: 120vh;
+  height: 100px;
   border: solid 5px;
   border-color: #239aff;
   border-radius: 30px;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "./Component/Navbar";
-import turboimg from "../src/img/gptturbo.png";
-import "../src/css/createai.css";
+import Navbar from "../Component/Navbar";
+import turboimg from "../img/gptturbo.png";
+import "../css/createai.css";
 import { Link, useNavigate } from "react-router-dom";
 
 const CreateAI = () => {

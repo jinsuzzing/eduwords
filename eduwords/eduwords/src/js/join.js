@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import NavbarT from "./Component/NavbarT";
-import "../src/css/join.css";
+import NavbarT from "../Component/NavbarT";
+import "../css/join.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 

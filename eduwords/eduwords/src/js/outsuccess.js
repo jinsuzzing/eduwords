@@ -1,7 +1,7 @@
 import React from "react";
-import NavbarT from "./Component/NavbarT";
+import NavbarT from "../Component/NavbarT";
 import { Link } from "react-router-dom";
-import "../src/css/outsuccess.css";
+import "../css/outsuccess.css";
 
 const outsuccess = () => {
   return (

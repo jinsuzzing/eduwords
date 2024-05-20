@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "./Component/Navbar";
-import "../src/css/addword.css";
-import pin from "./img/notepin1.png";
+import Navbar from "../Component/Navbar";
+import "../css/addword.css";
+import pin from "../img/notepin1.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
 

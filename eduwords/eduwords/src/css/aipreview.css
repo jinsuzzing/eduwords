@@ -24,6 +24,10 @@ body {
   margin: auto;
 }
 
+.allpreview-date {
+  color: #239aff;
+}
+
 /* Webkit (Chrome, Safari 등) */
 .aipreview-box::-webkit-scrollbar {
   width: 8px;

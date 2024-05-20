@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./Component/Navbar";
+import Navbar from "../Component/Navbar";
 import axios from "axios";
-import "../src/css/find.css";
+import "../css/find.css";
 
 const Find = () => {
   const [name, setName] = useState("");

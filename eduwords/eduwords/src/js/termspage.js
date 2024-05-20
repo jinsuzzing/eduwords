@@ -1,7 +1,7 @@
 import React from "react";
-import "../src/css/termspage.css";
-import Navbar from "./Component/Navbar";
-import Footer from "./Component/Footer";
+import "../css/termspage.css";
+import Navbar from "../Component/Navbar";
+import Footer from "../Component/Footer";
 import { Link } from "react-router-dom";
 
 const Termspage = () => {

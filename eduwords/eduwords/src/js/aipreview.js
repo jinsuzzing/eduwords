@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../src/css/aipreview.css";
-import NavbarT from "./Component/Navbar";
+import "../css/aipreview.css";
+import NavbarT from "../Component/Navbar";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Aipreview = () => {

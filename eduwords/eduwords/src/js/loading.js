@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "../src/css/loading.css";
-import NavbarT from "./Component/NavbarT";
-import LoadingImg from "./img/loading.png";
+import "../css/loading.css";
+import NavbarT from "../Component/NavbarT";
+import LoadingImg from "../img/loading.png";
 
 const Loading = () => {
   const [loadingText, setLoadingText] = useState("Loading");

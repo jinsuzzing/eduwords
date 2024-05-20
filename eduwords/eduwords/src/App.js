@@ -1,6 +1,6 @@
 import "./App.css";
 import { Route, Router, Routes } from "react-router-dom";
-import Join from "./join";
+import Join from "./js/join";
 import Main from "./main";
 
 function App() {
