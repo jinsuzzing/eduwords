@@ -28,6 +28,8 @@ import Markpage from "./markpage";
 import Goodboy from "./goodboy";
 import All from "./allpreview";
 import Addword from "./addword";
+import Findid from "./findid";
+import Findpw from "./findpw";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -41,6 +43,8 @@ root.render(
         <Route path="/js" element={<Joinsuccess />} />
         <Route path="/createhome" element={<Createhome />} />
         <Route path="/find" element={<Find />} />
+        <Route path="findid" element={<Findid />} />
+        <Route path="/findpw" element={<Findpw />} />
         <Route path="/createai" element={<Createai />} />
         <Route path="/questionsok" element={<Questionsok />} />
         <Route path="/questionslist" element={<Questionslist />} />

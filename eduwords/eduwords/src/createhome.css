@@ -1,3 +1,11 @@
+body {
+  font-size: 15px;
+  font-family: "Pretendard";
+  color: black;
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
+}
+
 .gptbutton {
   align-content: center;
   margin-top: 9%;
