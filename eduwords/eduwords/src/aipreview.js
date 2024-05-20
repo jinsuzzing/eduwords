@@ -1,30 +1,32 @@
-import React, { useState } from "react";
-import "../src/aipreview.css";
+import React, { useState, useEffect } from "react";
+import "../src/css/aipreview.css";
 import NavbarT from "./Component/Navbar";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Aipreview = () => {
-  const [previewQuestions, setPreviewQuestions] = useState(
-    Array.from({ length: 25 }, (_, index) => ({
-      id: index + 1,
-      content: `문제 ${index + 1}`,
-    }))
-  );
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const exQuestionTemplate = {
-    question:
-      "다음 중 '나는 사과가 좋아요' 를 영어로 올바르게 번역한 것은 무엇인가요?",
-    option1: "I like apples.",
-    option2: "I go to school.",
-    option3: "She is happy.",
-    option4: "They play games.",
-    option5: "He reads books.",
-  };
-
-  const [exQuestion, setExQuestion] = useState(exQuestionTemplate);
+  const [previewQuestions, setPreviewQuestions] = useState([]);
+  const [exQuestion, setExQuestion] = useState({
+    question: "",
+    option1: "",
+    option2: "",
+    option3: "",
+    option4: "",
+    option5: "",
+  });
   const [editing, setEditing] = useState(false);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    const problemCount = location.state?.problemCount || 0;
+    setPreviewQuestions(
+      Array.from({ length: problemCount }, (_, index) => ({
+        id: index + 1,
+        content: `문제 ${index + 1}`,
+      }))
+    );
+  }, [location.state]);
 
   const handleGenerateai = () => {
     console.log("Navigating with previewQuestions:", previewQuestions);

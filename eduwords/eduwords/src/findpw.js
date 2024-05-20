@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./Component/Navbar";
 import axios from "axios";
-import "./findpw.css";
+import "../src/css/findpw.css";
 
 const FindPw = () => {
   const location = useLocation();

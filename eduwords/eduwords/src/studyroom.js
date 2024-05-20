@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import sb from "../src/img/stb1.png";
 import Navbar from "./Component/Navbar";
-import "../src/studyroom.css";
+import "../src/css/studyroom.css";
 
 const StudyRoom = () => {
   const [data, setData] = useState([]);

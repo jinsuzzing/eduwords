@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Component/Navbar";
-import "./joinsuccess.css";
+import "../src/css/joinsuccess.css";
 import { Link, useLocation } from "react-router-dom";
 
 const JoinSuccess = () => {

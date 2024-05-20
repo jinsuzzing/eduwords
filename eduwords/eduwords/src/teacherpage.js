@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import NavbarT from "./Component/NavbarT";
-import "./teacherpage.css";
+import "../src/css/teacherpage.css";
 import { Link } from "react-router-dom";
 import gptbtn from "../src/img/gptbtn.png";
 import btn1 from "../src/img/btn1.png";

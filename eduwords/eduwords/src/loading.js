@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./loading.css";
+import "../src/css/loading.css";
 import NavbarT from "./Component/NavbarT";
 import LoadingImg from "./img/loading.png";
 

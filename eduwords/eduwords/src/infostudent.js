@@ -1,11 +1,9 @@
 import React from "react";
 import NavbarT from "./Component/NavbarT";
-import "./infostudent.css";
 import { Bar } from "react-chartjs-2";
 import { Chart, Ticks, registerables } from "chart.js";
+import "../src/css/infostudent.css";
 Chart.register(...registerables);
-// chart.js import
-// 설치 : ,
 
 const chartData = [
   { data: "05-01", score: 60 },

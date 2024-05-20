@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "./Component/Navbar";
-import "./addword.css";
+import "../src/css/addword.css";
 import pin from "./img/notepin1.png";
 import axios from "axios";
 

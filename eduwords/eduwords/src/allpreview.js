@@ -1,5 +1,5 @@
 import React from "react";
-import "../src/allpreview.css";
+import "../src/css/allpreview.css";
 import NavbarT from "./Component/NavbarT";
 import { useLocation } from "react-router-dom";
 

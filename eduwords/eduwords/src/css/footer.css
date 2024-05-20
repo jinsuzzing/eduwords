@@ -1,17 +1,17 @@
-@font-face {
+@import url("https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic+Coding&family=Poor+Story&display=swap");
+
+body {
+  font-size: 15px;
   font-family: "Pretendard";
-  src: url("/fonts/Pretendard-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+  color: black;
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
 }
 
-@font-face {
-  font-family: "Pretendard";
-  src: url("/fonts/Pretendard-Bold.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
-}
 #footer {
+  font-family: "Pretendard";
+}
+footer.css #footer {
   background-color: #4e4e4e;
   padding: 20px 0;
   width: 100%;
@@ -20,9 +20,6 @@
   position: fixed; /* 화면 하단에 고정 */
   bottom: 0; /* 화면 하단에 정렬 */
   left: 0; /* 좌측 정렬 */
-  font-family: "Pretendard";
-  letter-spacing: -1px;
-  transform: rotate(0.04deg);
 }
 
 .footerimg {
@@ -31,13 +28,11 @@
 }
 
 .logo-box {
+  background-color: #4e4e4e;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  font-family: "Pretendard";
-  letter-spacing: -1px;
-  transform: rotate(0.04deg);
 }
 
 .logo-box-1,
@@ -48,54 +43,22 @@
   text-align: left;
   float: left;
   color: white;
-  font-size: 15px;
-  font-family: "Pretendard";
-  letter-spacing: -1px;
-  transform: rotate(0.04deg);
-}
-
-.logo-box-2 .link-container {
-  margin-bottom: 10px;
-  font-size: 15px;
-  font-family: "Pretendard";
-  letter-spacing: -1px;
-  transform: rotate(0.04deg);
-}
-
-.logo-box-2 a {
-  display: inline-block;
-  margin-right: 10px;
-  color: #bbbbbb;
-  text-decoration: none;
-  font-size: 15px;
-  font-family: "Pretendard";
-  letter-spacing: -1px;
-  transform: rotate(0.04deg);
 }
 
 .footer-text1 {
-  font-weight: bold;
   color: white;
-  font-size: 30px;
-  font-size: 15px;
-  font-family: "Pretendard";
-  letter-spacing: -1px;
-  transform: rotate(0.04deg);
+  font-weight: bold;
+  padding: 10px;
+  font-size: 25px;
 }
 
 .footer-text2 {
   font-weight: bold;
   color: #ffffff;
-  font-size: 15px;
-  font-family: "Pretendard";
-  letter-spacing: -1px;
-  transform: rotate(0.04deg);
+  font-size: 20px;
 }
 
 .footer-text3 {
   color: #bbbbbb;
-  font-size: 15px;
-  font-family: "Pretendard";
-  letter-spacing: -1px;
-  transform: rotate(0.04deg);
+  font-size: 20px;
 }

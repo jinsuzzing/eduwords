@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import tb from "../src/img/tb.png";
 import Navbar from "./Component/Navbar";
-import "../src/questionslist.css";
+import "../src/css/questionslist.css";
 import NavbarT from "./Component/NavbarT";
 
 const QuestionsList = () => {

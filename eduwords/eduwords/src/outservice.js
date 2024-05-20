@@ -1,6 +1,6 @@
 import React from "react";
 import NavbarT from "./Component/NavbarT";
-import "./outservice.css";
+import "../src/css/outservice.css";
 import { Link } from "react-router-dom";
 
 const outservice = () => {

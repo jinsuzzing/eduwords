@@ -1,8 +1,8 @@
 import React from "react";
 import Navbar from "./Component/Navbar";
-import "./infostudent.css";
+import "../src/css/infostudent.css";
 import Great from "./img/great.png";
-import "./goodboy.css";
+import "../src/css/goodboy.css";
 import { Link } from "react-router-dom";
 
 const goodboy = () => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavbarT from "./Component/NavbarT";
-import "./join.css";
+import "../src/css/join.css";
 import { useNavigate } from "react-router-dom";
 
 function Join() {

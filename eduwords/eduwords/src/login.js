@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Component/Navbar";
-import "./login.css";
+import "../src/css/login.css";
 import lg from "./img/logo.png";
 
 const login = () => {
