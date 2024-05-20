@@ -1,5 +1,16 @@
-/* footer.css */
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/Pretendard-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/Pretendard-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
 #footer {
   background-color: #4e4e4e;
   padding: 20px 0;
@@ -9,6 +20,9 @@
   position: fixed; /* 화면 하단에 고정 */
   bottom: 0; /* 화면 하단에 정렬 */
   left: 0; /* 좌측 정렬 */
+  font-family: "Pretendard";
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
 }
 
 .footerimg {
@@ -21,6 +35,9 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  font-family: "Pretendard";
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
 }
 
 .logo-box-1,
@@ -32,11 +49,17 @@
   float: left;
   color: white;
   font-size: 15px;
+  font-family: "Pretendard";
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
 }
 
 .logo-box-2 .link-container {
   margin-bottom: 10px;
   font-size: 15px;
+  font-family: "Pretendard";
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
 }
 
 .logo-box-2 a {
@@ -45,6 +68,9 @@
   color: #bbbbbb;
   text-decoration: none;
   font-size: 15px;
+  font-family: "Pretendard";
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
 }
 
 .footer-text1 {
@@ -52,15 +78,24 @@
   color: white;
   font-size: 30px;
   font-size: 15px;
+  font-family: "Pretendard";
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
 }
 
 .footer-text2 {
   font-weight: bold;
   color: #ffffff;
   font-size: 15px;
+  font-family: "Pretendard";
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
 }
 
 .footer-text3 {
   color: #bbbbbb;
   font-size: 15px;
+  font-family: "Pretendard";
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
 }

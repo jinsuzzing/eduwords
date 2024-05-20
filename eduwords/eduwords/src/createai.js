@@ -49,7 +49,7 @@ const createai = () => {
         </tr>
       </table>
       <div>
-        <Link to="/aipreview">
+        <Link to="/aipreview" style={{ textDecoration: "none" }}>
           <button className="createNext">다음으로</button>
         </Link>
       </div>

@@ -1,13 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavbarT from "./Component/NavbarT";
 import "../src/createaproblem.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CreateAProblem = () => {
-  const [problemCount, setProblemCount] = useState(0); // 출제 문항 수 상태와 상태 변경 함수
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [problemCount, setProblemCount] = useState(0);
 
-  // 문제 저장 버튼 클릭 시 출제 문항 수를 1 증가시키는 함수
+  useEffect(() => {
+    if (location.state) {
+      setProblemCount(location.state.problemCount);
+    }
+  }, [location.state]);
+
   const incrementProblemCount = () => {
     setProblemCount((prevCount) => prevCount + 1);
+  };
+
+  const handleNavigateWQ = () => {
+    navigate("/wq"); // "/wq"는 실제로 "wq" 페이지의 경로에 해당하는 곳으로 바꿔야 합니다.
   };
 
   return (
@@ -34,7 +46,12 @@ const CreateAProblem = () => {
                 난이도
               </th>
               <td>
-                <input type="number" placeholder="난이도를 선택하세요" />
+                <input
+                  type="number"
+                  placeholder="난이도를 선택하세요"
+                  min={1}
+                  max={5}
+                />
               </td>
             </tr>
             <hr />
@@ -92,9 +109,14 @@ const CreateAProblem = () => {
         <br></br>
         <br></br>
         <br></br>
-        <button className="createproblem-btn" onClick={incrementProblemCount}>
-          문제저장
-        </button>
+        <div className="btn-container">
+          <button className="createproblem-btn" onClick={incrementProblemCount}>
+            문제저장
+          </button>
+          <button className="createproblem-btn2" onClick={handleNavigateWQ}>
+            저장된 문제보기
+          </button>
+        </div>
       </div>
     </div>
   );

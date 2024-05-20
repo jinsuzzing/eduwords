@@ -83,6 +83,11 @@ const infostudent = () => {
           <h3>5월 평균 점수 : {average.toFixed(2) + "점"}</h3>
         </div>
       </div>
+      <br></br>
+      <br></br>
+      <button className="is-btn">확인</button>
+      <br></br>
+      <br></br>
     </div>
   );
 };

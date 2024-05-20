@@ -1,3 +1,11 @@
+body {
+  font-size: 15px;
+  font-family: "Pretendard";
+  color: black;
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
+}
+
 .gpttrubo {
   align-content: center;
   margin-top: 7%;
@@ -9,7 +17,6 @@
 }
 
 .gpttable {
-  font-family: "Nanum Gothic Coding";
   justify-content: center;
   width: 30%;
   margin: auto;
@@ -42,7 +49,6 @@
   margin: auto;
   margin-top: 100px;
   display: flex;
-  font-family: "Nanum Gothic Coding";
   font-size: 15pt;
   border: 2px solid #239aff;
   background-color: #239aff;
@@ -56,7 +62,6 @@
 }
 
 .gpttable th {
-  font-family: "Nanum Gothic Coding";
   color: white;
   text-align: right;
   background-color: #239aff;

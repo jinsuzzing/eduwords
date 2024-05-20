@@ -1,19 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic+Coding&family=Poor+Story&display=swap");
 
+body {
+  font-size: 15px;
+  font-family: "Pretendard";
+  color: black;
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
+}
+
 .nanum-gothic-coding-regular {
-  font-family: "Nanum Gothic Coding", monospace;
   font-weight: 400;
   font-style: normal;
 }
 
 .studiv h1 {
-  font-family: "Nanum Gothic Coding";
   text-align: center;
   color: #239aff;
 }
 
 #infoTable {
-  font-family: "Nanum Gothic Coding";
   justify-content: center;
   width: 40%;
   margin: auto;
@@ -27,7 +32,6 @@
 }
 #infoId,
 #infoName {
-  font-family: "Nanum Gothic Coding";
   display: flex;
   margin-left: 10%;
   margin-top: 20px;
@@ -36,7 +40,6 @@
 }
 
 #infoTable th {
-  font-family: "Nanum Gothic Coding";
   color: white;
   text-align: right;
   background-color: #239aff;
@@ -65,7 +68,6 @@ hr {
   margin-left: 65.5%;
   margin-top: 10px;
   display: flex;
-  font-family: "Nanum Gothic Coding";
   font-size: 10pt;
   border: 2px solid #239aff;
   background-color: #239aff;

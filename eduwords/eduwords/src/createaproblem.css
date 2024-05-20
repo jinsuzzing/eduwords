@@ -54,8 +54,14 @@
   margin-bottom: 5px;
 }
 
-.createproblem-btn {
-  margin: auto;
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.createproblem-btn,
+.createproblem-btn2 {
+  margin: 0 10px;
   border-radius: 10px;
   border: 2px solid #239aff;
   background-color: #239aff;

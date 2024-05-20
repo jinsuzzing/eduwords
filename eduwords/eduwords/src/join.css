@@ -1,19 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic+Coding&family=Poor+Story&display=swap");
 
-.nanum-gothic-coding-regular {
-  font-family: "Nanum Gothic Coding", monospace;
-  font-weight: 400;
-  font-style: normal;
+body {
+  font-size: 15px;
+  font-family: "Pretendard";
+  color: black;
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
 }
 
 .joindiv h1 {
-  font-family: "Nanum Gothic Coding";
   text-align: center;
   color: #239aff;
 }
 
 #joinTable button {
-  font-family: "Nanum Gothic Coding";
   margin-left: 10px;
   border-radius: 5px;
   border: 2px solid #239aff;
@@ -22,11 +22,9 @@
 }
 
 #passwordMessage {
-  font-family: "Nanum Gothic Coding";
   margin-left: 10px;
 }
 #joinTable {
-  font-family: "Nanum Gothic Coding";
   justify-content: center;
   width: 50%;
   margin: auto;
@@ -37,7 +35,6 @@
 }
 
 #joinTable th {
-  font-family: "Nanum Gothic Coding";
   color: white;
   text-align: right;
   background-color: #239aff;
@@ -46,18 +43,18 @@
   padding-top: 10px;
 }
 #joinTable input {
-  width: 50%;
+  width: 40%;
   height: 25px;
   text-align: center;
-  margin-left: 10%;
+  margin-left: 3%;
   border-radius: 5px;
-  border: 2px solid #239aff; /* 테두리 색상, 스타일, 두께를 한 줄로 통합 */
+  border: 2px solid #239aff;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 #joinTable input:focus {
-  border-color: #239aff; /* 포커스 상태에서의 테두리 색상 */
-  outline: none; /* 대부분의 브라우저에서 추가되는 아웃라인 제거 */
+  border-color: #239aff;
+  outline: none;
 }
 hr {
   margin: 0;
@@ -66,7 +63,6 @@ hr {
   margin: auto;
   margin-top: 100px;
   display: flex;
-  font-family: "Nanum Gothic Coding";
   font-size: 15pt;
   border: 2px solid #239aff;
   background-color: #239aff;

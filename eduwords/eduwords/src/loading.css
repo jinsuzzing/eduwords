@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic+Coding&family=Poor+Story&display=swap");
 
-.nanum-gothic-coding-regular {
-  font-family: "Nanum Gothic Coding", monospace;
-  font-weight: 400;
-  font-style: normal;
+body {
+  font-size: 15px;
+  font-family: "Pretendard";
+  color: black;
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
 }
 
 .loadingdiv {
@@ -27,7 +29,6 @@
 }
 
 #LoadingText {
-  font-family: "Nanum Gothic Coding";
   color: #239aff;
   font-size: 1.5vw;
 }
@@ -43,7 +44,6 @@
 }
 #Load1,
 #Load2 {
-  font-family: "Nanum Gothic Coding";
   font-weight: bold;
   font-size: 20px;
 }
