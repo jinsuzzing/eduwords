@@ -3,6 +3,7 @@ import Navbar from "./Component/Navbar";
 import "./addword.css";
 import pin from "./img/notepin1.png";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const AddWord = () => {
   const [word, setWord] = useState("");
@@ -15,7 +16,7 @@ const AddWord = () => {
 
   const handleTranslate = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/translate", {
+      const response = await axios.post("http://localhost:5002/translate", {
         word,
       });
       if (response.data.translation) {
@@ -51,11 +52,15 @@ const AddWord = () => {
                 />
               </td>
               <td>
-                <button onClick={handleTranslate}>번역</button>
+                <button onClick={handleTranslate} id="transbtn">
+                  번역하기
+                </button>
               </td>
             </tr>
             <tr>
-              <td colSpan="2">{translation && <p>번역: {translation}</p>}</td>
+              <td colSpan="2" className="transpont">
+                {translation && <p>{translation}</p>}
+              </td>
             </tr>
             {error && (
               <tr>
@@ -66,7 +71,16 @@ const AddWord = () => {
             )}
           </tbody>
         </table>
+        <div className="btnclass">
+          <button onClick={""} id="addbtn">
+            단어장에 추가
+          </button>
+        </div>
       </div>
+      <br />
+      <Link to="/" component="button" id="govoca">
+        단어장으로
+      </Link>
     </div>
   );
 };
