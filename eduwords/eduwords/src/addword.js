@@ -56,6 +56,11 @@ const AddWord = () => {
                   번역하기
                 </button>
               </td>
+              <td>
+                <button onClick={""} id="addbtn">
+                  단어장에 추가
+                </button>
+              </td>
             </tr>
             <tr>
               <td colSpan="2" className="transpont">
@@ -71,11 +76,6 @@ const AddWord = () => {
             )}
           </tbody>
         </table>
-        <div className="btnclass">
-          <button onClick={""} id="addbtn">
-            단어장에 추가
-          </button>
-        </div>
       </div>
       <br />
       <Link to="/" component="button" id="govoca">
