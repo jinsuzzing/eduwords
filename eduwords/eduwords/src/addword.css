@@ -1,0 +1,41 @@
+.addtitle {
+  color: #239aff;
+  margin-top: 10vh;
+  margin-left: 5%;
+}
+
+.pinimg {
+  background-size: 150px;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.addbox {
+  width: 120vh;
+  height: 500px;
+  border: solid 5px;
+  border-color: #239aff;
+  border-radius: 30px;
+  overflow-y: auto;
+  display: flex;
+  margin: auto;
+  position: relative;
+}
+.addtable {
+  width: 100%;
+  border-collapse: collapse;
+}
+#addword {
+  margin-top: 5vw;
+  margin-left: 5vw;
+  border: 2px solid #239aff;
+  padding: 3%;
+  border-radius: 50px;
+  width: 30vw;
+  font-size: 30px;
+}

@@ -27,6 +27,7 @@ import Wq from "./woorquestions";
 import Markpage from "./markpage";
 import Goodboy from "./goodboy";
 import All from "./allpreview";
+import Addword from "./addword";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -58,6 +59,7 @@ root.render(
         <Route path="/markpage" element={<Markpage />} />
         <Route path="/good" element={<Goodboy />} />
         <Route path="/allpreview" element={<All />} />
+        <Route path="/aw" element={<Addword />} />
       </Routes>
     </Router>
   </React.StrictMode>
