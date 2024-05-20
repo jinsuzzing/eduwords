@@ -1,8 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "./Component/Navbar";
+import axios from "axios";
 import "./find.css";
 
-const find = () => {
+const Find = () => {
+  const [name, setName] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
+
+  const handleFindId = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/find-id", {
+        name,
+        birthdate,
+        email,
+      });
+      if (response.data.username) {
+        navigate("/findid", { state: { username: response.data.username } });
+      } else {
+        alert("가입된 정보를 찾을 수 없습니다.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("오류가 발생했습니다. 다시 시도해주세요.");
+    }
+  };
+
+  const handleFindPassword = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/find-password", {
+        username,
+        name,
+        birthdate,
+        email,
+      });
+      if (response.data.success) {
+        navigate("/findpw", { state: { username } });
+      } else {
+        alert("가입된 정보를 찾을 수 없습니다.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("오류가 발생했습니다. 다시 시도해주세요.");
+    }
+  };
+
   return (
     <div className="findBody">
       <Navbar />
@@ -22,6 +67,8 @@ const find = () => {
                     type="text"
                     name="username"
                     placeholder="이름을 입력해주세요"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     required
                   ></input>
                 </td>
@@ -34,6 +81,8 @@ const find = () => {
                     type="date"
                     name="birthday"
                     id="birthday"
+                    value={birthdate}
+                    onChange={(e) => setBirthdate(e.target.value)}
                     required
                   ></input>
                 </td>
@@ -47,6 +96,8 @@ const find = () => {
                     name="email"
                     id="email"
                     placeholder="example@naver.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   ></input>
                 </td>
@@ -55,7 +106,7 @@ const find = () => {
           </table>
         </div>
         <br />
-        <button className="findIdBtn" onClick={""}>
+        <button className="findIdBtn" onClick={handleFindId}>
           아이디찾기
         </button>
       </div>
@@ -74,6 +125,8 @@ const find = () => {
                   type="text"
                   name="username"
                   placeholder="아이디를 입력해주세요"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   required
                 ></input>
               </td>
@@ -86,6 +139,8 @@ const find = () => {
                   type="text"
                   name="fullname"
                   placeholder="이름을 입력하세요"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   required
                 ></input>
               </td>
@@ -98,6 +153,8 @@ const find = () => {
                   type="date"
                   name="birthday"
                   id="birthday"
+                  value={birthdate}
+                  onChange={(e) => setBirthdate(e.target.value)}
                   required
                 ></input>
               </td>
@@ -111,6 +168,8 @@ const find = () => {
                   name="email"
                   id="email"
                   placeholder="example@naver.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 ></input>
               </td>
@@ -118,7 +177,7 @@ const find = () => {
           </tbody>
         </table>
         <br />
-        <button className="findPwBtn" onClick={""}>
+        <button className="findPwBtn" onClick={handleFindPassword}>
           비밀번호 찾기
         </button>
       </div>
@@ -126,4 +185,4 @@ const find = () => {
   );
 };
 
-export default find;
+export default Find;

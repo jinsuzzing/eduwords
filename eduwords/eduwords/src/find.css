@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic+Coding&family=Poor+Story&display=swap");
 
-.nanum-gothic-coding-regular {
-  font-family: "Nanum Gothic Coding", monospace;
-  font-weight: 400;
-  font-style: normal;
+body {
+  font-size: 15px;
+  font-family: "Pretendard";
+  color: black;
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
 }
-
 .idFont {
   margin: auto;
   display: flex;
@@ -26,7 +27,6 @@
   justify-content: center;
 }
 #idTable {
-  font-family: "Nanum Gothic Coding";
   justify-content: center;
   width: 40%;
   margin: auto;
@@ -37,7 +37,6 @@
 }
 
 #idTable th {
-  font-family: "Nanum Gothic Coding";
   color: white;
   text-align: right;
   background-color: #239aff;
@@ -56,9 +55,7 @@
   margin-top: 5px;
   margin-bottom: 5px;
 }
-#idTable input[type="date"] {
-  font-family: "Nanum Gothic Coding";
-}
+
 #pwTable input {
   width: 50%;
   height: 25px;
@@ -69,15 +66,12 @@
   margin-top: 5px;
   margin-bottom: 5px;
 }
-#pwTable input[type="date"] {
-  font-family: "Nanum Gothic Coding";
-}
+
 .findIdBtn {
   justify-content: center;
   align-items: center;
   margin: auto;
   display: flex;
-  font-family: "Nanum Gothic Coding";
   font-size: 18px;
   width: 120px;
   height: 40px;
@@ -88,7 +82,6 @@
 }
 
 #pwTable {
-  font-family: "Nanum Gothic Coding";
   justify-content: center;
   width: 40%;
   margin: auto;
@@ -98,7 +91,6 @@
   border-radius: 10px;
 }
 #pwTable th {
-  font-family: "Nanum Gothic Coding";
   color: white;
   text-align: right;
   background-color: #239aff;
@@ -111,7 +103,6 @@
   align-items: center;
   margin: auto;
   display: flex;
-  font-family: "Nanum Gothic Coding";
   font-size: 15px;
   width: 120px;
   height: 40px;
