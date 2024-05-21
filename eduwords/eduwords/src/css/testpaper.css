@@ -5,3 +5,34 @@ body {
   letter-spacing: -1px;
   transform: rotate(0.04deg);
 }
+
+.testpaper-title {
+  color: #239aff;
+  margin-top: 10vb;
+  margin-left: 5%;
+}
+
+.testpaper-btn {
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  display: flex;
+  font-size: 18px;
+  width: 120px;
+  height: 40px;
+  border-radius: 15px;
+  border: 2px solid #239aff;
+  background-color: #239aff;
+  color: white;
+}
+
+.testpaper-container {
+  width: 120vh;
+  height: 500px;
+  border: solid 5px;
+  border-color: #239aff;
+  border-radius: 30px;
+  overflow-y: auto;
+  display: flex;
+  margin: auto;
+}

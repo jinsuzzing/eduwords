@@ -34,6 +34,7 @@ import Testpaper from "./js/testpaper";
 import Namelist from "./js/namelist";
 import Jointeacher from "./js/jointeacher";
 import { UserProvider } from "./UserContext"; // 추가된 부분
+import Sr from "./js/studyrecord";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -71,6 +72,7 @@ root.render(
         <Route path="/testpaper" element={<Testpaper />} />
         <Route path="/namelist" element={<Namelist />} />
         <Route path="/jointeacher" element={<Jointeacher />} />
+        <Route path="/sr" element={<Sr />} />
       </Routes>
     </Router>
   </React.StrictMode>

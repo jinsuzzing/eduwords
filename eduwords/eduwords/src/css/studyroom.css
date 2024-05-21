@@ -15,8 +15,8 @@ body {
 
 .s-listtable {
   margin-left: 7%;
-  margin-top: 23vh; /* 화면 2/5 위치에 걸치도록 조정 */
-  width: 50%; /* 테이블 너비 조정 */
+  margin-top: 23vh;
+  width: 50%;
   max-width: 650px;
   border-spacing: 0;
   border-radius: 10px;

@@ -11,7 +11,12 @@ const QuestionsList = () => {
   const { examName, startDate, endDate } = examInfo;
 
   const handleTableClick = () => {
-    navigate("/namelist");
+    navigate("/namelist", {
+      state: {
+        selectedAnswers: location.state?.selectedAnswers,
+        examInfo: examInfo,
+      },
+    });
   };
 
   return (

@@ -1,0 +1,23 @@
+body {
+  font-size: 15px;
+  font-family: "Pretendard";
+  color: black;
+  letter-spacing: -1px;
+  transform: rotate(0.04deg);
+}
+
+.studdyrecord-title {
+  font-size: 30px;
+  color: #239aff;
+  margin-top: 10vb;
+  margin-left: 5%;
+}
+
+.sr-hr {
+  border: 1px;
+  color: #239aff;
+}
+
+.sr-p {
+  color: #239aff;
+}

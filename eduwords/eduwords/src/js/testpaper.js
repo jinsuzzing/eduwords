@@ -10,7 +10,6 @@ const TestPaper = () => {
 
   const questions = location.state?.selectedQuestions || [];
 
-  // 선택한 답안을 업데이트하는 함수
   const updateSelectedAnswer = (questionId, answer) => {
     setSelectedAnswers((prevAnswers) => ({
       ...prevAnswers,
@@ -18,7 +17,6 @@ const TestPaper = () => {
     }));
   };
 
-  // 제출하기 버튼을 클릭할 때 실행되는 함수
   const handleSubmit = () => {
     navigate("/namelist", { state: { selectedAnswers: selectedAnswers } });
     navigate("/good");
@@ -34,8 +32,6 @@ const TestPaper = () => {
             <div key={question.id} className="testpaper-question">
               <p>{question.content}</p>
               <div className="answer-options">
-                {/* 예시로 객관식 문제의 선택지를 렌더링했습니다.
-                    선택된 답안을 업데이트하는 함수를 선택지 버튼의 onClick 이벤트로 전달하세요. */}
                 {question.options.map((option, index) => (
                   <button
                     key={index}
@@ -53,7 +49,7 @@ const TestPaper = () => {
       <br />
       <br />
       <div>
-        <button className="submit-button" onClick={handleSubmit}>
+        <button className="testpaper-btn" onClick={handleSubmit}>
           제출하기
         </button>
       </div>

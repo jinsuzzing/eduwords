@@ -39,7 +39,7 @@ body {
 }
 
 .radio-group {
-  text-align: center; /* 가운데 정렬 */
+  text-align: center;
   padding: 10px;
 }
 
@@ -53,7 +53,7 @@ body {
 }
 
 .button-container {
-  text-align: center; /* 가운데 정렬 */
+  text-align: center;
 }
 
 #next {

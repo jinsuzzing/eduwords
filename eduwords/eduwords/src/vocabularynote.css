@@ -20,6 +20,14 @@
   display: flex;
   margin: auto;
   position: relative;
+  flex-wrap: wrap;
+}
+.vn-checkbox {
+  margin-left: 5%;
+}
+
+.second-column {
+  margin-top: 20px;
 }
 
 .vn-table {
@@ -45,11 +53,16 @@
 .vn-td {
   font-size: 20px;
   color: #239aff;
+  margin-left: 10px;
+  cursor: pointer;
   margin: auto;
+  padding: 6px;
 }
 
 .vn-set {
-  display: contents;
+  flex-basis: 50%;
+  margin: auto;
+  box-sizing: border-box;
 }
 
 .vn-pin {

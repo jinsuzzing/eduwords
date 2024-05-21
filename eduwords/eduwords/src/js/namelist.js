@@ -1,33 +1,39 @@
 import React, { useState } from "react";
 import NavbarT from "../Component/NavbarT";
 import "../css/namelist.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const NameList = () => {
-  const [students, setStudents] = useState([
-    "학생1",
-    "학생2",
-    "학생3",
-    "학생4",
-    "학생5",
-    "학생6",
-    "학생7",
-    "학생8",
-    "학생9",
-    "학생10",
-    "학생11",
-    "학생12",
-    "학생13",
-    "학생14",
-    "학생15",
-  ]);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { selectedAnswers, examInfo } = location.state;
 
-  // 한 열에 표시할 최대 학생 수
+  const students = [
+    { id: 1, name: "오현우" },
+    { id: 2, name: "김강운" },
+    { id: 3, name: "전석균" },
+    { id: 4, name: "이승재" },
+    { id: 5, name: "김민성" },
+    { id: 6, name: "문성진" },
+    { id: 7, name: "김진수" },
+    { id: 8, name: "김하늘" },
+    { id: 9, name: "전송민" },
+    { id: 10, name: "김도원" },
+    { id: 11, name: "남예하" },
+    { id: 12, name: "구희철" },
+    { id: 13, name: "손준수" },
+    { id: 14, name: "임경남" },
+    { id: 15, name: "김민수" },
+  ];
+
   const studentColumn = 5;
 
-  // 열의 총 수 계산
   const columns = Math.ceil(students.length / studentColumn);
 
-  // 테이블 데이터 생성
+  const handleSelectStudent = (student) => {
+    navigate("/markpage", { state: { selectedAnswers, student, examInfo } });
+  };
+
   const tableData = Array.from({ length: columns }, (_, columnIndex) => {
     const start = columnIndex * studentColumn;
     const end = start + studentColumn;
@@ -41,21 +47,18 @@ const NameList = () => {
       <h2 className="titleText">·문제 제출 학생 명단</h2>
       <br />
       <br />
-      <br />
-
-      <table className="tableData">
-        <tr>
-          {tableData.map((columnStudents, index) => (
-            <td key={index}>
-              {columnStudents.map((student, studentIndex) => (
-                <div key={studentIndex} className="stu">
-                  {student}
-                </div>
-              ))}
-            </td>
+      <div>
+        <h2>학생 목록</h2>
+        <ul>
+          {students.map((student) => (
+            <li key={student.id}>
+              <button onClick={() => handleSelectStudent(student)}>
+                {student.name}
+              </button>
+            </li>
           ))}
-        </tr>
-      </table>
+        </ul>
+      </div>
     </div>
   );
 };
