@@ -1,18 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import lg from "../img/logo.png";
 import { Context } from "../context";
 
 const NavbarT = () => {
-  const [mem_id, setUsername] = useState(Context);
+  const [mem_id, setMemId] = useState(null);
   const navigate = useNavigate();
-  // const { user, setUser } = useUser(); // Context의 user와 setUser 사용
-
-  // user 객체를 콘솔에 출력
+  const [name, setName] = useState(null);
+  useEffect(() => {
+    const storedMemId = sessionStorage.getItem("mem_id");
+    const mem_name = sessionStorage.getItem("mem_name");
+    setMemId(storedMemId);
+    setName(mem_name);
+  }, []);
 
   const handleLogout = () => {
-    setUsername(null);
-    navigate("/login");
+    sessionStorage.removeItem("mem_id");
+    sessionStorage.removeItem("mem_type");
+    setMemId(null); // Update state to trigger re-render
+    navigate("/"); // Redirect to home page
+    sessionStorage.removeItem("mem_name");
+    sessionStorage.removeItem("mem_address");
+    sessionStorage.removeItem("mem_email");
+    sessionStorage.removeItem("mem_number");
   };
 
   const handleLoginClick = (e) => {
@@ -29,7 +39,7 @@ const NavbarT = () => {
         <div id="bar">
           <div id="div1"></div>
           <div id="div2">
-            {mem_id ? `환영합니다. ${mem_id}님` : "로그인 해주세요"}
+            {mem_id ? `환영합니다. ${name}님` : "로그인 해주세요"}
           </div>
           <div id="div3">
             {mem_id ? (

@@ -1,5 +1,5 @@
 import "./main.css";
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import banner1 from "./img/banner1.png";
 import banner2 from "./img/banner2.png";
 import banner3 from "./img/banner3.png";
@@ -10,9 +10,7 @@ import Footer from "./Component/Footer";
 
 const images = [banner1, banner2, banner3];
 const background = [back];
-const type = sessionStorage.getItem("mem_type");
-const mem_name = sessionStorage.getItem("mem_id");
-console.log("type" + type);
+
 function Banner() {
   const [index, setIndex] = useState(0);
 
@@ -37,7 +35,18 @@ function Banner() {
 // 메뉴바
 
 function Main() {
+  const [type, setType] = useState(null);
+  const [memName, setMemName] = useState(null);
   const backgroundRef = useRef(null);
+
+  useEffect(() => {
+    const mem_type = sessionStorage.getItem("mem_type");
+    const mem_name = sessionStorage.getItem("mem_id");
+    setType(mem_type);
+    setMemName(mem_name);
+    console.log("type" + mem_type);
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -67,7 +76,7 @@ function Main() {
 
   return (
     <div className="bodytext">
-      {type === 1 ? <NavbarT /> : <Navbar />}
+      {type === "1" ? <NavbarT /> : <Navbar />}
       <Banner />
 
       <br />

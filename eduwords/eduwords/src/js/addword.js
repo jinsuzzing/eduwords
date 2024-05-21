@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Component/Navbar";
 import NavbarT from "../Component/NavbarT";
 import "../css/addword.css";
@@ -11,6 +11,11 @@ const AddWord = () => {
   const [translation, setTranslation] = useState("");
   const [error, setError] = useState(null);
   const type = sessionStorage.getItem("mem_type");
+  const mem_id = sessionStorage.getItem("mem_id");
+  const mem_name = sessionStorage.getItem("mem_name");
+  const mem_address = sessionStorage.getItem("mem_address");
+  const mem_number = sessionStorage.getItem("mem_number");
+  const mem_email = sessionStorage.getItem("mem_email");
   const handleInputChange = (e) => {
     setWord(e.target.value);
   };

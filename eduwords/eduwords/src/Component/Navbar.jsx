@@ -4,22 +4,26 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../context";
 
 const Navbar = () => {
-  const [mem_id, setUsername] = useState(Context);
-  const mem_name = sessionStorage.getItem("mem_id");
+  const mem_id = sessionStorage.getItem("mem_id");
+  const mem_name = sessionStorage.getItem("mem_name");
   const navigate = useNavigate();
   const handleLogout = () => {
     sessionStorage.removeItem("mem_id");
+    sessionStorage.removeItem("mem_name");
+    sessionStorage.removeItem("mem_address");
+    sessionStorage.removeItem("mem_email");
+    sessionStorage.removeItem("mem_number");
   };
 
   const handleLoginClick = () => {
-    if (!mem_name) {
+    if (!mem_id) {
       alert("로그인이 필요합니다!");
       navigate("/login");
     }
   };
 
   const handleMenuClick = () => {
-    if (!mem_name) {
+    if (!mem_id) {
       alert("로그인이 필요합니다!");
       navigate("/login");
     }
@@ -31,10 +35,10 @@ const Navbar = () => {
         <div id="bar">
           <div id="div1"></div>
           <div id="div2">
-            {mem_name ? `환영합니다. ${mem_name}님` : "로그인 해주세요"}
+            {mem_id ? `환영합니다. ${mem_name}님` : "로그인 해주세요"}
           </div>
           <div id="div3">
-            {mem_name ? (
+            {mem_id ? (
               <>
                 <Link to="/sp" className="startLogin" onClick={handleMenuClick}>
                   마이 페이지

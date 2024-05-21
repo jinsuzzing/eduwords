@@ -8,7 +8,11 @@ import btn1 from "../img/btn1.png";
 import btn2 from "../img/btn2.png";
 
 const type = sessionStorage.getItem("mem_type");
-
+const mem_id = sessionStorage.getItem("mem_id");
+const mem_name = sessionStorage.getItem("mem_name");
+const mem_address = sessionStorage.getItem("mem_address");
+const mem_number = sessionStorage.getItem("mem_number");
+const mem_email = sessionStorage.getItem("mem_email");
 const Teacherpage = () => {
   // 학생목록 useState로 관리 ( 학생수가 5명 이상이면 다음 행으로 넘어가는 로직임)
   const [students, setStudents] = useState([
