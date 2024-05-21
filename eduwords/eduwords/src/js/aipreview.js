@@ -75,6 +75,9 @@ const Aipreview = () => {
   const clickCheck = (e) => {
     console.log(e.target.value);
   };
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   return (
     <div>
@@ -209,7 +212,10 @@ const Aipreview = () => {
       <br />
       <br />
       <br />
-      <div>
+      <div className="aipreview-butbox">
+        <button className="aipreview-back" onClick={handleBack}>
+          뒤로가기
+        </button>
         <button className="aipreview-btn" onClick={handleGenerateai}>
           문제저장
         </button>

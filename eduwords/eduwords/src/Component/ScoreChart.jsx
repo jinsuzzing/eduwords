@@ -2,15 +2,16 @@ import React from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import "../css/infostudent.css";
+import { useParams } from "react-router-dom";
 Chart.register(...registerables);
 
 const ScoreChart = ({ data }) => {
   const chartIn = {
-    labels: data.map((item) => item.date), // 날짜 표기
+    labels: data.map((item) => item.date),
     datasets: [
       {
         label: "점수",
-        data: data.map((item) => item.score), // 점수
+        data: data.map((item) => item.score),
         backgroundColor: "#239aff",
         borderColor: "#239aff",
         borderWidth: 2,
@@ -22,8 +23,8 @@ const ScoreChart = ({ data }) => {
     scales: {
       x: {
         ticks: {
-          maxRotation: 0, // 최대 회전 각도
-          minRotation: 0, // 최소 회전 각도
+          maxRotation: 0,
+          minRotation: 0,
           font: {
             size: 14,
           },

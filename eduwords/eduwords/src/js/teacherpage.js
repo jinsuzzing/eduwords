@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NavbarT from "../Component/NavbarT";
 import Navbar from "../Component/Navbar";
 import "../css/teacherpage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import gptbtn from "../img/gptbtn.png";
 import btn1 from "../img/btn1.png";
 import btn2 from "../img/btn2.png";
@@ -13,38 +13,41 @@ const mem_name = sessionStorage.getItem("mem_name");
 const mem_address = sessionStorage.getItem("mem_address");
 const mem_number = sessionStorage.getItem("mem_number");
 const mem_email = sessionStorage.getItem("mem_email");
-const Teacherpage = () => {
-  // 학생목록 useState로 관리 ( 학생수가 5명 이상이면 다음 행으로 넘어가는 로직임)
-  const [students, setStudents] = useState([
-    "학생1",
-    "학생2",
-    "학생3",
-    "학생4",
-    "학생5",
-    "학생6",
-    "학생7",
-    "학생8",
-    "학생9",
-    "학생10",
-    "학생11",
-    "학생12",
-    "학생13",
-    "학생14",
-    "학생15",
-  ]);
 
-  // 한 열에 표시할 최대 학생 수
+const students = [
+  { id: 1, name: "오현우" },
+  { id: 2, name: "김강운" },
+  { id: 3, name: "전석균" },
+  { id: 4, name: "이승재" },
+  { id: 5, name: "김민성" },
+  { id: 6, name: "문성진" },
+  { id: 7, name: "김진수" },
+  { id: 8, name: "김하늘" },
+  { id: 9, name: "전송민" },
+  { id: 10, name: "김도원" },
+  { id: 11, name: "남예하" },
+  { id: 12, name: "구희철" },
+  { id: 13, name: "손준수" },
+  { id: 14, name: "임경남" },
+  { id: 15, name: "김민수" },
+];
+
+const Teacherpage = () => {
+  const navigate = useNavigate();
+
   const studentColumn = 5;
 
-  // 열의 총 수 계산
   const columns = Math.ceil(students.length / studentColumn);
 
-  // 테이블 데이터 생성
   const tableData = Array.from({ length: columns }, (_, columnIndex) => {
     const start = columnIndex * studentColumn;
     const end = start + studentColumn;
     return students.slice(start, end);
   });
+
+  const handleStudentClick = (student) => {
+    navigate(`/scorechart/${student.id}`);
+  };
 
   return (
     <div>
@@ -63,16 +66,15 @@ const Teacherpage = () => {
       <table className="tableData">
         <tbody>
           <tr>
-            {/* 테이블 데이터 
-            (map >> 함수 호출 후 배열로 재선언 하는 js 내장함수임)
-            각 열의 학생들을 포함하는 배열 생성후, 
-            td 태그안에 div 태그로 학생 이름을 세로로 나열함.
-             */}
             {tableData.map((columnStudents, index) => (
               <td key={index}>
-                {columnStudents.map((student, studentIndex) => (
-                  <div key={studentIndex} className="stu">
-                    {student}
+                {columnStudents.map((student) => (
+                  <div
+                    key={student.id}
+                    className="stu"
+                    onClick={() => handleStudentClick(student)}
+                  >
+                    {student.name}
                   </div>
                 ))}
               </td>
