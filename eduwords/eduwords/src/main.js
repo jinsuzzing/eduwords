@@ -5,7 +5,9 @@ import banner2 from "./img/banner2.png";
 import banner3 from "./img/banner3.png";
 import back from "./img/background.png";
 import NavbarT from "./Component/NavbarT";
+import Navbar from "./Component/Navbar"; // 기본 Navbar import
 import Footer from "./Component/Footer";
+import { useUser } from "./UserContext"; // UserContext 사용
 
 const images = [banner1, banner2, banner3];
 const background = [back];
@@ -35,6 +37,7 @@ function Banner() {
 
 function Main() {
   const backgroundRef = useRef(null);
+  const { user } = useUser(); // UserContext에서 user 정보 가져옴
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -65,7 +68,7 @@ function Main() {
 
   return (
     <div className="bodytext">
-      <NavbarT />
+      {user?.mem_type === "0" ? <Navbar /> : <NavbarT />}
       <Banner />
 
       <br />

@@ -1,18 +1,23 @@
-import React, { useState } from "react";
-import lg from "../img/logo.png";
+import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useUser } from "../UserContext"; // Context 사용
+import lg from "../img/logo.png";
 
 const NavbarT = () => {
-  const [loginIn, setLoginIn] = useState(false);
   const navigate = useNavigate();
+  const { user, setUser } = useUser(); // Context의 user와 setUser 사용
+
+  // user 객체를 콘솔에 출력
+  console.log(user);
 
   const handleLogout = () => {
-    setLoginIn(false);
+    setUser(null);
+    navigate("/login");
   };
 
   const handleLoginClick = (e) => {
-    if (!loginIn) {
-      e.preventDefault(); // 클릭 이벤트의 기본 동작 중지
+    if (!user) {
+      e.preventDefault();
       alert("로그인 해주세요.");
       navigate("/login");
     }
@@ -24,10 +29,10 @@ const NavbarT = () => {
         <div id="bar">
           <div id="div1"></div>
           <div id="div2">
-            {loginIn ? "환영합니다. {''}님" : "로그인 해주세요"}
+            {user ? `환영합니다. ${user.mem_name}님` : "로그인 해주세요"}
           </div>
           <div id="div3">
-            {loginIn ? (
+            {user ? (
               <>
                 <Link to="/sp" className="startLogin">
                   마이 페이지
@@ -57,7 +62,7 @@ const NavbarT = () => {
             <NavLink
               to="/is"
               id="navA"
-              activeClassName="active"
+              className={({ isActive }) => (isActive ? "active" : "")}
               onClick={handleLoginClick}
             >
               내 학생관리
