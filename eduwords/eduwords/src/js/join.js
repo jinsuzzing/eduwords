@@ -72,7 +72,7 @@ function Join() {
       console.log(member);
       try {
         await axios.post("http://localhost:8081/register", member);
-        navigate("/joinsuccess", { state: { mem_id, joined_at } });
+        navigate("/js", { state: { mem_id, joined_at } });
       } catch (error) {
         alert("회원 가입에 실패했습니다. 다시 시도해주세요.");
       }
