@@ -6,11 +6,6 @@ import "../src/vocabularynote.css";
 import pin from "../src/img/notepin1.png";
 
 const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
-const mem_address = sessionStorage.getItem("mem_address");
-const mem_number = sessionStorage.getItem("mem_number");
-const mem_email = sessionStorage.getItem("mem_email");
 
 const VocabularyNote = () => {
   const [wordSets, setWordSets] = useState([
@@ -49,6 +44,11 @@ const VocabularyNote = () => {
     { id: 18, word: "painter", meaning: "화가", checked: false },
     { id: 19, word: "baker", meaning: "제빵사", checked: false },
     { id: 20, word: "writer", meaning: "작가", checked: false },
+    { id: 21, word: "writer", meaning: "작가", checked: false },
+    { id: 22, word: "writer", meaning: "작가", checked: false },
+    { id: 23, word: "writer", meaning: "작가", checked: false },
+    { id: 24, word: "writer", meaning: "작가", checked: false },
+    { id: 25, word: "writer", meaning: "작가", checked: false },
   ]);
 
   const navigate = useNavigate();
@@ -77,15 +77,13 @@ const VocabularyNote = () => {
     localStorage.setItem("wordSets", JSON.stringify(updatedWordSets));
   };
 
-  const chunkArray = (arr, size) => {
-    const chunkedArr = [];
-    for (let i = 0; i < arr.length; i += size) {
-      chunkedArr.push(arr.slice(i, i + size));
-    }
-    return chunkedArr;
+  // 배열을 절반으로 나누는 함수
+  const divideArrayInHalf = (arr) => {
+    const middleIndex = Math.ceil(arr.length / 2);
+    return [arr.slice(0, middleIndex), arr.slice(middleIndex)];
   };
 
-  const chunkedWordSets = chunkArray(wordSets, 10);
+  const [firstHalf, secondHalf] = divideArrayInHalf(wordSets);
 
   return (
     <div>
@@ -93,49 +91,86 @@ const VocabularyNote = () => {
       <h1 className="vocabularynote-title">· 단어장</h1>
       <img src={pin} className="vn-pin" alt="Pin" />
       <div className="vn-box">
-        {chunkedWordSets.map((chunk, index) => (
-          <div key={index} className="vn-set">
-            <table className="vn-table">
-              <thead>
-                <tr>
-                  <th className="vn-th"></th>
-                  <th className="vn-th">단어</th>
-                  <th className="vn-th">뜻</th>
+        <div className="vn-set">
+          <table className="vn-table">
+            <thead>
+              <tr>
+                <th className="vn-th"></th>
+                <th className="vn-th">단어</th>
+                <th className="vn-th">뜻</th>
+              </tr>
+            </thead>
+            <tbody>
+              {firstHalf.map((wordSet) => (
+                <tr key={wordSet.id}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={wordSet.checked}
+                      onChange={() => toggleCheckbox(wordSet.id)}
+                    />
+                  </td>
+                  <td
+                    className="vn-td"
+                    onClick={() =>
+                      handleWordClick(wordSet.word, wordSet.meaning)
+                    }
+                  >
+                    {wordSet.word}
+                  </td>
+                  <td
+                    className="vn-td"
+                    onClick={() =>
+                      handleWordClick(wordSet.word, wordSet.meaning)
+                    }
+                  >
+                    {wordSet.meaning}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {chunk.map((wordSet) => (
-                  <tr key={wordSet.id}>
-                    <td>
-                      <input
-                        type="checkbox"
-                        checked={wordSet.checked}
-                        onChange={() => toggleCheckbox(wordSet.id)}
-                      />
-                    </td>
-                    <td
-                      className="vn-td"
-                      onClick={() =>
-                        handleWordClick(wordSet.word, wordSet.meaning)
-                      }
-                    >
-                      {wordSet.word}
-                    </td>
-                    <td
-                      className="vn-td"
-                      onClick={() =>
-                        handleWordClick(wordSet.word, wordSet.meaning)
-                      }
-                    >
-                      {wordSet.meaning}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            {index !== chunkedWordSets.length - 1 && <hr className="note-hr" />}
-          </div>
-        ))}
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="vn-set">
+          <table className="vn-table">
+            <thead>
+              <tr>
+                <th className="vn-th"></th>
+                <th className="vn-th">단어</th>
+                <th className="vn-th">뜻</th>
+              </tr>
+            </thead>
+            <tbody>
+              {secondHalf.map((wordSet) => (
+                <tr key={wordSet.id}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={wordSet.checked}
+                      onChange={() => toggleCheckbox(wordSet.id)}
+                    />
+                  </td>
+                  <td
+                    className="vn-td"
+                    onClick={() =>
+                      handleWordClick(wordSet.word, wordSet.meaning)
+                    }
+                  >
+                    {wordSet.word}
+                  </td>
+                  <td
+                    className="vn-td"
+                    onClick={() =>
+                      handleWordClick(wordSet.word, wordSet.meaning)
+                    }
+                  >
+                    {wordSet.meaning}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
       <br />
       <br />
