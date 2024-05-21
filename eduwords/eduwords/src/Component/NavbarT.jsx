@@ -1,22 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useUser } from "../UserContext"; // Context 사용
 import lg from "../img/logo.png";
+import { Context } from "../context";
 
 const NavbarT = () => {
+  const [mem_id, setUsername] = useState(Context);
   const navigate = useNavigate();
-  const { user, setUser } = useUser(); // Context의 user와 setUser 사용
+  // const { user, setUser } = useUser(); // Context의 user와 setUser 사용
 
   // user 객체를 콘솔에 출력
-  console.log(user);
 
   const handleLogout = () => {
-    setUser(null);
+    setUsername(null);
     navigate("/login");
   };
 
   const handleLoginClick = (e) => {
-    if (!user) {
+    if (!mem_id) {
       e.preventDefault();
       alert("로그인 해주세요.");
       navigate("/login");
@@ -29,10 +30,10 @@ const NavbarT = () => {
         <div id="bar">
           <div id="div1"></div>
           <div id="div2">
-            {user ? `환영합니다. ${user.mem_name}님` : "로그인 해주세요"}
+            {mem_id ? `환영합니다. ${mem_id}님` : "로그인 해주세요"}
           </div>
           <div id="div3">
-            {user ? (
+            {mem_id ? (
               <>
                 <Link to="/sp" className="startLogin">
                   마이 페이지

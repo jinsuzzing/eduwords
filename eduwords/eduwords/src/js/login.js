@@ -4,13 +4,11 @@ import "../css/login.css";
 import lg from "../img/logo.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../UserContext"; // Context 사용
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { setUser } = useUser(); // Context의 setUser 함수 사용
 
   const handleLogin = async () => {
     try {
@@ -21,11 +19,14 @@ const Login = () => {
 
       if (response.data.success) {
         // 로그인 성공 처리
-        console.log("로그인 성공:", response.data.user); // 응답 데이터 확인
-        setUser(response.data.user); // 사용자 정보 설정
-        console.log("로그인 후 user 설정:", response.data.user); // user 설정 확인
+        const type = response.data.mem_type;
+        const id = response.data.mem_id;
+        console.log(type);
+        sessionStorage.setItem("mem_id", id);
+        sessionStorage.setItem("mem_type", type);
         navigate("/"); // 로그인 성공 시 이동할 페이지
       } else {
+        console.log(response);
         alert("로그인에 실패했습니다. 아이디와 비밀번호를 확인하세요.");
       }
     } catch (error) {

@@ -1,24 +1,25 @@
 import React, { useState } from "react";
 import lg from "../img/logo.png";
 import { Link, useNavigate } from "react-router-dom";
+import { Context } from "../context";
 
 const Navbar = () => {
-  const [loginIn, setLoginIn] = useState(false);
+  const [mem_id, setUsername] = useState(Context);
+  const mem_name = sessionStorage.getItem("mem_id");
   const navigate = useNavigate();
-
   const handleLogout = () => {
-    setLoginIn(false);
+    sessionStorage.removeItem("mem_id");
   };
 
   const handleLoginClick = () => {
-    if (!loginIn) {
+    if (!mem_name) {
       alert("로그인이 필요합니다!");
       navigate("/login");
     }
   };
 
   const handleMenuClick = () => {
-    if (!loginIn) {
+    if (!mem_name) {
       alert("로그인이 필요합니다!");
       navigate("/login");
     }
@@ -30,17 +31,17 @@ const Navbar = () => {
         <div id="bar">
           <div id="div1"></div>
           <div id="div2">
-            {loginIn ? "환영합니다. {''}님" : "로그인 해주세요"}
+            {mem_name ? `환영합니다. ${mem_name}님` : "로그인 해주세요"}
           </div>
           <div id="div3">
-            {loginIn ? (
+            {mem_name ? (
               <>
                 <Link to="/sp" className="startLogin" onClick={handleMenuClick}>
                   마이 페이지
                 </Link>
-                <button onClick={handleLogout} className="startJoin">
+                <Link to="/" className="startJoin" onClick={handleLogout}>
                   로그아웃
-                </button>
+                </Link>
               </>
             ) : (
               <>

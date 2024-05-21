@@ -1,5 +1,5 @@
 import "./main.css";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import banner1 from "./img/banner1.png";
 import banner2 from "./img/banner2.png";
 import banner3 from "./img/banner3.png";
@@ -7,11 +7,12 @@ import back from "./img/background.png";
 import NavbarT from "./Component/NavbarT";
 import Navbar from "./Component/Navbar"; // 기본 Navbar import
 import Footer from "./Component/Footer";
-import { useUser } from "./UserContext"; // UserContext 사용
 
 const images = [banner1, banner2, banner3];
 const background = [back];
-
+const type = sessionStorage.getItem("mem_type");
+const mem_name = sessionStorage.getItem("mem_id");
+console.log("type" + type);
 function Banner() {
   const [index, setIndex] = useState(0);
 
@@ -37,8 +38,6 @@ function Banner() {
 
 function Main() {
   const backgroundRef = useRef(null);
-  const { user } = useUser(); // UserContext에서 user 정보 가져옴
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -68,7 +67,7 @@ function Main() {
 
   return (
     <div className="bodytext">
-      {user?.mem_type === "0" ? <Navbar /> : <NavbarT />}
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <Banner />
 
       <br />

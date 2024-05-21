@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Main from "./main";
@@ -38,47 +38,40 @@ import { UserProvider } from "./UserContext"; // 추가된 부분
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <UserProvider>
-      {" "}
-      {/* UserProvider로 전체 애플리케이션을 감쌈 */}
-      <Router>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/join" element={<Join />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/tp" element={<Tp />} />
-          <Route path="/js" element={<Joinsuccess />} />
-          <Route path="/createhome" element={<Createhome />} />
-          <Route path="/find" element={<Find />} />
-          <Route path="/findid" element={<Findid />} />
-          <Route path="/findpw" element={<Findpw />} />
-          <Route path="/createai" element={<Createai />} />
-          <Route path="/questionsok" element={<Questionsok />} />
-          <Route path="/questionslist" element={<Questionslist />} />
-          <Route path="/studyRoom" element={<StudyRoom />} />
-          <Route path="/aipreview" element={<Aipreview />} />
-          <Route path="/createaproblem" element={<Createaproblem />} />
-          <Route path="/is" element={<Infostudent />} />
-          <Route path="/note" element={<Vocabularynote />} />
-          <Route path="/sp" element={<StudentPage />} />
-          <Route path="/out" element={<Outservice />} />
-          <Route path="/loading" element={<Loading />} />
-          <Route path="/vd" element={<Vd />} />
-          <Route path="/os" element={<Outsuccess />} />
-          <Route path="/teacher" element={<Teacherpage />} />
-          <Route path="/wq" element={<Wq />} />
-          <Route path="/markpage" element={<Mp />} />
-          <Route path="/good" element={<Goodboy />} />
-          <Route path="/allpreview" element={<All />} />
-          <Route path="/aw" element={<Addword />} />
-          <Route path="/testpaper" element={<Testpaper />} />
-          <Route path="/namelist" element={<Namelist />} />
-          <Route path="/jointeacher" element={<Jointeacher />} />
-        </Routes>
-      </Router>
-    </UserProvider>{" "}
-    {/* UserProvider 닫는 부분 */}
+    <Router>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/join" element={<Join />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/tp" element={<Tp />} />
+        <Route path="/js" element={<Joinsuccess />} />
+        <Route path="/createhome" element={<Createhome />} />
+        <Route path="/find" element={<Find />} />
+        <Route path="/findid" element={<Findid />} />
+        <Route path="/findpw" element={<Findpw />} />
+        <Route path="/createai" element={<Createai />} />
+        <Route path="/questionsok" element={<Questionsok />} />
+        <Route path="/questionslist" element={<Questionslist />} />
+        <Route path="/studyRoom" element={<StudyRoom />} />
+        <Route path="/aipreview" element={<Aipreview />} />
+        <Route path="/createaproblem" element={<Createaproblem />} />
+        <Route path="/is" element={<Infostudent />} />
+        <Route path="/note" element={<Vocabularynote />} />
+        <Route path="/sp" element={<StudentPage />} />
+        <Route path="/out" element={<Outservice />} />
+        <Route path="/loading" element={<Loading />} />
+        <Route path="/vd" element={<Vd />} />
+        <Route path="/os" element={<Outsuccess />} />
+        <Route path="/teacher" element={<Teacherpage />} />
+        <Route path="/wq" element={<Wq />} />
+        <Route path="/markpage" element={<Mp />} />
+        <Route path="/good" element={<Goodboy />} />
+        <Route path="/allpreview" element={<All />} />
+        <Route path="/aw" element={<Addword />} />
+        <Route path="/testpaper" element={<Testpaper />} />
+        <Route path="/namelist" element={<Namelist />} />
+        <Route path="/jointeacher" element={<Jointeacher />} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
-
-reportWebVitals();

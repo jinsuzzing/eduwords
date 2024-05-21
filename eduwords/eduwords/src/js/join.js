@@ -34,7 +34,6 @@ function Join() {
 
   const handleUsernameCheck = async () => {
     try {
-      console.log(mem_id);
       const response = await axios.post("http://localhost:8081/check", {
         mem_id,
       });
@@ -69,7 +68,6 @@ function Join() {
         mem_email,
         joined_at,
       };
-      console.log(member);
       try {
         await axios.post("http://localhost:8081/register", member);
         navigate("/js", { state: { mem_id, joined_at } });
