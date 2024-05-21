@@ -14,10 +14,24 @@ body {
 }
 
 .sr-hr {
-  border: 1px;
-  color: #239aff;
+  border: 0.5px solid #239aff;
+  width: 120vh;
+  margin: auto;
 }
 
-.sr-p {
+.sr-p,
+.sr-h3 {
   color: #239aff;
+  margin-left: 20%;
+}
+
+.mark-x-box {
+  width: 120vh;
+  height: 500px;
+  border: solid 3px;
+  border-color: #239aff;
+  border-radius: 30px;
+  overflow-y: auto;
+  display: flex;
+  margin: auto;
 }
