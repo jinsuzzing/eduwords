@@ -16,7 +16,7 @@ const AddWord = () => {
 
   const handleTranslate = async () => {
     try {
-      const response = await axios.post("http://localhost:5002/translate", {
+      const response = await axios.post("http://localhost:8081/addword", {
         word,
       });
       if (response.data.translation) {
