@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import "../css/studyrecord.css";
 import Navbar from "../Component/Navbar";
+import ScoreChart from "../Component/ScoreChart";
 
 const StudyRecord = () => {
   const location = useLocation();
@@ -10,6 +11,17 @@ const StudyRecord = () => {
   const score = location.state?.score || 0;
 
   const selectedQuestions = examInfo.selectedQuestions || [];
+
+  // 임의의 최근 성적 데이터를 생성합니다. 실제 데이터로 대체해야 합니다.
+  const chartData = [
+    { date: "05-01", score: 60 },
+    { date: "05-03", score: 88 },
+    { date: "05-04", score: 72 },
+    { date: "05-05", score: 48 },
+    { date: "05-06", score: 80 },
+  ];
+
+  const average = chartData.reduce((a, b) => a + b.score, 0) / chartData.length;
 
   const renderIncorrectQuestions = () => {
     return selectedQuestions
@@ -41,6 +53,12 @@ const StudyRecord = () => {
       <br />
       <h3 className="sr-h3">· 최근 성적 한 눈에 보기</h3>
       <hr className="sr-hr" />
+      <div className="chart-container">
+        <div className="chart">
+          <ScoreChart data={chartData} />
+        </div>
+        <h3 className="chart-score">평균 점수: {average.toFixed(2)}점</h3>
+      </div>
     </div>
   );
 };

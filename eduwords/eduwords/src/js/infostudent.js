@@ -1,56 +1,20 @@
 import React from "react";
 import NavbarT from "../Component/NavbarT";
 import Navbar from "../Component/Navbar";
-import { Bar } from "react-chartjs-2";
-import { Chart, Ticks, registerables } from "chart.js";
+import ScoreChart from "../Component/ScoreChart";
 import "../css/infostudent.css";
-Chart.register(...registerables);
 
 const type = sessionStorage.getItem("mem_type");
 
 const chartData = [
-  { data: "05-01", score: 60 },
-  { data: "05-03", score: 88 },
-  { data: "05-04", score: 72 },
-  { data: "05-05", score: 48 },
-  { data: "05-06", score: 80 },
+  { date: "05-01", score: 60 },
+  { date: "05-03", score: 88 },
+  { date: "05-04", score: 72 },
+  { date: "05-05", score: 48 },
+  { date: "05-06", score: 80 },
 ];
-const ScoreChart = ({ data }) => {
-  const chartIn = {
-    labels: data.map((item) => item.data), // 날짜 표기
-    datasets: [
-      {
-        label: "점수",
-        data: data.map((item) => item.score), // 점수
-        backgroundColor: "#239aff",
-        borderColor: "#239aff",
-        borderWidth: 2,
-      },
-    ],
-  };
-  const options = {
-    scales: {
-      x: {
-        ticks: {
-          maxRotation: 0, // 최대 회전 각도
-          minRotation: 0, // 최소 회전 각도
-          font: {
-            size: 14,
-          },
-          color: "#239aff",
-        },
-      },
-      y: {
-        beginAtZero: true,
-        max: 100,
-      },
-    },
-    maintainAspectRatio: false,
-  };
 
-  return <Bar data={chartIn} options={options} />;
-};
-const infostudent = () => {
+const Infostudent = () => {
   const average = chartData.reduce((a, b) => a + b.score, 0) / chartData.length;
   return (
     <div>
@@ -91,4 +55,4 @@ const infostudent = () => {
   );
 };
 
-export default infostudent;
+export default Infostudent;
