@@ -32,6 +32,7 @@ import Findid from "./js/findid";
 import Findpw from "./js/findpw";
 import Testpaper from "./js/testpaper";
 import Namelist from "./js/namelist";
+import Jointeacher from "./js/jointeacher";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -68,6 +69,7 @@ root.render(
         <Route path="/aw" element={<Addword />} />
         <Route path="/testpaper" element={<Testpaper />} />
         <Route path="/namelist" element={<Namelist />} />
+        <Route path="/jointeacher" element={<Jointeacher />} />
       </Routes>
     </Router>
   </React.StrictMode>

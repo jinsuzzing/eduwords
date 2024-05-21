@@ -15,7 +15,7 @@ function Join() {
   const [mem_number, setPhone] = useState("");
   const [mem_address, setAddress] = useState("");
   const [mem_email, setEmail] = useState("");
-  const [mem_type, setType] = useState("0");
+  const [mem_type, setType] = useState("1");
 
   const navigate = useNavigate();
 
