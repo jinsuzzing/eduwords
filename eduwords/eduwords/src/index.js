@@ -33,7 +33,6 @@ import Findpw from "./js/findpw";
 import Testpaper from "./js/testpaper";
 import Namelist from "./js/namelist";
 import Jointeacher from "./js/jointeacher";
-import { UserProvider } from "./UserContext"; // 추가된 부분
 import Sr from "./js/studyrecord";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
