@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../src/woorquestions.css";
 import NavbarT from "./Component/NavbarT";
+import Navbar from "./Component/Navbar";
 import { useLocation, useNavigate } from "react-router-dom";
+
+const type = sessionStorage.getItem("mem_type");
 
 const WoorQuestions = () => {
   const location = useLocation();
@@ -53,7 +56,7 @@ const WoorQuestions = () => {
 
   return (
     <div>
-      <NavbarT />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <h2 className="wq-title">· 출제 문제 선택</h2>
       <div className="wq-container">
         <div className="wq-box">

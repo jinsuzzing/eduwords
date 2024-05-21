@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../css/allpreview.css";
 import NavbarT from "../Component/NavbarT";
+import Navbar from "../Component/Navbar";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const AllPreview = () => {
@@ -21,6 +22,7 @@ const AllPreview = () => {
   };
 
   const selectedColumns = divideIntoColumns(selectedQuestions, 2);
+  const type = sessionStorage.getItem("mem_type");
 
   const handleConfirm = () => {
     // 확인 버튼 클릭 시 선택한 문제와 입력한 정보를 questionslist.js로 전달
@@ -36,7 +38,7 @@ const AllPreview = () => {
 
   return (
     <div>
-      <NavbarT />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <h2 className="all-title">· 미리보기</h2>
       <div className="all-container">
         <div className="all-box">

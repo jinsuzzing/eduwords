@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import NavbarT from "../Component/NavbarT";
+import Navbar from "../Component/Navbar";
 import "../css/namelist.css";
 import { useLocation, useNavigate } from "react-router-dom";
+
+const type = sessionStorage.getItem("mem_type");
 
 const NameList = () => {
   const location = useLocation();
@@ -42,7 +45,8 @@ const NameList = () => {
 
   return (
     <div>
-      <NavbarT />
+      {type === 1 ? <NavbarT /> : <Navbar />}
+
       <br />
       <h2 className="titleText">·문제 제출 학생 명단</h2>
       <br />

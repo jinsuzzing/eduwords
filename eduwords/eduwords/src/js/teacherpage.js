@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import NavbarT from "../Component/NavbarT";
+import Navbar from "../Component/Navbar";
 import "../css/teacherpage.css";
 import { Link } from "react-router-dom";
 import gptbtn from "../img/gptbtn.png";
 import btn1 from "../img/btn1.png";
 import btn2 from "../img/btn2.png";
+
+const type = sessionStorage.getItem("mem_type");
 
 const Teacherpage = () => {
   // 학생목록 useState로 관리 ( 학생수가 5명 이상이면 다음 행으로 넘어가는 로직임)
@@ -41,9 +44,7 @@ const Teacherpage = () => {
 
   return (
     <div>
-      <header>
-        <NavbarT />
-      </header>
+      <header>{type === 1 ? <NavbarT /> : <Navbar />}</header>
       <br />
       <h2 className="titleText">·내 학생관리</h2>
       <br />

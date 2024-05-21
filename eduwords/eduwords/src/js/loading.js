@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "../css/loading.css";
 import NavbarT from "../Component/NavbarT";
+import Navbar from "../Component/Navbar";
 import LoadingImg from "../img/loading.png";
+
+const type = sessionStorage.getItem("mem_type");
 
 const Loading = () => {
   const [loadingText, setLoadingText] = useState("Loading");
@@ -19,7 +22,7 @@ const Loading = () => {
   }, []);
   return (
     <div>
-      <NavbarT />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <br />
       <br />
       <br />

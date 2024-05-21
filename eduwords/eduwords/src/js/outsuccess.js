@@ -1,12 +1,15 @@
 import React from "react";
 import NavbarT from "../Component/NavbarT";
+import Navbar from "../Component/Navbar";
 import { Link } from "react-router-dom";
 import "../css/outsuccess.css";
+
+const type = sessionStorage.getItem("mem_type");
 
 const outsuccess = () => {
   return (
     <div>
-      <NavbarT />
+      {type === 1 ? <NavbarT /> : <Navbar />}
 
       <div className="osdiv">
         <br />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/aipreview.css";
 import NavbarT from "../Component/Navbar";
+import Navbar from "../Component/Navbar";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Aipreview = () => {
@@ -17,7 +18,7 @@ const Aipreview = () => {
     option5: "",
   });
   const [editing, setEditing] = useState(false);
-
+  const type = sessionStorage.getItem("mem_type");
   useEffect(() => {
     const problemCount = location.state?.problemCount || 0;
     setPreviewQuestions(
@@ -72,7 +73,7 @@ const Aipreview = () => {
 
   return (
     <div>
-      <NavbarT />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <h2 className="aipreview-title">· 생성된 문제 미리보기</h2>
       <div className="aipreview-box">
         {columns.map((column, columnIndex) => (

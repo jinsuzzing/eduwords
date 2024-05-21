@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Component/Navbar";
+import NavbarT from "../Component/NavbarT";
 import axios from "axios";
 import "../css/findpw.css";
 
+const type = sessionStorage.getItem("mem_type");
 const FindPw = () => {
   const location = useLocation();
   const username = location.state?.username;
@@ -38,7 +40,7 @@ const FindPw = () => {
 
   return (
     <div className="findpw-conter">
-      <Navbar />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <br />
       <br />
       <h1 className="findpw-h1">비밀번호 찾기</h1>

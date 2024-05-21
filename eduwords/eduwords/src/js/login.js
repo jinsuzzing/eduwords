@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Navbar from "../Component/Navbar";
+import NavbarT from "../Component/NavbarT";
 import "../css/login.css";
 import lg from "../img/logo.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+const type = sessionStorage.getItem("mem_type");
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -36,7 +39,7 @@ const Login = () => {
 
   return (
     <div className="logindiv">
-      <Navbar />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <img src={lg} id="logoImg" alt="Logo" />
       <br />
       <input

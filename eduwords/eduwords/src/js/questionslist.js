@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import tb from "../img/tb.png";
 import "../css/questionslist.css";
 import NavbarT from "../Component/NavbarT";
+import Navbar from "../Component/Navbar";
 import { useLocation, useNavigate } from "react-router-dom";
+
+const type = sessionStorage.getItem("mem_type");
 
 const QuestionsList = () => {
   const location = useLocation();
@@ -21,7 +24,7 @@ const QuestionsList = () => {
 
   return (
     <div>
-      <NavbarT />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <img src={tb} className="tbimg" alt="table"></img>
       <table className="t-listtable" onClick={handleTableClick}>
         <tbody>

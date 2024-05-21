@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "../css/testpaper.css";
 import Navbar from "../Component/NavbarT";
+import NavbarT from "../Component/NavbarT";
 import { useLocation, useNavigate } from "react-router-dom";
+
+const type = sessionStorage.getItem("mem_type");
 
 const TestPaper = () => {
   const location = useLocation();
@@ -24,7 +27,7 @@ const TestPaper = () => {
 
   return (
     <div>
-      <Navbar />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <h2 className="testpaper-title">· 시험 보기</h2>
       <div className="testpaper-container">
         <div className="testpaper-box">

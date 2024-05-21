@@ -1,8 +1,11 @@
 import React from "react";
 import NavbarT from "./Component/NavbarT";
+import Navbar from "./Component/Navbar";
 import "../src/vocabularydetails.css";
 import pin from "../src/img/notepin1.png";
 import { useLocation } from "react-router-dom";
+
+const type = sessionStorage.getItem("mem_type");
 
 const Vd = () => {
   const location = useLocation();
@@ -14,7 +17,7 @@ const Vd = () => {
 
   return (
     <div>
-      <NavbarT />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <h1 className="vd-title">· 단어 상세 정보</h1>
       <img src={pin} className="vd-pin" alt="Pin" />
       <div className="vd-box">

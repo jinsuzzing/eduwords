@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import NavbarT from "../Component/NavbarT";
+import Navbar from "../Component/Navbar";
 import "../css/createaproblem.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
+const type = sessionStorage.getItem("mem_type");
 const CreateAProblem = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,7 +26,7 @@ const CreateAProblem = () => {
 
   return (
     <div>
-      <NavbarT />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <h2 className="createproblem-title">· 직접 문제 생성</h2>
       <div>
         <table className="createproblem-table">

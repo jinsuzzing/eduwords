@@ -1,8 +1,10 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Component/Navbar";
+import NavbarT from "../Component/NavbarT";
 import "../css/findid.css";
 
+const type = sessionStorage.getItem("mem_type");
 const FindId = () => {
   const location = useLocation();
   const username = location.state?.username;
@@ -10,7 +12,8 @@ const FindId = () => {
 
   return (
     <div className="findid-conter">
-      <Navbar />
+      {type === 1 ? <NavbarT /> : <Navbar />}
+
       <br />
       <br />
       <h1 className="findid-h1">아이디찾기</h1>

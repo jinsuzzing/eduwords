@@ -1,9 +1,12 @@
 import React from "react";
 import NavbarT from "../Component/NavbarT";
+import Navbar from "../Component/Navbar";
 import { Bar } from "react-chartjs-2";
 import { Chart, Ticks, registerables } from "chart.js";
 import "../css/infostudent.css";
 Chart.register(...registerables);
+
+const type = sessionStorage.getItem("mem_type");
 
 const chartData = [
   { data: "05-01", score: 60 },
@@ -51,9 +54,7 @@ const infostudent = () => {
   const average = chartData.reduce((a, b) => a + b.score, 0) / chartData.length;
   return (
     <div>
-      <header>
-        <NavbarT />
-      </header>
+      <header>{type === 1 ? <NavbarT /> : <Navbar />}</header>
 
       <br />
       <h2 className="titleText">· 내 학생관리</h2>

@@ -1,14 +1,17 @@
 import React from "react";
 import Navbar from "../Component/Navbar";
+import NavbarT from "../Component/NavbarT";
 import "../css/infostudent.css";
 import Great from "../img/great.png";
 import "../css/goodboy.css";
 import { Link } from "react-router-dom";
 
+const type = sessionStorage.getItem("mem_type");
+
 const goodboy = () => {
   return (
     <div>
-      <Navbar />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <br />
       <br />
       <h2 className="goodTitle">· 문제제출</h2>

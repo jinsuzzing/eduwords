@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import NavbarT from "../Component/NavbarT";
+import Navbar from "../Component/Navbar";
 import "../css/join.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
+const type = sessionStorage.getItem("mem_type");
 
 function Join() {
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -83,7 +86,7 @@ function Join() {
 
   return (
     <div className="joindiv">
-      <NavbarT />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <br />
       <br />
       <br />

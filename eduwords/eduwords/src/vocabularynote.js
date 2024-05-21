@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import NavbarT from "./Component/NavbarT";
+import Navbar from "./Component/Navbar";
 import { useNavigate } from "react-router-dom";
 import "../src/vocabularynote.css";
 import pin from "../src/img/notepin1.png";
+
+const type = sessionStorage.getItem("mem_type");
 
 const VocabularyNote = () => {
   const [wordSets, setWordSets] = useState([
@@ -81,7 +84,7 @@ const VocabularyNote = () => {
 
   return (
     <div>
-      <NavbarT />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <h1 className="vocabularynote-title">· 단어장</h1>
       <img src={pin} className="vn-pin" alt="Pin" />
       <div className="vn-box">

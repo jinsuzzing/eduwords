@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useUser } from "../UserContext"; // Context 사용
 import lg from "../img/logo.png";
 import { Context } from "../context";
 
@@ -38,9 +37,9 @@ const NavbarT = () => {
                 <Link to="/sp" className="startLogin">
                   마이 페이지
                 </Link>
-                <button onClick={handleLogout} className="startJoin">
+                <Link to="/" className="startJoin" onClick={handleLogout}>
                   로그아웃
-                </button>
+                </Link>
               </>
             ) : (
               <>

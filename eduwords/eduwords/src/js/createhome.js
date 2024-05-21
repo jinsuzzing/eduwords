@@ -1,5 +1,6 @@
 import React from "react";
 import NavbarT from "../Component/NavbarT";
+import Navbar from "../Component/Navbar";
 import gptbtn from "../img/gptbtn.png";
 import btn1 from "../img/btn1.png";
 import btn2 from "../img/btn2.png";
@@ -7,6 +8,7 @@ import "../css/createhome.css";
 import Footer from "../Component/Footer";
 import { Link, useNavigate } from "react-router-dom";
 
+const type = sessionStorage.getItem("mem_type");
 const CreateHome = () => {
   const navigate = useNavigate();
 
@@ -23,7 +25,8 @@ const CreateHome = () => {
 
   return (
     <div>
-      <NavbarT />
+      {type === 1 ? <NavbarT /> : <Navbar />}
+
       <div className="contentbox1">
         <div className="gptbutton">
           <Link to="/createai">

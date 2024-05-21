@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "../css/studentPage.css";
 import Navbar from "../Component/Navbar";
+import NavbarT from "../Component/NavbarT";
 import { Link } from "react-router-dom";
+
+const type = sessionStorage.getItem("mem_type");
 
 function StudentPage() {
   const [confirmPassword, setConfirmPassword] = useState(""); // 비밀번호 재입력 상태 추가
@@ -20,7 +23,7 @@ function StudentPage() {
   }, [confirmPassword, password]);
   return (
     <div>
-      <Navbar />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <br />
       <br />
       <br />

@@ -1,13 +1,16 @@
 import React from "react";
 import "../css/termspage.css";
 import Navbar from "../Component/Navbar";
+import NavbarT from "../Component/NavbarT";
 import Footer from "../Component/Footer";
 import { Link } from "react-router-dom";
+
+const type = sessionStorage.getItem("mem_type");
 
 const Termspage = () => {
   return (
     <div>
-      <Navbar />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <div className="terms-container">
         <div className="terms-content">
           <h2 className="how">이용약관</h2>

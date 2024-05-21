@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../Component/Navbar";
+import NavbarT from "../Component/NavbarT";
 import "../css/addword.css";
 import pin from "../img/notepin1.png";
 import axios from "axios";
@@ -9,7 +10,7 @@ const AddWord = () => {
   const [word, setWord] = useState("");
   const [translation, setTranslation] = useState("");
   const [error, setError] = useState(null);
-
+  const type = sessionStorage.getItem("mem_type");
   const handleInputChange = (e) => {
     setWord(e.target.value);
   };
@@ -54,7 +55,7 @@ const AddWord = () => {
   };
   return (
     <div>
-      <Navbar />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <h1 className="addtitle">· 단어장</h1>
       <img src={pin} className="pinimg" alt="pin" />
       <div className="addbox">

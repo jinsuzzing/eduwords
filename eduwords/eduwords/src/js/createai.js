@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Navbar from "../Component/Navbar";
+import NavbarT from "../Component/NavbarT";
 import turboimg from "../img/gptturbo.png";
 import "../css/createai.css";
 import { Link, useNavigate } from "react-router-dom";
+
+const type = sessionStorage.getItem("mem_type");
 
 const CreateAI = () => {
   const [problemCount, setProblemCount] = useState(0);
@@ -26,7 +29,7 @@ const CreateAI = () => {
 
   return (
     <div>
-      <Navbar />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <div className="gpttrubo">
         <img src={turboimg} className="truboimg" alt="GPT Turbo"></img>
       </div>

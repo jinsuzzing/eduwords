@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Component/Navbar";
+import NavbarT from "../Component/NavbarT";
 import axios from "axios";
 import "../css/find.css";
+
+const type = sessionStorage.getItem("mem_type");
 
 const Find = () => {
   const [name, setName] = useState("");
@@ -50,7 +53,7 @@ const Find = () => {
 
   return (
     <div className="findBody">
-      <Navbar />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <br />
       <br />
       <br />

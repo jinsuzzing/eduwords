@@ -1,7 +1,10 @@
 import React from "react";
 import Navbar from "../Component/Navbar";
+import NavbarT from "../Component/NavbarT";
 import "../css/joinsuccess.css";
 import { Link, useLocation } from "react-router-dom";
+
+const type = sessionStorage.getItem("mem_type");
 
 const JoinSuccess = () => {
   const location = useLocation();
@@ -9,7 +12,7 @@ const JoinSuccess = () => {
 
   return (
     <div>
-      <Navbar />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <br />
       <br />
       <br />
