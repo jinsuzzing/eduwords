@@ -29,9 +29,7 @@ body {
 }
 
 .aipreview-butbox {
-  display: contents;
-  justify-content: center;
-  gap: 5px;
+  display: flex;
 }
 
 /* Webkit (Chrome, Safari 등) */
@@ -103,9 +101,9 @@ body {
   color: white;
   font-size: 20px;
   display: flex;
-  margin: auto;
   justify-content: center;
   align-items: center;
+  margin: 14px;
 }
 
 .aipreview-question:hover {
@@ -132,9 +130,10 @@ body {
   width: 50px;
   border-radius: 5px;
 }
-.aipreview-box {
+.aipreview-butbox {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 
 .aipreview-column {

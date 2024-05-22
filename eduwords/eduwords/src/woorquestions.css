@@ -21,6 +21,12 @@
   margin: auto;
 }
 
+.wq-btnbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .wq-question {
   background-color: #f0f0f0;
   border-radius: 10px;
@@ -90,7 +96,8 @@
   padding: 20px;
 }
 
-.wq-btn {
+.wq-btn,
+.wq-back {
   width: 15vh;
   height: 5vh;
   border-radius: 10px;
@@ -99,9 +106,9 @@
   color: white;
   font-size: 20px;
   display: flex;
-  margin: auto;
   justify-content: center;
   align-items: center;
+  margin: 14px;
 }
 
 .wq-btn1 {

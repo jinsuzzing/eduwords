@@ -51,6 +51,10 @@ const WoorQuestions = () => {
 
   const columns = divideIntoColumns(questions, 2);
 
+  const handleBack = () => {
+    navigate(-1);
+  };
+
   const handleGenerate = () => {
     navigate("/allpreview", {
       state: {
@@ -84,7 +88,10 @@ const WoorQuestions = () => {
         </div>
       </div>
       <p className="wq-p">현재 선택된 문제 수: {selectedCount}</p>
-      <div>
+      <div className="wq-btnbox">
+        <button className="wq-back" onClick={handleBack}>
+          뒤로가기
+        </button>
         <button className="wq-btn" onClick={handleGenerate}>
           문제생성
         </button>

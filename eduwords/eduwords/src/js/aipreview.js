@@ -210,8 +210,6 @@ const Aipreview = () => {
         ))}
       </div>
       <br />
-      <br />
-      <br />
       <div className="aipreview-butbox">
         <button className="aipreview-back" onClick={handleBack}>
           뒤로가기
