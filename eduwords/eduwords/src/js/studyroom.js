@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import stb from "../img/stb1.png";
 import "../css/studyroom.css";
-import Navbar from "../Component/NavbarT";
+import Navbar from "../Component/Navbar";
 import NavbarT from "../Component/NavbarT";
 import { useLocation } from "react-router-dom";
 
@@ -18,7 +18,7 @@ const StudyRoom = () => {
 
   return (
     <div>
-      {type === 1 ? <NavbarT /> : <Navbar />}
+      {type === "1" ? <NavbarT /> : <Navbar />}
       <img src={stb} className="sbimg" alt="table"></img>
       <table className="s-listtable">
         <tbody>
