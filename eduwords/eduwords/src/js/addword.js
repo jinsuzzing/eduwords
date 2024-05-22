@@ -6,6 +6,7 @@ import pin from "../img/notepin1.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+const type = sessionStorage.getItem("mem_type");
 const AddWord = () => {
   const [word, setWord] = useState("");
   const [translation, setTranslation] = useState("");
@@ -17,11 +18,9 @@ const AddWord = () => {
 
   const handleTranslate = async () => {
     try {
-      console.log("Sending request to server..."); // 디버깅 메시지 추가
-      const response = await axios.post("http://localhost:5003/translate", {
+      const response = await axios.post("http://localhost:5050/translate", {
         word,
       });
-      console.log("Server response:", response.data); // 디버깅 메시지 추가
       if (response.data.translation) {
         setTranslation(response.data.translation);
       } else {
@@ -29,15 +28,36 @@ const AddWord = () => {
       }
       setError(null);
     } catch (error) {
-      console.error("Error:", error); // 디버깅 메시지 추가
+      console.error(error);
       setTranslation("번역 오류");
       setError("번역 서버에 문제가 있습니다. 나중에 다시 시도해 주세요.");
     }
   };
 
+  const handleAddWord = () => {
+    if (word && translation) {
+      const newWord = {
+        id: Date.now(),
+        word,
+        meaning: translation,
+        checked: false,
+      };
+      const existingWords = JSON.parse(localStorage.getItem("wordSets2")) || [];
+      localStorage.setItem(
+        "wordSets2",
+        JSON.stringify([...existingWords, newWord])
+      );
+      setWord("");
+      setTranslation("");
+      setError(null);
+    } else {
+      setError("단어와 번역을 입력해주세요.");
+    }
+  };
+
   return (
     <div>
-      <Navbar />
+      {type === "1" ? <NavbarT /> : <Navbar />}
       <h1 className="addtitle">· 단어장</h1>
       <img src={pin} className="pinimg" alt="pin" />
       <div className="addbox">
@@ -55,11 +75,20 @@ const AddWord = () => {
                 />
               </td>
               <td>
-                <button onClick={handleTranslate}>번역</button>
+                <button onClick={handleTranslate} id="transbtn">
+                  번역하기
+                </button>
+              </td>
+              <td>
+                <button onClick={handleAddWord} id="addbtn">
+                  단어장에 추가
+                </button>
               </td>
             </tr>
             <tr>
-              <td colSpan="2">{translation && <p>번역: {translation}</p>}</td>
+              <td colSpan="2" className="transpont">
+                {translation && <p>{translation}</p>}
+              </td>
             </tr>
             {error && (
               <tr>
@@ -71,6 +100,10 @@ const AddWord = () => {
           </tbody>
         </table>
       </div>
+      <br />
+      <Link to="/" component="button" id="govoca">
+        단어장으로
+      </Link>
     </div>
   );
 };
