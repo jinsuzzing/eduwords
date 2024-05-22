@@ -4,17 +4,36 @@ import Navbar from "../Component/Navbar";
 import NavbarT from "../Component/NavbarT";
 import { Link, useNavigate } from "react-router-dom";
 
-const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
-const mem_address = sessionStorage.getItem("mem_address");
-const mem_number = sessionStorage.getItem("mem_number");
-const mem_email = sessionStorage.getItem("mem_email");
-
 function StudentPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
+  const [userInfo, setUserInfo] = useState({
+    type: "",
+    mem_id: "",
+    mem_name: "",
+    mem_address: "",
+    mem_number: "",
+    mem_email: "",
+  });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const type = sessionStorage.getItem("mem_type");
+    const mem_id = sessionStorage.getItem("mem_id");
+    const mem_name = sessionStorage.getItem("mem_name");
+    const mem_address = sessionStorage.getItem("mem_address");
+    const mem_number = sessionStorage.getItem("mem_number");
+    const mem_email = sessionStorage.getItem("mem_email");
+
+    setUserInfo({
+      type,
+      mem_id,
+      mem_name,
+      mem_address,
+      mem_number,
+      mem_email,
+    });
+  }, []);
 
   useEffect(() => {
     const messageElement = document.getElementById("passwordMessage");
@@ -35,7 +54,7 @@ function StudentPage() {
 
   return (
     <div>
-      {type === "1" ? <NavbarT /> : <Navbar />}
+      {userInfo.type === "1" ? <NavbarT /> : <Navbar />}
       <br />
       <br />
       <br />
@@ -45,11 +64,11 @@ function StudentPage() {
         <table id="infoTable">
           <tr>
             <th colSpan={2}>아이디</th>
-            <td id="infoId">{mem_id}</td>
+            <td id="infoId">{userInfo.mem_id}</td>
           </tr>
           <tr>
             <th colSpan={2}>이름</th>
-            <td id="infoName">{mem_name}</td>
+            <td id="infoName">{userInfo.mem_name}</td>
           </tr>
           <hr />
           <tr>
@@ -90,6 +109,10 @@ function StudentPage() {
                 name="address"
                 placeholder="주소를 입력하세요"
                 required
+                value={userInfo.mem_address}
+                onChange={(e) =>
+                  setUserInfo({ ...userInfo, mem_address: e.target.value })
+                }
               />
             </td>
           </tr>
@@ -101,6 +124,10 @@ function StudentPage() {
                 name="email"
                 placeholder="이메일을 입력하세요"
                 required
+                value={userInfo.mem_email}
+                onChange={(e) =>
+                  setUserInfo({ ...userInfo, mem_email: e.target.value })
+                }
               />
             </td>
           </tr>

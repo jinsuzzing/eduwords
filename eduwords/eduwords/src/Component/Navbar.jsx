@@ -1,29 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import lg from "../img/logo.png";
-import { Link, useNavigate } from "react-router-dom";
-import { Context } from "../context";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const mem_id = sessionStorage.getItem("mem_id");
   const mem_name = sessionStorage.getItem("mem_name");
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const protectedPaths = ["/studyroom", "/note", "/result", "/sp"];
+    if (!mem_id && protectedPaths.includes(location.pathname)) {
+      alert("로그인이 필요합니다!");
+      navigate("/login");
+    }
+  }, [location.pathname, mem_id, navigate]);
+
   const handleLogout = () => {
     sessionStorage.removeItem("mem_id");
     sessionStorage.removeItem("mem_name");
     sessionStorage.removeItem("mem_address");
     sessionStorage.removeItem("mem_email");
     sessionStorage.removeItem("mem_number");
+    navigate("/");
   };
 
-  const handleLoginClick = () => {
+  const handleLoginClick = (event) => {
     if (!mem_id) {
+      event.preventDefault();
       alert("로그인이 필요합니다!");
       navigate("/login");
     }
   };
 
-  const handleMenuClick = () => {
+  const handleMenuClick = (event) => {
     if (!mem_id) {
+      event.preventDefault();
       alert("로그인이 필요합니다!");
       navigate("/login");
     }
@@ -69,24 +81,24 @@ const Navbar = () => {
 
         <ul>
           <li>
-            <a href="/studyroom" id="navA" onClick={handleLoginClick}>
+            <Link to="/studyroom" id="navA" onClick={handleLoginClick}>
               공부방
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/note" id="navA" onClick={handleLoginClick}>
+            <Link to="/note" id="navA" onClick={handleLoginClick}>
               내 단어장
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#result" id="navA" onClick={handleLoginClick}>
+            <Link to="/sr" id="navA" onClick={handleLoginClick}>
               공부 기록
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/sp" id="navA" onClick={handleLoginClick}>
+            <Link to="/sp" id="navA" onClick={handleLoginClick}>
               마이 페이지
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
