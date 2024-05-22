@@ -45,11 +45,11 @@ function StudentPage() {
         <table id="infoTable">
           <tr>
             <th colSpan={2}>아이디</th>
-            <td id="infoId">{"가입한 사용자의 ID를 출력합니다."}</td>
+            <td id="infoId">{mem_id}</td>
           </tr>
           <tr>
             <th colSpan={2}>이름</th>
-            <td id="infoName">{"가입한 사용자의 이름을 출력합니다."}</td>
+            <td id="infoName">{mem_name}</td>
           </tr>
           <hr />
           <tr>
