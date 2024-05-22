@@ -14,10 +14,7 @@ th {
   letter-spacing: -1px;
   transform: rotate(0.04deg);
 }
-.nanum-gothic-coding-regular {
-  font-weight: 400;
-  font-style: normal;
-}
+
 .titleText {
   color: #239aff;
   font-weight: bold;
@@ -25,11 +22,11 @@ th {
   left: 10%;
 }
 .infoBody {
-  padding-top: 100px;
+  padding-top: 50px;
   padding-bottom: 120px;
   margin: auto;
   width: 60%;
-  height: 500px;
+  height: 400px;
   border: 1px solid #239aff;
   border-radius: 10px;
   display: flex;
@@ -41,7 +38,7 @@ th {
   font-size: 20px;
 }
 .infoBody tr {
-  line-height: 2.5; /* 줄 간격 조정 */
+  line-height: 2.5;
 }
 .stuName {
   color: #239aff;
@@ -59,19 +56,17 @@ th {
 }
 
 .is-btn {
-  font-size: 15pt;
-  border: none;
+  width: 15vh;
+  height: 5vh;
+  border-radius: 10px;
+  border: 2px solid #239aff;
   background-color: #239aff;
-  width: 100px;
-  height: 40px;
-  border-radius: 8px;
   color: white;
-  text-align: center;
-  margin: auto;
+  font-size: 20px;
+  display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
-  display: flex;
 }
 
 .chart-container {

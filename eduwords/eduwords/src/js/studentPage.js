@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../css/studentPage.css";
 import Navbar from "../Component/Navbar";
 import NavbarT from "../Component/NavbarT";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const type = sessionStorage.getItem("mem_type");
 const mem_id = sessionStorage.getItem("mem_id");
@@ -12,8 +12,9 @@ const mem_number = sessionStorage.getItem("mem_number");
 const mem_email = sessionStorage.getItem("mem_email");
 
 function StudentPage() {
-  const [confirmPassword, setConfirmPassword] = useState(""); // 비밀번호 재입력 상태 추가
-  const [password, setPassword] = useState(""); // 비밀번호 상태 추가
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const messageElement = document.getElementById("passwordMessage");
@@ -26,6 +27,12 @@ function StudentPage() {
       messageElement.style.color = "red";
     }
   }, [confirmPassword, password]);
+
+  const handleSubmit = () => {
+    alert("회원수정이 완료되었습니다!");
+    navigate("/");
+  };
+
   return (
     <div>
       {type === "1" ? <NavbarT /> : <Navbar />}
@@ -69,7 +76,7 @@ function StudentPage() {
                 placeholder="비밀번호를 다시 입력하세요"
                 required
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)} // confirmPassword 상태 업데이트
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
               <span id="passwordMessage"></span>
             </td>
@@ -101,9 +108,9 @@ function StudentPage() {
         <Link to="/out" component="button" className="outservice">
           회원탈퇴
         </Link>
-        <Link to="/" component="button" className="container">
+        <button className="container" onClick={handleSubmit}>
           입력완료
-        </Link>
+        </button>
       </div>
     </div>
   );

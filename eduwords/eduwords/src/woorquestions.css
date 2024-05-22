@@ -138,3 +138,8 @@
 .wq-column {
   width: 48%;
 }
+
+.wq-selected {
+  border: 5px solid #239aff;
+  background-color: #e0f0ff;
+}

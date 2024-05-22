@@ -27,15 +27,15 @@ body {
 }
 
 #gomain {
+  width: 15vh;
+  height: 5vh;
+  border-radius: 10px;
+  border: 2px solid #239aff;
+  background-color: #239aff;
+  color: white;
+  font-size: 20px;
   display: flex;
   justify-content: center;
-  margin: auto;
-  background-color: #239aff;
-  border: 1px solid #239aff;
-  color: white;
-  width: 10%;
-  height: 50px;
   align-items: center;
-  border-radius: 20px;
-  font-size: 15pt;
+  margin: auto;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../css/studyrecord.css";
 import Navbar from "../Component/Navbar";
 import ScoreChart from "../Component/ScoreChart";
@@ -11,6 +11,7 @@ const mem_address = sessionStorage.getItem("mem_address");
 const mem_number = sessionStorage.getItem("mem_number");
 const mem_email = sessionStorage.getItem("mem_email");
 const StudyRecord = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const examInfo = location.state?.examInfo || {};
   const gradingResults = location.state?.gradingResults || [];
@@ -40,6 +41,10 @@ const StudyRecord = () => {
       ));
   };
 
+  const gostudyroom = () => {
+    navigate("/studyRoom");
+  };
+
   return (
     <div>
       <Navbar />
@@ -65,6 +70,15 @@ const StudyRecord = () => {
         </div>
         <h3 className="chart-score">평균 점수: {average.toFixed(2)}점</h3>
       </div>
+      <br></br>
+      <br></br>
+      <br></br>
+      <button className="sr-btn" onClick={gostudyroom}>
+        확인
+      </button>
+      <br></br>
+      <br></br>
+      <br></br>
     </div>
   );
 };
