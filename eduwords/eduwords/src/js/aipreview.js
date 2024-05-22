@@ -216,6 +216,7 @@ const Aipreview = () => {
         <button className="aipreview-back" onClick={handleBack}>
           뒤로가기
         </button>
+        <br></br>
         <button className="aipreview-btn" onClick={handleGenerateai}>
           문제저장
         </button>
