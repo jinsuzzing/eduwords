@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import NavbarT from "../Component/NavbarT";
 import Navbar from "../Component/Navbar";
 import "../css/outservice.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const type = sessionStorage.getItem("mem_type");
 const mem_id = sessionStorage.getItem("mem_id");
@@ -11,7 +11,21 @@ const mem_address = sessionStorage.getItem("mem_address");
 const mem_number = sessionStorage.getItem("mem_number");
 const mem_email = sessionStorage.getItem("mem_email");
 
-const outservice = () => {
+const OutService = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleOutservice = () => {
+    if (username && password) {
+      navigate("/os", {
+        state: { username },
+      });
+    } else {
+      alert("아이디와 비밀번호를 입력해주세요.");
+    }
+  };
+
   return (
     <div>
       {type === 1 ? <NavbarT /> : <Navbar />}
@@ -31,14 +45,18 @@ const outservice = () => {
           id="eraseId"
           placeholder="삭제하실 아이디 입력"
           required
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         ></input>
         <br />
         <input
-          type="text"
+          type="password"
           name="password"
           id="erasepw"
           placeholder="삭제하실 아이디의 비밀번호 확인"
           required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         ></input>
         <br />
         <br />
@@ -48,11 +66,11 @@ const outservice = () => {
         </label>
       </div>
       <br />
-      <Link to="/os" component="button" className="container">
+      <button className="container" onClick={handleOutservice}>
         탈퇴하기
-      </Link>
+      </button>
     </div>
   );
 };
 
-export default outservice;
+export default OutService;
