@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../Component/Navbar";
 import NavbarT from "../Component/NavbarT";
 import "../css/addword.css";
@@ -7,11 +7,14 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const type = sessionStorage.getItem("mem_type");
+const mem_id = sessionStorage.getItem("mem_id");
+
 const AddWord = () => {
   const [word, setWord] = useState("");
-  const [translation, setTranslation] = useState("");
+  const [vocaMean, setTranslation] = useState("");
   const [error, setError] = useState(null);
-
+  const vocaWord = word;
+  const memId = mem_id;
   const handleInputChange = (e) => {
     setWord(e.target.value);
   };
@@ -28,30 +31,36 @@ const AddWord = () => {
       }
       setError(null);
     } catch (error) {
-      console.error(error);
+      console.error("trans" + error);
       setTranslation("번역 오류");
       setError("번역 서버에 문제가 있습니다. 나중에 다시 시도해 주세요.");
     }
   };
 
-  const handleAddWord = () => {
-    if (word && translation) {
-      const newWord = {
-        id: Date.now(),
-        word,
-        meaning: translation,
-        checked: false,
-      };
-      const existingWords = JSON.parse(localStorage.getItem("wordSets2")) || [];
-      localStorage.setItem(
-        "wordSets2",
-        JSON.stringify([...existingWords, newWord])
+  const handleAddWordToDB = async () => {
+    console.log(memId);
+    console.log(vocaWord);
+    console.log(vocaMean);
+    try {
+      const response = await axios.post(
+        "http://localhost:8081/addWord",
+        {
+          memId,
+          vocaWord,
+          vocaMean,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
-      setWord("");
-      setTranslation("");
-      setError(null);
-    } else {
-      setError("단어와 번역을 입력해주세요.");
+      console.log(response.data); // 서버로부터의 응답 확인
+      // 성공적으로 추가되었다는 메시지가 필요하면 여기에 처리
+      alert("성공");
+    } catch (error) {
+      console.error("에러" + error);
+      setError("서버에 문제가 발생했습니다. 나중에 다시 시도해 주세요.");
     }
   };
 
@@ -80,14 +89,14 @@ const AddWord = () => {
                 </button>
               </td>
               <td>
-                <button onClick={handleAddWord} id="addbtn">
+                <button onClick={handleAddWordToDB} id="addbtn">
                   단어장에 추가
                 </button>
               </td>
             </tr>
             <tr>
               <td colSpan="2" className="transpont">
-                {translation && <p>{translation}</p>}
+                {vocaMean && <p>{vocaMean}</p>}
               </td>
             </tr>
             {error && (
