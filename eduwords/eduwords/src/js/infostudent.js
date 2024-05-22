@@ -3,6 +3,7 @@ import NavbarT from "../Component/NavbarT";
 import Navbar from "../Component/Navbar";
 import ScoreChart from "../Component/ScoreChart";
 import "../css/infostudent.css";
+import { useNavigate } from "react-router-dom";
 
 const type = sessionStorage.getItem("mem_type");
 const mem_id = sessionStorage.getItem("mem_id");
@@ -21,6 +22,13 @@ const chartData = [
 
 const Infostudent = () => {
   const average = chartData.reduce((a, b) => a + b.score, 0) / chartData.length;
+
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate("/teacher");
+  };
+
   return (
     <div>
       <header>{type === 1 ? <NavbarT /> : <Navbar />}</header>
@@ -53,7 +61,9 @@ const Infostudent = () => {
       </div>
       <br></br>
       <br></br>
-      <button className="is-btn">확인</button>
+      <button className="is-btn" onClick={handleBack}>
+        확인
+      </button>
       <br></br>
       <br></br>
     </div>

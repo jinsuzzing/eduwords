@@ -40,6 +40,12 @@ body {
   margin: auto;
 }
 
+.all-btnbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .all-box2 {
   width: 120vh;
   height: 100px;
@@ -109,7 +115,8 @@ body {
   padding: 20px;
 }
 
-.all-btn {
+.all-btn,
+.all-back {
   width: 15vh;
   height: 5vh;
   border-radius: 10px;
@@ -118,7 +125,7 @@ body {
   color: white;
   font-size: 20px;
   display: flex;
-  margin: auto;
+  margin: 14px;
   justify-content: center;
   align-items: center;
 }

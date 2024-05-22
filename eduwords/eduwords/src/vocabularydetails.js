@@ -3,7 +3,7 @@ import NavbarT from "./Component/NavbarT";
 import Navbar from "./Component/Navbar";
 import "../src/vocabularydetails.css";
 import pin from "../src/img/notepin1.png";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const type = sessionStorage.getItem("mem_type");
 const mem_id = sessionStorage.getItem("mem_id");
@@ -13,6 +13,12 @@ const mem_number = sessionStorage.getItem("mem_number");
 const mem_email = sessionStorage.getItem("mem_email");
 
 const Vd = () => {
+  const navigate = useNavigate();
+
+  const handlenote = () => {
+    navigate("/note");
+  };
+
   const location = useLocation();
   const { word, meaning } = location.state || {};
   if (!word || !meaning) {
@@ -35,7 +41,9 @@ const Vd = () => {
       </div>
       <br></br>
       <br></br>
-      <button className="vd-btn">확인</button>
+      <button className="vd-btn" onClick={handlenote}>
+        확인
+      </button>
     </div>
   );
 };

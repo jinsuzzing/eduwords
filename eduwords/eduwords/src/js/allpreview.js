@@ -39,6 +39,11 @@ const AllPreview = () => {
     };
     // questionslist.js로 정보 전달
     navigate("/questionslist", { state: { examInfo: examInfo } });
+    navigate("/questionsok");
+  };
+
+  const handleBack = () => {
+    navigate(-1);
   };
 
   return (
@@ -78,7 +83,10 @@ const AllPreview = () => {
       </div>
       <br />
 
-      <div>
+      <div className="all-btnbox">
+        <button className="all-back" onClick={handleBack}>
+          뒤로가기
+        </button>
         <button className="all-btn" onClick={handleConfirm}>
           확인
         </button>
