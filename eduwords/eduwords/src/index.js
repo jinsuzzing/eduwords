@@ -34,6 +34,7 @@ import Testpaper from "./js/testpaper";
 import Namelist from "./js/namelist";
 import Jointeacher from "./js/jointeacher";
 import Sr from "./js/studyrecord";
+import ScoreChart from "./Component/ScoreChart";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -72,6 +73,7 @@ root.render(
         <Route path="/namelist" element={<Namelist />} />
         <Route path="/jointeacher" element={<Jointeacher />} />
         <Route path="/sr" element={<Sr />} />
+        <Route path="/scorechart/:studentId" element={<ScoreChart />} />
       </Routes>
     </Router>
   </React.StrictMode>
