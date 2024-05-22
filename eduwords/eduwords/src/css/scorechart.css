@@ -14,23 +14,17 @@ body {
   max-width: 120vh;
   margin: auto;
 }
-.chart {
-  width: 300px;
-  height: 300px;
-}
 
-.chart-box .chart {
+.chart {
   flex: 1;
   display: flex;
   justify-content: center;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
+  width: 300px;
+  height: 300px;
+  margin-right: 25%;
 }
 
-.chart-container .chart-score {
-  margin-left: 20px;
+.chart-score {
   color: #239aff;
   white-space: nowrap;
   text-align: center;
@@ -39,11 +33,12 @@ body {
 .chart-title {
   font-size: 30px;
   color: #239aff;
-  margin-top: 10vb;
+  margin-top: 10vh;
   margin-left: 5%;
 }
 
 .chart-h2,
 .chart-h3 {
   color: #239aff;
+  margin-left: 10%;
 }

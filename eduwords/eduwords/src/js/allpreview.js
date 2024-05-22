@@ -23,23 +23,15 @@ const AllPreview = () => {
 
   const selectedColumns = divideIntoColumns(selectedQuestions, 2);
   const type = sessionStorage.getItem("mem_type");
-  const mem_id = sessionStorage.getItem("mem_id");
-  const mem_name = sessionStorage.getItem("mem_name");
-  const mem_address = sessionStorage.getItem("mem_address");
-  const mem_number = sessionStorage.getItem("mem_number");
-  const mem_email = sessionStorage.getItem("mem_email");
 
   const handleConfirm = () => {
-    // 확인 버튼 클릭 시 선택한 문제와 입력한 정보를 questionslist.js로 전달
     const examInfo = {
       examName: examName,
       startDate: startDate,
       endDate: endDate,
       selectedQuestions: selectedQuestions,
     };
-    // questionslist.js로 정보 전달
-    navigate("/questionslist", { state: { examInfo: examInfo } });
-    navigate("/questionsok");
+    navigate("/questionsok", { state: { examInfo: examInfo } });
   };
 
   const handleBack = () => {
@@ -52,11 +44,18 @@ const AllPreview = () => {
       <h2 className="all-title">· 미리보기</h2>
       <div className="all-container">
         <div className="all-box">
-          {selectedColumns.map((column, index) => (
-            <div key={index} className="all-column">
-              {column.map((question) => (
+          {selectedColumns.map((column, columnIndex) => (
+            <div key={columnIndex} className="all-column">
+              {column.map((question, questionIndex) => (
                 <div key={question.id} className="all-question">
-                  <p>{question.content}</p>
+                  <p>
+                    {columnIndex * 2 + questionIndex + 1}. {question.content}
+                  </p>
+                  <p>① {question.options?.option1}</p>
+                  <p>② {question.options?.option2}</p>
+                  <p>③ {question.options?.option3}</p>
+                  <p>④ {question.options?.option4}</p>
+                  <p>⑤ {question.options?.option5}</p>
                 </div>
               ))}
             </div>
@@ -67,18 +66,30 @@ const AllPreview = () => {
       <div className="all-box2">
         <br></br>
         <div className="date-picker">
-          <label>시작 날짜 : </label>
+          <label>시험지 이름 : </label>
           <input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+            className="all-input-box1"
+            type="text"
+            value={examName}
+            onChange={(e) => setExamName(e.target.value)}
           />
-          <label>끝나는 날짜 : </label>
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />
+          <br />
+          <div className="alldate-box">
+            <label>시작날짜 : </label>
+            <input
+              className="all-input-box2"
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+            <label>끝나는날짜 : </label>
+            <input
+              className="all-input-box2"
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
+          </div>
         </div>
       </div>
       <br />

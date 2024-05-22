@@ -39,7 +39,7 @@ const Infostudent = () => {
       <br />
       <br />
       <br />
-      <h3 className="stuName">{"학생이름"}</h3>
+      <h3 className="stuName">{mem_name}</h3>
       <div className="infoBody">
         <div className="doneHomework">
           <th>· 과제수행{"(100%)"}</th>
@@ -52,11 +52,7 @@ const Infostudent = () => {
           <tr>{"24년 05월 05일 시험 (직접 출제)"}</tr>
         </div>
         <div className="lookEasy">
-          <th>· 최근 성적 한눈에 보기</th>
-          <br />
-          <br />
           <ScoreChart data={chartData} />
-          <h3>5월 평균 점수 : {average.toFixed(2) + "점"}</h3>
         </div>
       </div>
       <br></br>

@@ -3,7 +3,6 @@ import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import { useLocation, useParams } from "react-router-dom";
 import "../css/scorechart.css";
-import NavbarT from "./NavbarT";
 Chart.register(...registerables);
 
 const studentsData = {
@@ -25,12 +24,11 @@ const ScoreChart = () => {
 
   const { studentId } = useParams();
   const location = useLocation();
-  const score = location.state?.score || null; // MarkPage에서 전달된 점수
+  const score = location.state?.score || null;
+  const studentName = location.state?.studentName || "학생";
 
-  // 기존 데이터 불러오기
   const data = studentsData[studentId] || [];
 
-  // 새로운 점수를 데이터에 추가
   const updatedData = score
     ? [...data, { date: new Date().toISOString().split("T")[0], score }]
     : data;
@@ -75,7 +73,7 @@ const ScoreChart = () => {
   return (
     <div>
       <div>
-        <h2 className="chart-title">·{} 성적 보기</h2>
+        <hr2 className="chart-title">·{studentName}성적 보기</hr2>
         <br></br>
         <div className="chart-box">
           <div className="chart">

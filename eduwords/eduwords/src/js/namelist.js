@@ -39,7 +39,15 @@ const NameList = () => {
   const columns = Math.ceil(students.length / studentColumn);
 
   const handleSelectStudent = (student) => {
-    navigate("/markpage", { state: { selectedAnswers, student, examInfo } });
+    navigate("/markpage", {
+      state: {
+        studentName: student.name,
+        studentId: student.id,
+        selectedAnswers,
+        student,
+        examInfo,
+      },
+    });
   };
 
   const tableData = Array.from({ length: columns }, (_, columnIndex) => {

@@ -30,8 +30,8 @@ body {
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   background-color: white;
-  font: bold;
   color: #1b3e5b;
+  font-size: 15px;
 }
 
 .t-listtable tr {
@@ -40,15 +40,21 @@ body {
   border: 3px solid #1b3e5b;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-  font: bold;
   color: #1b3e5b;
+  font-size: 15px;
 }
 
 .t-listtable th {
   margin-top: 10%;
-  padding: 20px;
+  padding: 13px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   color: white;
   text-align: center;
+  font-size: 15px;
+}
+
+.exam-name {
+  font-weight: bold;
+  color: #1b3e5b;
 }

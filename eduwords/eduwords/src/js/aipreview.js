@@ -9,7 +9,8 @@ const Aipreview = () => {
   const navigate = useNavigate();
 
   const [previewQuestions, setPreviewQuestions] = useState([]);
-  const [exQuestion, setExQuestion] = useState({
+  const [editingQuestionId, setEditingQuestionId] = useState(null);
+  const [editedQuestion, setEditedQuestion] = useState({
     question: "",
     option1: "",
     option2: "",
@@ -17,19 +18,22 @@ const Aipreview = () => {
     option4: "",
     option5: "",
   });
-  const [editing, setEditing] = useState(false);
+
   const type = sessionStorage.getItem("mem_type");
-  const mem_id = sessionStorage.getItem("mem_id");
-  const mem_name = sessionStorage.getItem("mem_name");
-  const mem_address = sessionStorage.getItem("mem_address");
-  const mem_number = sessionStorage.getItem("mem_number");
-  const mem_email = sessionStorage.getItem("mem_email");
+
   useEffect(() => {
     const problemCount = location.state?.problemCount || 0;
     setPreviewQuestions(
       Array.from({ length: problemCount }, (_, index) => ({
         id: index + 1,
         content: `문제 ${index + 1}`,
+        options: {
+          option1: `선택지 1`,
+          option2: `선택지 2`,
+          option3: `선택지 3`,
+          option4: `선택지 4`,
+          option5: `선택지 5`,
+        },
       }))
     );
   }, [location.state]);
@@ -43,18 +47,47 @@ const Aipreview = () => {
     });
   };
 
-  const handleEdit = () => {
-    setEditing(true);
+  const handleEdit = (question) => {
+    setEditingQuestionId(question.id);
+    setEditedQuestion({
+      question: question.content,
+      ...question.options,
+    });
   };
 
-  const handleSave = () => {
-    setEditing(false);
+  const handleSave = (id) => {
+    setPreviewQuestions((prevQuestions) =>
+      prevQuestions.map((q) =>
+        q.id === id
+          ? {
+              ...q,
+              content: editedQuestion.question,
+              options: {
+                option1: editedQuestion.option1,
+                option2: editedQuestion.option2,
+                option3: editedQuestion.option3,
+                option4: editedQuestion.option4,
+                option5: editedQuestion.option5,
+              },
+            }
+          : q
+      )
+    );
+    setEditingQuestionId(null);
+    setEditedQuestion({
+      question: "",
+      option1: "",
+      option2: "",
+      option3: "",
+      option4: "",
+      option5: "",
+    });
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setExQuestion((prevExQuestion) => ({
-      ...prevExQuestion,
+    setEditedQuestion((prevQuestion) => ({
+      ...prevQuestion,
       [name]: value,
     }));
   };
@@ -72,9 +105,6 @@ const Aipreview = () => {
     return result;
   }, []);
 
-  const clickCheck = (e) => {
-    console.log(e.target.value);
-  };
   const handleBack = () => {
     navigate(-1);
   };
@@ -88,14 +118,13 @@ const Aipreview = () => {
           <div key={columnIndex} className="aipreview-column">
             {column.map((previewQuestion) => (
               <div key={previewQuestion.id} className="aipreview-question">
-                <p>{previewQuestion.content}</p>
-                {editing ? (
+                {editingQuestionId === previewQuestion.id ? (
                   <div>
                     <input
                       className="editQ"
                       type="text"
                       name="question"
-                      value={exQuestion.question}
+                      value={editedQuestion.question}
                       onChange={handleInputChange}
                     />
                     <br />
@@ -106,13 +135,13 @@ const Aipreview = () => {
                       name="option"
                       id="option1"
                       value={1}
-                      onClick={clickCheck}
+                      onClick={handleInputChange}
                     />
                     <input
                       className="editA1"
                       type="text"
                       name="option1"
-                      value={exQuestion.option1}
+                      value={editedQuestion.option1}
                       onChange={handleInputChange}
                     />
                     <br />
@@ -122,13 +151,13 @@ const Aipreview = () => {
                       name="option"
                       id="option2"
                       value={2}
-                      onClick={clickCheck}
+                      onClick={handleInputChange}
                     />
                     <input
                       className="editA2"
                       type="text"
                       name="option2"
-                      value={exQuestion.option2}
+                      value={editedQuestion.option2}
                       onChange={handleInputChange}
                     />
                     <br />
@@ -138,13 +167,13 @@ const Aipreview = () => {
                       name="option"
                       id="option3"
                       value={3}
-                      onClick={clickCheck}
+                      onClick={handleInputChange}
                     />
                     <input
                       className="editA3"
                       type="text"
                       name="option3"
-                      value={exQuestion.option3}
+                      value={editedQuestion.option3}
                       onChange={handleInputChange}
                     />
                     <br />
@@ -154,13 +183,13 @@ const Aipreview = () => {
                       name="option"
                       id="option4"
                       value={4}
-                      onClick={clickCheck}
+                      onClick={handleInputChange}
                     />
                     <input
                       className="editA4"
                       type="text"
                       name="option4"
-                      value={exQuestion.option4}
+                      value={editedQuestion.option4}
                       onChange={handleInputChange}
                     />
                     <br />
@@ -170,30 +199,36 @@ const Aipreview = () => {
                       name="option"
                       id="option5"
                       value={5}
-                      onClick={clickCheck}
+                      onClick={handleInputChange}
                     />
                     <input
                       className="editA5"
                       type="text"
                       name="option5"
-                      value={exQuestion.option5}
+                      value={editedQuestion.option5}
                       onChange={handleInputChange}
                     />
                     <br />
                     <br />
-                    <button className="aipreview-btn1" onClick={handleSave}>
+                    <button
+                      className="aipreview-btn1"
+                      onClick={() => handleSave(previewQuestion.id)}
+                    >
                       저장
                     </button>
                   </div>
                 ) : (
                   <div>
-                    <p className="Q">{exQuestion.question}</p>
-                    <p className="A1">① {exQuestion.option1}</p>
-                    <p className="A2">② {exQuestion.option2}</p>
-                    <p className="A3">③ {exQuestion.option3}</p>
-                    <p className="A4">④ {exQuestion.option4}</p>
-                    <p className="A5">⑤ {exQuestion.option5}</p>
-                    <button className="aipreview-btn1" onClick={handleEdit}>
+                    <p className="Q">{previewQuestion.content}</p>
+                    <p className="A1">① {previewQuestion.options.option1}</p>
+                    <p className="A2">② {previewQuestion.options.option2}</p>
+                    <p className="A3">③ {previewQuestion.options.option3}</p>
+                    <p className="A4">④ {previewQuestion.options.option4}</p>
+                    <p className="A5">⑤ {previewQuestion.options.option5}</p>
+                    <button
+                      className="aipreview-btn1"
+                      onClick={() => handleEdit(previewQuestion)}
+                    >
                       수정
                     </button>
                     <button

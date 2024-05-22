@@ -145,3 +145,30 @@ body {
 .all-column {
   width: 48%;
 }
+
+.all-input-box1 {
+  width: 70%;
+  height: 25px;
+  text-align: center;
+  margin-left: 3%;
+  border-radius: 5px;
+  border: 2px solid #239aff;
+  margin-bottom: 10px;
+}
+
+.all-input-box2 {
+  width: 50%;
+  height: 25px;
+  text-align: center;
+  margin-left: 3%;
+  margin-right: 3%;
+  border-radius: 5px;
+  border: 2px solid #239aff;
+  margin-bottom: 10px;
+}
+
+.alldate-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

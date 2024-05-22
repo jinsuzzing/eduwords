@@ -14,6 +14,7 @@ const mem_name = sessionStorage.getItem("mem_name");
 const mem_address = sessionStorage.getItem("mem_address");
 const mem_number = sessionStorage.getItem("mem_number");
 const mem_email = sessionStorage.getItem("mem_email");
+
 const CreateHome = () => {
   const navigate = useNavigate();
 
@@ -25,7 +26,9 @@ const CreateHome = () => {
   };
 
   const handleCreateAIClick = () => {
-    navigate("/wq");
+    const selectedQuestions =
+      JSON.parse(localStorage.getItem("selectedQuestions")) || [];
+    navigate("/wq", { state: { previewQuestions: selectedQuestions } });
   };
 
   return (

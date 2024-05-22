@@ -39,7 +39,9 @@ const QuestionsList = () => {
             </th>
           </tr>
           <tr className="t-listtable-tr2">
-            <td colSpan={2}>{examName}</td>
+            <td colSpan={2} className="exam-name">
+              {examName}
+            </td>
           </tr>
         </tbody>
       </table>

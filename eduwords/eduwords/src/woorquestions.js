@@ -5,11 +5,6 @@ import Navbar from "./Component/Navbar";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
-const mem_address = sessionStorage.getItem("mem_address");
-const mem_number = sessionStorage.getItem("mem_number");
-const mem_email = sessionStorage.getItem("mem_email");
 
 const WoorQuestions = () => {
   const location = useLocation();
@@ -22,8 +17,21 @@ const WoorQuestions = () => {
   const previewQuestions = location.state?.previewQuestions || [];
 
   useEffect(() => {
-    console.log("Received preview questions:", previewQuestions);
-  }, [previewQuestions]);
+    // 로컬 스토리지에서 선택된 질문들 로드
+    const savedQuestions =
+      JSON.parse(localStorage.getItem("selectedQuestions")) || [];
+    setSelectedQuestions(savedQuestions);
+    setSelectedQuestionIds(savedQuestions.map((question) => question.id));
+    setSelectedCount(savedQuestions.length);
+  }, []);
+
+  useEffect(() => {
+    // 선택된 질문들을 로컬 스토리지에 저장
+    localStorage.setItem(
+      "selectedQuestions",
+      JSON.stringify(selectedQuestions)
+    );
+  }, [selectedQuestions]);
 
   // 예시 문제 데이터
   const additionalQuestions = Array.from({ length: 25 }, (_, index) => ({
@@ -44,7 +52,7 @@ const WoorQuestions = () => {
   };
 
   const handleSelect = (question) => {
-    if (!selectedQuestions.includes(question)) {
+    if (!selectedQuestionIds.includes(question.id)) {
       setSelectedQuestions([...selectedQuestions, question]);
       setSelectedCount(selectedCount + 1);
       setSelectedQuestionIds([...selectedQuestionIds, question.id]);
@@ -57,6 +65,16 @@ const WoorQuestions = () => {
         selectedQuestionIds.filter((id) => id !== question.id)
       );
     }
+  };
+
+  const deleteQ = (id) => {
+    setSelectedQuestions((prevQuestions) =>
+      prevQuestions.filter((question) => question.id !== id)
+    );
+    setSelectedQuestionIds((prevIds) =>
+      prevIds.filter((questionId) => questionId !== id)
+    );
+    setSelectedCount((prevCount) => prevCount - 1);
   };
 
   const columns = divideIntoColumns(questions, 2);
@@ -92,13 +110,29 @@ const WoorQuestions = () => {
                   onClick={() => handleSelect(question)}
                 >
                   <p>{question.content}</p>
+                  <p>① {question.options?.option1}</p>
+                  <p>② {question.options?.option2}</p>
+                  <p>③ {question.options?.option3}</p>
+                  <p>④ {question.options?.option4}</p>
+                  <p>⑤ {question.options?.option5}</p>
                   <button
                     className="wq-btn1"
-                    onClick={() => handleSelect(question)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleSelect(question);
+                    }}
                   >
                     선택
                   </button>
-                  <button className="wq-btn2">삭제</button>
+                  <button
+                    className="wq-btn2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      deleteQ(question.id);
+                    }}
+                  >
+                    삭제
+                  </button>
                 </div>
               ))}
             </div>

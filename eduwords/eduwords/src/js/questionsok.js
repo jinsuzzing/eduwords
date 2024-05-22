@@ -2,20 +2,17 @@ import React from "react";
 import Navbar from "../Component/Navbar";
 import NavbarT from "../Component/NavbarT";
 import "../css/questionsok.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
-const mem_address = sessionStorage.getItem("mem_address");
-const mem_number = sessionStorage.getItem("mem_number");
-const mem_email = sessionStorage.getItem("mem_email");
 
 const QuestionsOk = () => {
+  const location = useLocation();
   const navigate = useNavigate();
+  const examInfo = location.state?.examInfo;
 
   const handlequestionslist = () => {
-    navigate("/questionslist");
+    navigate("/questionslist", { state: { examInfo: examInfo } });
   };
 
   return (
@@ -23,11 +20,11 @@ const QuestionsOk = () => {
       {type === 1 ? <NavbarT /> : <Navbar />}
       <div className="questions">
         <div className="questions-box">
-          <h2 className="questionsh2-title">문제출제가 완료되었습니다</h2>
+          <h2 className="questionsh2-title">문제 출제가 완료되었습니다</h2>
         </div>
       </div>
       <div className="questionsmain-btn-box">
-        <button class="questionsbtn1" onClick={handlequestionslist}>
+        <button className="questionsbtn1" onClick={handlequestionslist}>
           메인으로
         </button>
       </div>

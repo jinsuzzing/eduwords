@@ -50,9 +50,18 @@ const StudyRecord = () => {
       <Navbar />
       <h2 className="studdyrecord-title">· 공부기록</h2>
       <br />
-      <p className="sr-p">
-        시험 날짜: {examInfo.startDate} ~ {examInfo.endDate}
-      </p>
+      <h3 className="sr-h3">· 시험 날짜</h3>
+      <div className="srdate-box">
+        {examInfo.startDate} ~ {examInfo.endDate}
+        <br></br>
+        {examInfo.startDate} ~ {examInfo.endDate}
+        <br></br>
+        {examInfo.startDate} ~ {examInfo.endDate}
+        <br></br>
+        {examInfo.startDate} ~ {examInfo.endDate}
+        <br></br>
+      </div>
+
       <h3 className="sr-h3">
         · 내 점수: {score} / {selectedQuestions.length}
       </h3>
@@ -68,7 +77,6 @@ const StudyRecord = () => {
         <div className="chart">
           <ScoreChart data={chartData} />
         </div>
-        <h3 className="chart-score">평균 점수: {average.toFixed(2)}점</h3>
       </div>
       <br></br>
       <br></br>
