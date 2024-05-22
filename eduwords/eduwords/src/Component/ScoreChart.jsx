@@ -74,7 +74,6 @@ const ScoreChart = () => {
 
   return (
     <div>
-      <NavbarT />
       <div>
         <h2 className="chart-title">·{} 성적 보기</h2>
         <br></br>
