@@ -36,6 +36,20 @@ body {
   margin: auto;
 }
 
+.sr-btn {
+  width: 15vh;
+  height: 5vh;
+  border-radius: 10px;
+  border: 2px solid #239aff;
+  background-color: #239aff;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
 .chart-container {
   display: flex;
   justify-content: space-between;

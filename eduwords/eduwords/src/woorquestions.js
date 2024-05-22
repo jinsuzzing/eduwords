@@ -16,6 +16,7 @@ const WoorQuestions = () => {
   const navigate = useNavigate();
   const [selectedCount, setSelectedCount] = useState(0);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
+  const [selectedQuestionIds, setSelectedQuestionIds] = useState([]);
 
   // Aipreview에서 전달된 문제 리스트를 받아옵니다.
   const previewQuestions = location.state?.previewQuestions || [];
@@ -46,6 +47,15 @@ const WoorQuestions = () => {
     if (!selectedQuestions.includes(question)) {
       setSelectedQuestions([...selectedQuestions, question]);
       setSelectedCount(selectedCount + 1);
+      setSelectedQuestionIds([...selectedQuestionIds, question.id]);
+    } else {
+      setSelectedQuestions(
+        selectedQuestions.filter((q) => q.id !== question.id)
+      );
+      setSelectedCount(selectedCount - 1);
+      setSelectedQuestionIds(
+        selectedQuestionIds.filter((id) => id !== question.id)
+      );
     }
   };
 
@@ -72,7 +82,15 @@ const WoorQuestions = () => {
           {columns.map((column, index) => (
             <div key={index} className="wq-column">
               {column.map((question) => (
-                <div key={question.id} className="wq-question">
+                <div
+                  key={question.id}
+                  className={`wq-question ${
+                    selectedQuestionIds.includes(question.id)
+                      ? "wq-selected"
+                      : ""
+                  }`}
+                  onClick={() => handleSelect(question)}
+                >
                   <p>{question.content}</p>
                   <button
                     className="wq-btn1"
