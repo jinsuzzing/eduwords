@@ -121,6 +121,8 @@ const Find = () => {
       <br />
       <br />
       <div className="pwDiv">
+        <br />
+        <br />
         <h1 className="pwFont">비밀번호 찾기</h1>
         <br />
 

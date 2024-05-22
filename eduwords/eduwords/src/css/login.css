@@ -38,7 +38,7 @@ body {
   margin: auto;
   border-radius: 5px;
   border: 1px solid #239aff;
-  width: 25%;
+  width: 20%;
   height: 30px;
   margin-bottom: 10px;
 }
@@ -54,7 +54,7 @@ input:focus {
   font-size: 15pt;
   border: 1px solid #239aff;
   background-color: #239aff;
-  width: 25%;
+  width: 20.5%;
   height: 35px;
   border-radius: 10px;
   color: white;

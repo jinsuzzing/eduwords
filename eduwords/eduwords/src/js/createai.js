@@ -16,10 +16,6 @@ const CreateAI = () => {
   const [problemCount, setProblemCount] = useState(0);
   const navigate = useNavigate();
 
-  const cantKeyDown = (e) => {
-    e.preventDefault();
-  };
-
   const handleProblemCountChange = (e) => {
     setProblemCount(e.target.value);
   };
@@ -68,13 +64,14 @@ const CreateAI = () => {
                 max="25"
                 value={problemCount}
                 onChange={handleProblemCountChange}
-                onKeyDown={cantKeyDown}
               />
             </td>
           </tr>
         </tbody>
       </table>
       <div>
+        <br></br>
+        <br></br>
         <button className="createNext" onClick={handleNextClick}>
           다음으로
         </button>

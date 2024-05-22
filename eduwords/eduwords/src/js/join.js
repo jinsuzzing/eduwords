@@ -202,6 +202,8 @@ function Join() {
             </tr>
           </tbody>
         </table>
+        <br></br>
+        <br></br>
         <button type="submit" className="container" disabled={!isUsernameValid}>
           다음으로
         </button>
