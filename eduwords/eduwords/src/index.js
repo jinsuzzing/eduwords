@@ -35,7 +35,7 @@ import Namelist from "./js/namelist";
 import Jointeacher from "./js/jointeacher";
 import Sr from "./js/studyrecord";
 import ScoreChart from "./Component/ScoreChart";
-
+// ㅁㄴㅇ
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
