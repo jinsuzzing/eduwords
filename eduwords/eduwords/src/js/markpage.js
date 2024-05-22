@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import NavbarT from "../Component/NavbarT";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../css/markpage.css";
 import oImg from "../img/o.png";
 import xImg from "../img/x.png";
+
 const type = sessionStorage.getItem("mem_type");
 const mem_id = sessionStorage.getItem("mem_id");
 const mem_name = sessionStorage.getItem("mem_name");
@@ -13,6 +14,7 @@ const mem_email = sessionStorage.getItem("mem_email");
 
 const MarkPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const examInfo = location.state?.examInfo || {};
   const selectedAnswers = location.state?.selectedAnswers || {};
 
@@ -27,6 +29,12 @@ const MarkPage = () => {
       gradingResults.push(result);
     });
     setGradingResults(gradingResults);
+
+    // 점수를 계산하고 navigate를 통해 ScoreChart로 이동
+    const score = gradingResults.filter((result) => result === "o").length * 5; //  문제당 5점
+    navigate(`/scorechart/${mem_id}`, {
+      state: { score },
+    });
   };
 
   const renderGradingResults = () => {
