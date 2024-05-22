@@ -20,22 +20,22 @@ body {
   align-items: center;
   width: 30%;
   height: 50%;
-  border: 5px solid #239aff;
+  border: 2px solid #239aff;
   border-radius: 20px;
   margin-top: 12%;
   margin-bottom: 3%;
 }
 
 .questionsbtn1 {
+  width: 15vh;
+  height: 5vh;
+  border-radius: 10px;
+  border: 2px solid #239aff;
+  background-color: #239aff;
+  color: white;
+  font-size: 20px;
   display: flex;
-  margin: auto;
   justify-content: center;
   align-items: center;
-  font-size: 13pt;
-  border: none;
-  background-color: #239aff;
-  width: 200px;
-  height: 50px;
-  border-radius: 15px;
-  color: white;
+  margin: auto;
 }

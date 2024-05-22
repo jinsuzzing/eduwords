@@ -2,18 +2,38 @@ import React, { useEffect, useState } from "react";
 import "../css/studentPage.css";
 import Navbar from "../Component/Navbar";
 import NavbarT from "../Component/NavbarT";
-import { Link } from "react-router-dom";
-
-const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
-const mem_address = sessionStorage.getItem("mem_address");
-const mem_number = sessionStorage.getItem("mem_number");
-const mem_email = sessionStorage.getItem("mem_email");
+import { Link, useNavigate } from "react-router-dom";
 
 function StudentPage() {
-  const [confirmPassword, setConfirmPassword] = useState(""); // 비밀번호 재입력 상태 추가
-  const [password, setPassword] = useState(""); // 비밀번호 상태 추가
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const [userInfo, setUserInfo] = useState({
+    type: "",
+    mem_id: "",
+    mem_name: "",
+    mem_address: "",
+    mem_number: "",
+    mem_email: "",
+  });
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const type = sessionStorage.getItem("mem_type");
+    const mem_id = sessionStorage.getItem("mem_id");
+    const mem_name = sessionStorage.getItem("mem_name");
+    const mem_address = sessionStorage.getItem("mem_address");
+    const mem_number = sessionStorage.getItem("mem_number");
+    const mem_email = sessionStorage.getItem("mem_email");
+
+    setUserInfo({
+      type,
+      mem_id,
+      mem_name,
+      mem_address,
+      mem_number,
+      mem_email,
+    });
+  }, []);
 
   useEffect(() => {
     const messageElement = document.getElementById("passwordMessage");
@@ -26,9 +46,15 @@ function StudentPage() {
       messageElement.style.color = "red";
     }
   }, [confirmPassword, password]);
+
+  const handleSubmit = () => {
+    alert("회원수정이 완료되었습니다!");
+    navigate("/");
+  };
+
   return (
     <div>
-      {type === "1" ? <NavbarT /> : <Navbar />}
+      {userInfo.type === "1" ? <NavbarT /> : <Navbar />}
       <br />
       <br />
       <br />
@@ -38,11 +64,11 @@ function StudentPage() {
         <table id="infoTable">
           <tr>
             <th colSpan={2}>아이디</th>
-            <td id="infoId">{"가입한 사용자의 ID를 출력합니다."}</td>
+            <td id="infoId">{userInfo.mem_id}</td>
           </tr>
           <tr>
             <th colSpan={2}>이름</th>
-            <td id="infoName">{"가입한 사용자의 이름을 출력합니다."}</td>
+            <td id="infoName">{userInfo.mem_name}</td>
           </tr>
           <hr />
           <tr>
@@ -69,7 +95,7 @@ function StudentPage() {
                 placeholder="비밀번호를 다시 입력하세요"
                 required
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)} // confirmPassword 상태 업데이트
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
               <span id="passwordMessage"></span>
             </td>
@@ -83,6 +109,10 @@ function StudentPage() {
                 name="address"
                 placeholder="주소를 입력하세요"
                 required
+                value={userInfo.mem_address}
+                onChange={(e) =>
+                  setUserInfo({ ...userInfo, mem_address: e.target.value })
+                }
               />
             </td>
           </tr>
@@ -94,6 +124,10 @@ function StudentPage() {
                 name="email"
                 placeholder="이메일을 입력하세요"
                 required
+                value={userInfo.mem_email}
+                onChange={(e) =>
+                  setUserInfo({ ...userInfo, mem_email: e.target.value })
+                }
               />
             </td>
           </tr>
@@ -101,9 +135,9 @@ function StudentPage() {
         <Link to="/out" component="button" className="outservice">
           회원탈퇴
         </Link>
-        <Link to="/" component="button" className="container">
+        <button className="container" onClick={handleSubmit}>
           입력완료
-        </Link>
+        </button>
       </div>
     </div>
   );

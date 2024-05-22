@@ -52,7 +52,6 @@ const FindPw = () => {
       <br />
       <br />
       <div>
-        <p className="pw-p">비밀번호 재설정</p>
         <table id="pw-table">
           <tbody>
             <tr>
@@ -73,11 +72,11 @@ const FindPw = () => {
                 <input
                   type="password"
                   value={confirmPassword}
-                  onChange={handleConfirmPasswordChange} // 변경된 핸들러 사용
+                  onChange={handleConfirmPasswordChange}
                   placeholder="비밀번호를 다시 입력하세요"
                   required
                 />
-                {/* 일치 여부에 따라 메시지를 표시 */}
+
                 {!passwordMatch && (
                   <span style={{ color: "red" }}>
                     비밀번호가 일치하지 않습니다.

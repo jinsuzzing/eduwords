@@ -1,7 +1,7 @@
 import React from "react";
 import NavbarT from "../Component/NavbarT";
 import Navbar from "../Component/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../css/outsuccess.css";
 
 const type = sessionStorage.getItem("mem_type");
@@ -11,7 +11,15 @@ const mem_address = sessionStorage.getItem("mem_address");
 const mem_number = sessionStorage.getItem("mem_number");
 const mem_email = sessionStorage.getItem("mem_email");
 
-const outsuccess = () => {
+const Outsuccess = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { username } = location.state || { username: "알 수 없음" };
+
+  const gomain = () => {
+    navigate("/");
+  };
+
   return (
     <div>
       {type === 1 ? <NavbarT /> : <Navbar />}
@@ -27,14 +35,17 @@ const outsuccess = () => {
         <br />
         <br />
         <table className="osBody">
-          <td>탈퇴한 아이디 : {"탈퇴한 아이디 입력"}</td>
+          <td>탈퇴한 아이디 : {username}</td>
         </table>
       </div>
-      <Link to="/" component="button" className="container">
+      <br></br>
+      <br></br>
+      <br></br>
+      <button className="os-btn" onClick={gomain}>
         메인으로
-      </Link>
+      </button>
     </div>
   );
 };
 
-export default outsuccess;
+export default Outsuccess;

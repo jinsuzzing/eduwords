@@ -110,7 +110,7 @@ const AddWord = () => {
         </table>
       </div>
       <br />
-      <Link to="/" component="button" id="govoca">
+      <Link to="/note" component="button" id="govoca">
         단어장으로
       </Link>
     </div>

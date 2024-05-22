@@ -57,9 +57,10 @@ body {
 }
 
 #next {
-  width: 500px;
+  width: 250px;
   height: 60px;
-  border-radius: 20px;
+  border-radius: 10px;
+  border: 2px solid #239aff;
   color: white;
   background-color: #239aff;
   border: none;

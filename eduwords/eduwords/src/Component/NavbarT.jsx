@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import lg from "../img/logo.png";
-import { Context } from "../context";
 
 const NavbarT = () => {
   const [mem_id, setMemId] = useState(null);
   const navigate = useNavigate();
   const [name, setName] = useState(null);
+
   useEffect(() => {
     const storedMemId = sessionStorage.getItem("mem_id");
     const mem_name = sessionStorage.getItem("mem_name");
@@ -33,6 +33,14 @@ const NavbarT = () => {
     }
   };
 
+  const handleMenuClick = (event) => {
+    if (!mem_id) {
+      event.preventDefault();
+      alert("로그인이 필요합니다!");
+      navigate("/login");
+    }
+  };
+
   return (
     <div>
       <nav className="navbar">
@@ -44,7 +52,7 @@ const NavbarT = () => {
           <div id="div3">
             {mem_id ? (
               <>
-                <Link to="/sp" className="startLogin">
+                <Link to="/sp" className="startLogin" onClick={handleMenuClick}>
                   마이 페이지
                 </Link>
                 <Link to="/" className="startJoin" onClick={handleLogout}>
@@ -53,7 +61,11 @@ const NavbarT = () => {
               </>
             ) : (
               <>
-                <Link to="/login" className="startLogin">
+                <Link
+                  to="/login"
+                  className="startLogin"
+                  onClick={handleLoginClick}
+                >
                   로그인
                 </Link>
                 <Link to="/tp" className="startJoin">
@@ -79,19 +91,19 @@ const NavbarT = () => {
             </NavLink>
           </li>
           <li>
-            <a href="#createp" id="navA" onClick={handleLoginClick}>
+            <Link to="/createhome" id="navA" onClick={handleLoginClick}>
               문제 생성
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#plist" id="navA" onClick={handleLoginClick}>
+            <Link to="/questionslist" id="navA" onClick={handleLoginClick}>
               문제 리스트
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#result" id="navA" onClick={handleLoginClick}>
+            <Link to="/sp" id="navA" onClick={handleLoginClick}>
               내 정보 수정
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
