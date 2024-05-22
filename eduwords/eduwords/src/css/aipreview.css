@@ -45,7 +45,7 @@ body {
   border-radius: 20px;
 }
 
-.aipreview-box::-webkit-scrollbar-track {
+.aippreview-box::-webkit-scrollbar-track {
   background: rgba(33, 122, 244, 0.1);
   border-radius: 10px;
 }
@@ -106,7 +106,8 @@ body {
   margin: 14px;
 }
 
-.aipreview-question:hover {
+.aipreview-question:hover,
+.aipreview-selected {
   border: 5px solid #239aff;
   background-color: #f0f0f0;
 }
@@ -130,6 +131,7 @@ body {
   width: 50px;
   border-radius: 5px;
 }
+
 .aipreview-butbox {
   display: flex;
   justify-content: center;
