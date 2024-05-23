@@ -34,7 +34,6 @@ const CreateAProblem = () => {
       const response = await axios.post(
         "http://localhost:8081/addQes",
         {
-          mem_id, // 멤버 ID 추가
           qes_desc,
           qes_detail,
           qes_answer,
