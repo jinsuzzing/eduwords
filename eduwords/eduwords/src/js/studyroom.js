@@ -3,12 +3,12 @@ import stb from "../img/stb1.png";
 import "../css/studyroom.css";
 import Navbar from "../Component/Navbar";
 import NavbarT from "../Component/NavbarT";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const type = sessionStorage.getItem("mem_type");
 
 const StudyRoom = () => {
-  const currentLocation = useLocation();
+  const navigate = useNavigate();
   const [examInfo, setExamInfo] = useState({});
 
   useEffect(() => {
@@ -19,18 +19,22 @@ const StudyRoom = () => {
       if (currentDate <= endDate) {
         setExamInfo(storedExamInfo);
       } else {
-        localStorage.removeItem("examInfo"); // 만료된 데이터 삭제
+        localStorage.removeItem("examInfo");
       }
     }
   }, []);
 
   const { examName, startDate, endDate } = examInfo;
 
+  const handleTableClick = () => {
+    navigate("/testpaper", { state: { examInfo: examInfo } });
+  };
+
   return (
     <div>
       {type === "1" ? <NavbarT /> : <Navbar />}
       <img src={stb} className="sbimg" alt="table"></img>
-      <table className="s-listtable">
+      <table className="s-listtable" onClick={handleTableClick}>
         <tbody>
           <tr className="s-listtable-tr1">
             <th colSpan={2}>

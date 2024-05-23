@@ -4,12 +4,6 @@ import "../css/studyrecord.css";
 import Navbar from "../Component/Navbar";
 import Chart from "../Component/Chart";
 
-const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
-const mem_address = sessionStorage.getItem("mem_address");
-const mem_number = sessionStorage.getItem("mem_number");
-const mem_email = sessionStorage.getItem("mem_email");
 const StudyRecord = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -52,18 +46,13 @@ const StudyRecord = () => {
       <br />
       <h3 className="sr-h3">· 시험 날짜</h3>
       <div className="srdate-box">
-        {examInfo.startDate} ~ {examInfo.endDate}
-        <br></br>
-        {examInfo.startDate} ~ {examInfo.endDate}
-        <br></br>
-        {examInfo.startDate} ~ {examInfo.endDate}
-        <br></br>
-        {examInfo.startDate} ~ {examInfo.endDate}
-        <br></br>
+        <p>
+          {examInfo.startDate} ~ {examInfo.endDate}
+        </p>
       </div>
 
       <h3 className="sr-h3">
-        · 내 점수: {score} / {selectedQuestions.length}
+        · 내 점수: {score} / {selectedQuestions.length * 5}
       </h3>
       <hr className="sr-hr" />
       <div className="sr-box1">
@@ -73,6 +62,8 @@ const StudyRecord = () => {
       <br />
       <h3 className="sr-h3">· 최근 성적 한 눈에 보기</h3>
       <hr className="sr-hr" />
+      <br></br>
+      <br></br>
       <div className="chart-container">
         <div className="chart">
           <Chart data={chartData} />

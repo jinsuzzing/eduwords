@@ -78,7 +78,7 @@ const ScoreChart = () => {
     <div>
       {type === 1 ? <NavbarT /> : <Navbar />}
       <div>
-        <h2 className="chart-title">·{studentName}성적 보기</h2>
+        <h2 className="chart-title">·{studentName} 학생 성적 보기</h2>
         <br></br>
         <div className="chart-box">
           <div className="chart">

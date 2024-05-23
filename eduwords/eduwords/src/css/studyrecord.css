@@ -32,8 +32,11 @@ body {
   border-color: #239aff;
   border-radius: 30px;
   overflow-y: auto;
-  display: flex;
   margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  overflow-y: auto;
 }
 
 .sr-btn {
@@ -50,25 +53,7 @@ body {
   margin: auto;
 }
 
-.chart-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 120vh;
-  margin: auto;
-}
-.chart {
-  width: 300px;
-  height: 300px;
-}
-
-.chart-container .chart {
-  flex: 1;
-  margin-bottom: 10%;
-}
-
-.chart-container .chart-score {
+.chart-score {
   margin-left: 20px;
   color: #239aff;
   white-space: nowrap;
@@ -87,13 +72,30 @@ body {
   margin: auto;
 }
 
-.chart-box {
-  padding-top: 50px;
+.chart-container {
   padding-bottom: 50px;
-  margin: auto;
-  width: 60%;
-  height: 350px;
-  border: 3px solid #239aff;
-  border-radius: 10px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 120vh;
+  margin: auto;
+  border: 3px solid #239aff;
+  height: 300px;
+  border-radius: 20px;
+}
+
+.chart {
+  width: 300px;
+  height: 300px;
+  flex: 1;
+  margin-bottom: 10%;
+}
+
+.srdate-box p {
+  margin-left: 20px;
+}
+
+.incorrect-question {
+  padding: 10px;
+  border-radius: 5px;
 }

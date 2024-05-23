@@ -19,19 +19,33 @@ const MarkPage = () => {
   const [gradingResults, setGradingResults] = useState([]);
 
   const gradeExam = () => {
-    const gradingResults = [];
+    const results = [];
     examInfo.selectedQuestions.forEach((question) => {
       const correctAnswer = question.correctAnswer;
       const studentAnswer = selectedAnswers[question.id];
       const result = correctAnswer === studentAnswer ? "o" : "x";
-      gradingResults.push(result);
+      results.push(result);
     });
-    setGradingResults(gradingResults);
+    setGradingResults(results);
 
-    // 점수를 계산하고 navigate를 통해 ScoreChart로 이동
-    const score = gradingResults.filter((result) => result === "o").length * 5; // 문제당 5점
+    // 점수를 계산하고 navigate를 통해 ScoreChart와 StudyRecord로 이동
+    const score = results.filter((result) => result === "o").length * 5; // 문제당 5점
+
+    alert("채점을 완료하였습니다!");
+
+    // ScoreChart로 이동
     navigate(`/scorechart/${mem_id}`, {
       state: { score, studentName },
+    });
+
+    // StudyRecord로 이동
+    navigate(`/sr`, {
+      state: {
+        examInfo,
+        gradingResults: results,
+        score,
+        studentName,
+      },
     });
   };
 
@@ -50,11 +64,10 @@ const MarkPage = () => {
   return (
     <div>
       <NavbarT />
-
       <h2 className="mp-title">· 시험 채점 페이지</h2>
       <div className="mp-box">{renderGradingResults()}</div>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
       <button className="mp-btn" onClick={gradeExam}>
         채점하기
       </button>

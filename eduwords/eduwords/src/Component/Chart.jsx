@@ -6,20 +6,6 @@ import "../css/chart.css";
 
 Chart.register(...registerables);
 
-const type = sessionStorage.getItem("mem_type");
-
-const studentsData = {
-  1: [
-    { date: "2024-01-01", score: 85 },
-    { date: "2024-02-01", score: 90 },
-  ],
-  2: [
-    { date: "2024-01-01", score: 78 },
-    { date: "2024-02-01", score: 82 },
-  ],
-  // 다른 학생들의 데이터 추가
-};
-
 const ScoreChart = () => {
   const type = sessionStorage.getItem("mem_type");
   const mem_id = sessionStorage.getItem("mem_id");
@@ -30,22 +16,26 @@ const ScoreChart = () => {
   const score = location.state?.score || null;
   const studentName = location.state?.studentName || "학생";
 
-  const data = studentsData[studentId] || [];
+  const studentsData = {
+    [studentId]: [
+      { date: "2024-01-01", score: 85 },
+      { date: "2024-02-01", score: 90 },
+      { date: new Date().toISOString().split("T")[0], score },
+    ],
+  };
 
-  const updatedData = score
-    ? [...data, { date: new Date().toISOString().split("T")[0], score }]
-    : data;
+  const data = studentsData[studentId] || [];
 
   // 평균 점수 계산
   const averageScore =
-    updatedData.reduce((sum, item) => sum + item.score, 0) / updatedData.length;
+    data.reduce((sum, item) => sum + item.score, 0) / data.length;
 
   const chartIn = {
-    labels: updatedData.map((item) => item.date),
+    labels: data.map((item) => item.date),
     datasets: [
       {
         label: "점수",
-        data: updatedData.map((item) => item.score),
+        data: data.map((item) => item.score),
         backgroundColor: "#239aff",
         borderColor: "#239aff",
         borderWidth: 2,
@@ -76,7 +66,7 @@ const ScoreChart = () => {
   return (
     <div>
       <div>
-        <h2 className="chart-title">·{studentName}성적 보기</h2>
+        <h2 className="chart-title">·{studentName} 학생 성적 보기</h2>
         <br></br>
         <div className="chart-box">
           <div className="chart">

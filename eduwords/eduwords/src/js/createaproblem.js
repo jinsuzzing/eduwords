@@ -156,93 +156,90 @@ const CreateAProblem = () => {
             {qes_type === "객관식" && (
               <>
                 <tr>
-                  <td colSpan={3}>
-                    <div>
-                      <input
-                        type="text"
-                        name="createproblem-ex1"
-                        placeholder="보기를 입력해주세요."
-                        value={ex1}
-                        onChange={(e) => setEx1(e.target.value)}
-                      />
-                      <input
-                        type="radio"
-                        name="correctAnswer"
-                        onChange={() => setQes_answer(ex1)}
-                      />
-                    </div>
+                  <th className="createproblem-th4" colSpan={2}>
+                    보기
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="createproblem-ex1"
+                      placeholder="보기를 입력해주세요."
+                      value={ex1}
+                      onChange={(e) => setEx1(e.target.value)}
+                    />
+                    <input
+                      type="radio"
+                      name="correctAnswer"
+                      onChange={() => setQes_answer(ex1)}
+                    />
                   </td>
                 </tr>
                 <tr>
-                  <td colSpan={3}>
-                    <div>
-                      <input
-                        type="text"
-                        name="createproblem-ex2"
-                        placeholder="보기를 입력해주세요."
-                        value={ex2}
-                        onChange={(e) => setEx2(e.target.value)}
-                      />
-                      <input
-                        type="radio"
-                        name="correctAnswer"
-                        onChange={() => setQes_answer(ex2)}
-                      />
-                    </div>
+                  <th className="createproblem-th4" colSpan={2}></th>
+                  <td>
+                    <input
+                      type="text"
+                      name="createproblem-ex2"
+                      placeholder="보기를 입력해주세요."
+                      value={ex2}
+                      onChange={(e) => setEx2(e.target.value)}
+                    />
+                    <input
+                      type="radio"
+                      name="correctAnswer"
+                      onChange={() => setQes_answer(ex2)}
+                    />
                   </td>
                 </tr>
                 <tr>
-                  <td colSpan={3}>
-                    <div>
-                      <input
-                        type="text"
-                        name="createproblem-ex3"
-                        placeholder="보기를 입력해주세요."
-                        value={ex3}
-                        onChange={(e) => setEx3(e.target.value)}
-                      />
-                      <input
-                        type="radio"
-                        name="correctAnswer"
-                        onChange={() => setQes_answer(ex3)}
-                      />
-                    </div>
+                  <th className="createproblem-th4" colSpan={2}></th>
+                  <td>
+                    <input
+                      type="text"
+                      name="createproblem-ex3"
+                      placeholder="보기를 입력해주세요."
+                      value={ex3}
+                      onChange={(e) => setEx3(e.target.value)}
+                    />
+                    <input
+                      type="radio"
+                      name="correctAnswer"
+                      onChange={() => setQes_answer(ex3)}
+                    />
                   </td>
                 </tr>
                 <tr>
-                  <td colSpan={3}>
-                    <div>
-                      <input
-                        type="text"
-                        name="createproblem-ex4"
-                        placeholder="보기를 입력해주세요."
-                        value={ex4}
-                        onChange={(e) => setEx4(e.target.value)}
-                      />
-                      <input
-                        type="radio"
-                        name="correctAnswer"
-                        onChange={() => setQes_answer(ex4)}
-                      />
-                    </div>
+                  <th className="createproblem-th4" colSpan={2}></th>
+                  <td>
+                    <input
+                      type="text"
+                      name="createproblem-ex4"
+                      placeholder="보기를 입력해주세요."
+                      value={ex4}
+                      onChange={(e) => setEx4(e.target.value)}
+                    />
+                    <input
+                      type="radio"
+                      name="correctAnswer"
+                      onChange={() => setQes_answer(ex4)}
+                    />
                   </td>
                 </tr>
                 <tr>
-                  <td colSpan={3}>
-                    <div>
-                      <input
-                        type="text"
-                        name="createproblem-ex5"
-                        placeholder="보기를 입력해주세요."
-                        value={ex5}
-                        onChange={(e) => setEx5(e.target.value)}
-                      />
-                      <input
-                        type="radio"
-                        name="correctAnswer"
-                        onChange={() => setQes_answer(ex5)}
-                      />
-                    </div>
+                  <th className="createproblem-th4" colSpan={2}></th>
+                  <td>
+                    <input
+                      type="text"
+                      name="createproblem-ex5"
+                      placeholder="보기를 입력해주세요."
+                      value={ex5}
+                      onChange={(e) => setEx5(e.target.value)}
+                    />
+                    <input
+                      type="radio"
+                      name="correctAnswer"
+                      onChange={() => setQes_answer(ex5)}
+                    />
                   </td>
                 </tr>
               </>
