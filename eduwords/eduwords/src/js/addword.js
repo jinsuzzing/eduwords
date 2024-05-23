@@ -57,7 +57,7 @@ const AddWord = () => {
       );
       console.log(response.data); // 서버로부터의 응답 확인
       // 성공적으로 추가되었다는 메시지가 필요하면 여기에 처리
-      alert("성공");
+      alert("단어가 저장되었습니다.");
     } catch (error) {
       console.error("에러" + error);
       setError("서버에 문제가 발생했습니다. 나중에 다시 시도해 주세요.");
