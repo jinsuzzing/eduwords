@@ -1,7 +1,7 @@
 import React from "react";
 import NavbarT from "../Component/NavbarT";
 import Navbar from "../Component/Navbar";
-import ScoreChart from "../Component/ScoreChart";
+import ScoreChart from "../Component/Chart";
 import "../css/infostudent.css";
 import { useNavigate } from "react-router-dom";
 

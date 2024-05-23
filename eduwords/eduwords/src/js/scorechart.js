@@ -3,7 +3,11 @@ import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import { useLocation, useParams } from "react-router-dom";
 import "../css/scorechart.css";
+import Navbar from "../Component/Navbar";
+import NavbarT from "../Component/NavbarT";
 Chart.register(...registerables);
+
+const type = sessionStorage.getItem("mem_type");
 
 const studentsData = {
   1: [
@@ -72,8 +76,9 @@ const ScoreChart = () => {
 
   return (
     <div>
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <div>
-        <hr2 className="chart-title">·{studentName}성적 보기</hr2>
+        <h2 className="chart-title">·{studentName}성적 보기</h2>
         <br></br>
         <div className="chart-box">
           <div className="chart">

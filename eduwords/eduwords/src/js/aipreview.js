@@ -18,6 +18,7 @@ const Aipreview = () => {
     option4: "",
     option5: "",
   });
+  const [selectedQuestionIds, setSelectedQuestionIds] = useState([]);
 
   const type = sessionStorage.getItem("mem_type");
 
@@ -98,6 +99,14 @@ const Aipreview = () => {
     );
   };
 
+  const handleSelect = (id) => {
+    setSelectedQuestionIds((prevIds) =>
+      prevIds.includes(id)
+        ? prevIds.filter((selectedId) => selectedId !== id)
+        : [...prevIds, id]
+    );
+  };
+
   const columns = previewQuestions.reduce((result, item, index) => {
     const columnIndex = index % 2;
     if (!result[columnIndex]) result[columnIndex] = [];
@@ -117,7 +126,15 @@ const Aipreview = () => {
         {columns.map((column, columnIndex) => (
           <div key={columnIndex} className="aipreview-column">
             {column.map((previewQuestion) => (
-              <div key={previewQuestion.id} className="aipreview-question">
+              <div
+                key={previewQuestion.id}
+                className={`aipreview-question ${
+                  selectedQuestionIds.includes(previewQuestion.id)
+                    ? "aipreview-selected"
+                    : ""
+                }`}
+                onClick={() => handleSelect(previewQuestion.id)}
+              >
                 {editingQuestionId === previewQuestion.id ? (
                   <div>
                     <input

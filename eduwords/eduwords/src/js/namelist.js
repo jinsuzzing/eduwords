@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NavbarT from "../Component/NavbarT";
+import NavbarT from "../Component/Navbar";
 import Navbar from "../Component/Navbar";
 import "../css/namelist.css";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ const mem_email = sessionStorage.getItem("mem_email");
 const NameList = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { selectedAnswers, examInfo } = location.state;
+  const { selectedAnswers = [], examInfo = {} } = location.state || {};
 
   const students = [
     { id: 1, name: "오현우" },

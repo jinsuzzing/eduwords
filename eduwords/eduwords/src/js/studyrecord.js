@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../css/studyrecord.css";
 import Navbar from "../Component/Navbar";
-import ScoreChart from "../Component/ScoreChart";
+import Chart from "../Component/Chart";
 
 const type = sessionStorage.getItem("mem_type");
 const mem_id = sessionStorage.getItem("mem_id");
@@ -75,7 +75,7 @@ const StudyRecord = () => {
       <hr className="sr-hr" />
       <div className="chart-container">
         <div className="chart">
-          <ScoreChart data={chartData} />
+          <Chart data={chartData} />
         </div>
       </div>
       <br></br>

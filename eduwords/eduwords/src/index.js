@@ -5,7 +5,6 @@ import Main from "./main";
 import Join from "./js/join";
 import Login from "./js/login";
 import Tp from "./js/termspage";
-import reportWebVitals from "./reportWebVitals";
 import Joinsuccess from "./js/joinsuccess";
 import Createhome from "./js/createhome";
 import Find from "./js/find";
@@ -34,8 +33,9 @@ import Testpaper from "./js/testpaper";
 import Namelist from "./js/namelist";
 import Jointeacher from "./js/jointeacher";
 import Sr from "./js/studyrecord";
-import ScoreChart from "./Component/ScoreChart";
-// ㅁㄴㅇ
+import Chart from "./Component/Chart";
+import ScoreChart from "./js/scorechart";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -73,7 +73,8 @@ root.render(
         <Route path="/namelist" element={<Namelist />} />
         <Route path="/jointeacher" element={<Jointeacher />} />
         <Route path="/sr" element={<Sr />} />
-        <Route path="/scorechart/:studentId" element={<ScoreChart />} />
+        <Route path="/chart/:studentId" element={<Chart />} />
+        <Route path="/scorechart" element={<ScoreChart />} />
       </Routes>
     </Router>
   </React.StrictMode>
