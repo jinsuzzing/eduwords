@@ -1,27 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import tb from "../img/tb.png";
 import "../css/questionslist.css";
 import NavbarT from "../Component/NavbarT";
-
-import { useLocation, useNavigate } from "react-router-dom";
-
-const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
-const mem_address = sessionStorage.getItem("mem_address");
-const mem_number = sessionStorage.getItem("mem_number");
-const mem_email = sessionStorage.getItem("mem_email");
+import { useNavigate, useLocation } from "react-router-dom";
 
 const QuestionsList = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const examInfo = location.state?.examInfo || {};
+  const currentLocation = useLocation();
+  const [examInfo, setExamInfo] = useState({});
+
+  useEffect(() => {
+    const storedExamInfo = JSON.parse(localStorage.getItem("examInfo"));
+    if (storedExamInfo) {
+      const currentDate = new Date();
+      const endDate = new Date(storedExamInfo.endDate);
+      if (currentDate <= endDate) {
+        setExamInfo(storedExamInfo);
+      } else {
+        localStorage.removeItem("examInfo"); // 만료된 데이터 삭제
+      }
+    }
+  }, []);
+
   const { examName, startDate, endDate } = examInfo;
 
   const handleTableClick = () => {
     navigate("/namelist", {
       state: {
-        selectedAnswers: location.state?.selectedAnswers,
+        selectedAnswers: currentLocation.state?.selectedAnswers,
         examInfo: examInfo,
       },
     });

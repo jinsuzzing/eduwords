@@ -2,31 +2,44 @@ import React, { useState, useEffect } from "react";
 import NavbarT from "../Component/NavbarT";
 import Navbar from "../Component/Navbar";
 import "../css/createaproblem.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
-const mem_address = sessionStorage.getItem("mem_address");
-const mem_number = sessionStorage.getItem("mem_number");
-const mem_email = sessionStorage.getItem("mem_email");
+
 const CreateAProblem = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [problemCount, setProblemCount] = useState(0);
+  const [problems, setProblems] = useState([]);
 
   useEffect(() => {
-    if (location.state) {
-      setProblemCount(location.state.problemCount);
-    }
-  }, [location.state]);
+    const savedProblems =
+      JSON.parse(localStorage.getItem("createdProblems")) || [];
+    setProblems(savedProblems);
+    setProblemCount(savedProblems.length);
+  }, []);
 
   const incrementProblemCount = () => {
-    setProblemCount((prevCount) => prevCount + 1);
+    const newProblem = {
+      id: problemCount + 1,
+      type: document.querySelector('input[name="problemType"]:checked')?.value,
+      difficulty: document.querySelector('input[type="number"]')?.value,
+      question: document.querySelector(".createproblem-questions")?.value,
+      options: [
+        document.querySelectorAll('input[name="createproblem-a"]')[0]?.value,
+        document.querySelectorAll('input[name="createproblem-a"]')[1]?.value,
+        document.querySelectorAll('input[name="createproblem-a"]')[2]?.value,
+        document.querySelectorAll('input[name="createproblem-a"]')[3]?.value,
+      ],
+    };
+
+    const updatedProblems = [...problems, newProblem];
+    setProblems(updatedProblems);
+    setProblemCount(updatedProblems.length);
+    localStorage.setItem("createdProblems", JSON.stringify(updatedProblems));
   };
 
   const handleNavigateWQ = () => {
-    navigate("/wq"); // "/wq"는 실제로 "wq" 페이지의 경로에 해당하는 곳으로 바꿔야 합니다.
+    navigate("/wq");
   };
 
   return (
@@ -41,13 +54,22 @@ const CreateAProblem = () => {
                 문제 유형
               </th>
               <td className="createproble-radio">
-                <input type="radio" className="Short" name="problemType" />
+                <input
+                  type="radio"
+                  className="Short"
+                  name="problemType"
+                  value="subjective"
+                />
                 주관식
-                <input type="radio" className="choice" name="problemType" />
+                <input
+                  type="radio"
+                  className="choice"
+                  name="problemType"
+                  value="objective"
+                />
                 객관식
               </td>
             </tr>
-            <hr />
             <tr>
               <th className="createproblem-th2" colSpan={2}>
                 난이도
@@ -61,8 +83,6 @@ const CreateAProblem = () => {
                 />
               </td>
             </tr>
-            <hr />
-
             <tr>
               <th className="createproblem-th2" colSpan={2}>
                 출제문항수
@@ -73,12 +93,10 @@ const CreateAProblem = () => {
                 </p>
               </td>
             </tr>
-            <hr />
             <tr>
               <th className="createproblem-th3" colSpan={2}>
                 문제
               </th>
-
               <td>
                 <input
                   type="text"
@@ -90,32 +108,29 @@ const CreateAProblem = () => {
                   name="createproblem-a"
                   placeholder="보기를 입력해주세요."
                 ></input>
-                <input type="radio" />
+                <input type="radio" name="correct-answer" />
                 <input
                   type="text"
                   name="createproblem-a"
                   placeholder="보기를 입력해주세요."
                 ></input>
-                <input type="radio" />
+                <input type="radio" name="correct-answer" />
                 <input
                   type="text"
                   name="createproblem-a"
                   placeholder="보기를 입력해주세요."
                 ></input>
-                <input type="radio" />
+                <input type="radio" name="correct-answer" />
                 <input
                   type="text"
                   name="createproblem-a"
                   placeholder="보기를 입력해주세요."
                 ></input>
-                <input type="radio" />
+                <input type="radio" name="correct-answer" />
               </td>
             </tr>
           </tbody>
         </table>
-        <br></br>
-        <br></br>
-        <br></br>
         <div className="btn-container">
           <button className="createproblem-btn" onClick={incrementProblemCount}>
             문제저장

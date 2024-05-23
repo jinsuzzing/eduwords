@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../css/aipreview.css";
-import NavbarT from "../Component/Navbar";
+import NavbarT from "../Component/NavbarT";
 import Navbar from "../Component/Navbar";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Aipreview = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
   const [previewQuestions, setPreviewQuestions] = useState([]);
   const [editingQuestionId, setEditingQuestionId] = useState(null);
   const [editedQuestion, setEditedQuestion] = useState({
@@ -28,31 +27,25 @@ const Aipreview = () => {
       Array.from({ length: problemCount }, (_, index) => ({
         id: index + 1,
         content: `문제 ${index + 1}`,
-        options: {
-          option1: `선택지 1`,
-          option2: `선택지 2`,
-          option3: `선택지 3`,
-          option4: `선택지 4`,
-          option5: `선택지 5`,
-        },
+        options: [`선택지 1`, `선택지 2`, `선택지 3`, `선택지 4`, `선택지 5`],
       }))
     );
   }, [location.state]);
 
   const handleGenerateai = () => {
-    console.log("Navigating with previewQuestions:", previewQuestions);
-    navigate("/wq", {
-      state: {
-        previewQuestions: previewQuestions,
-      },
-    });
+    localStorage.setItem("aiProblems", JSON.stringify(previewQuestions));
+    navigate("/wq");
   };
 
   const handleEdit = (question) => {
     setEditingQuestionId(question.id);
     setEditedQuestion({
       question: question.content,
-      ...question.options,
+      option1: question.options[0],
+      option2: question.options[1],
+      option3: question.options[2],
+      option4: question.options[3],
+      option5: question.options[4],
     });
   };
 
@@ -63,13 +56,13 @@ const Aipreview = () => {
           ? {
               ...q,
               content: editedQuestion.question,
-              options: {
-                option1: editedQuestion.option1,
-                option2: editedQuestion.option2,
-                option3: editedQuestion.option3,
-                option4: editedQuestion.option4,
-                option5: editedQuestion.option5,
-              },
+              options: [
+                editedQuestion.option1,
+                editedQuestion.option2,
+                editedQuestion.option3,
+                editedQuestion.option4,
+                editedQuestion.option5,
+              ],
             }
           : q
       )
@@ -237,11 +230,11 @@ const Aipreview = () => {
                 ) : (
                   <div>
                     <p className="Q">{previewQuestion.content}</p>
-                    <p className="A1">① {previewQuestion.options.option1}</p>
-                    <p className="A2">② {previewQuestion.options.option2}</p>
-                    <p className="A3">③ {previewQuestion.options.option3}</p>
-                    <p className="A4">④ {previewQuestion.options.option4}</p>
-                    <p className="A5">⑤ {previewQuestion.options.option5}</p>
+                    <p className="A1">① {previewQuestion.options[0]}</p>
+                    <p className="A2">② {previewQuestion.options[1]}</p>
+                    <p className="A3">③ {previewQuestion.options[2]}</p>
+                    <p className="A4">④ {previewQuestion.options[3]}</p>
+                    <p className="A5">⑤ {previewQuestion.options[4]}</p>
                     <button
                       className="aipreview-btn1"
                       onClick={() => handleEdit(previewQuestion)}

@@ -1,23 +1,58 @@
 import React, { useState, useEffect } from "react";
+import NavbarT from "../src/Component/NavbarT";
+import Navbar from "../src/Component/Navbar";
 import "../src/woorquestions.css";
-import NavbarT from "./Component/NavbarT";
-import Navbar from "./Component/Navbar";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+const QuestionItem = ({ question, isSelected, onSelect, onDelete }) => {
+  return (
+    <div
+      className={`wq-question ${isSelected ? "wq-selected" : ""}`}
+      onClick={(e) => {
+        e.stopPropagation();
+        onSelect(question);
+      }}
+    >
+      <p>{question.question}</p>
+      {Array.isArray(question.options) &&
+        question.options.map((option, idx) => (
+          <p key={idx}>
+            {idx + 1}. {option}
+          </p>
+        ))}
+      <div className="wq-btn-container">
+        <button
+          className="wq-btn1"
+          onClick={(e) => {
+            e.stopPropagation();
+            onSelect(question);
+          }}
+        >
+          선택
+        </button>
+        <button
+          className="wq-btn2"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete(question.id);
+          }}
+        >
+          삭제
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const type = sessionStorage.getItem("mem_type");
 
 const WoorQuestions = () => {
-  const location = useLocation();
   const navigate = useNavigate();
   const [selectedCount, setSelectedCount] = useState(0);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [selectedQuestionIds, setSelectedQuestionIds] = useState([]);
 
-  // Aipreview에서 전달된 문제 리스트를 받아옵니다.
-  const previewQuestions = location.state?.previewQuestions || [];
-
   useEffect(() => {
-    // 로컬 스토리지에서 선택된 질문들 로드
     const savedQuestions =
       JSON.parse(localStorage.getItem("selectedQuestions")) || [];
     setSelectedQuestions(savedQuestions);
@@ -26,21 +61,16 @@ const WoorQuestions = () => {
   }, []);
 
   useEffect(() => {
-    // 선택된 질문들을 로컬 스토리지에 저장
     localStorage.setItem(
       "selectedQuestions",
       JSON.stringify(selectedQuestions)
     );
   }, [selectedQuestions]);
 
-  // 예시 문제 데이터
-  const additionalQuestions = Array.from({ length: 25 }, (_, index) => ({
-    id: index + 1 + previewQuestions.length,
-    content: `추가 문제 ${index + 1}`,
-  }));
-
-  // 합친 문제 리스트
-  const questions = [...previewQuestions, ...additionalQuestions];
+  const aiProblems = JSON.parse(localStorage.getItem("aiProblems")) || [];
+  const createdProblems =
+    JSON.parse(localStorage.getItem("createdProblems")) || [];
+  const questions = [...aiProblems, ...createdProblems];
 
   const divideIntoColumns = (arr, columns) => {
     const divided = [];
@@ -100,40 +130,13 @@ const WoorQuestions = () => {
           {columns.map((column, index) => (
             <div key={index} className="wq-column">
               {column.map((question) => (
-                <div
+                <QuestionItem
                   key={question.id}
-                  className={`wq-question ${
-                    selectedQuestionIds.includes(question.id)
-                      ? "wq-selected"
-                      : ""
-                  }`}
-                  onClick={() => handleSelect(question)}
-                >
-                  <p>{question.content}</p>
-                  <p>① {question.options?.option1}</p>
-                  <p>② {question.options?.option2}</p>
-                  <p>③ {question.options?.option3}</p>
-                  <p>④ {question.options?.option4}</p>
-                  <p>⑤ {question.options?.option5}</p>
-                  <button
-                    className="wq-btn1"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleSelect(question);
-                    }}
-                  >
-                    선택
-                  </button>
-                  <button
-                    className="wq-btn2"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      deleteQ(question.id);
-                    }}
-                  >
-                    삭제
-                  </button>
-                </div>
+                  question={question}
+                  isSelected={selectedQuestionIds.includes(question.id)}
+                  onSelect={handleSelect}
+                  onDelete={deleteQ}
+                />
               ))}
             </div>
           ))}
@@ -148,8 +151,8 @@ const WoorQuestions = () => {
           문제생성
         </button>
       </div>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
     </div>
   );
 };

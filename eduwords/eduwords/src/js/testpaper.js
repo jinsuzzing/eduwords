@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/testpaper.css";
-import Navbar from "../Component/NavbarT";
+import Navbar from "../Component/Navbar";
 import NavbarT from "../Component/NavbarT";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -10,12 +10,20 @@ const mem_name = sessionStorage.getItem("mem_name");
 const mem_address = sessionStorage.getItem("mem_address");
 const mem_number = sessionStorage.getItem("mem_number");
 const mem_email = sessionStorage.getItem("mem_email");
+
 const TestPaper = () => {
-  const location = useLocation();
   const navigate = useNavigate();
   const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [examInfo, setExamInfo] = useState({});
 
-  const questions = location.state?.selectedQuestions || [];
+  useEffect(() => {
+    const storedExamInfo = JSON.parse(localStorage.getItem("examInfo"));
+    if (storedExamInfo) {
+      setExamInfo(storedExamInfo);
+    }
+  }, []);
+
+  const questions = examInfo.selectedQuestions || [];
 
   const updateSelectedAnswer = (questionId, answer) => {
     setSelectedAnswers((prevAnswers) => ({
@@ -31,7 +39,7 @@ const TestPaper = () => {
 
   return (
     <div>
-      {type === 1 ? <NavbarT /> : <Navbar />}
+      {type === "1" ? <NavbarT /> : <Navbar />}
       <h2 className="testpaper-title">· 시험 보기</h2>
       <div className="testpaper-container">
         <div className="testpaper-box">

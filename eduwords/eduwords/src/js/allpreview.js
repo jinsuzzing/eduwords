@@ -31,6 +31,7 @@ const AllPreview = () => {
       endDate: endDate,
       selectedQuestions: selectedQuestions,
     };
+    localStorage.setItem("examInfo", JSON.stringify(examInfo)); // LocalStorage에 저장
     navigate("/questionsok", { state: { examInfo: examInfo } });
   };
 
