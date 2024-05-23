@@ -1,6 +1,5 @@
 import React from "react";
 import NavbarT from "../Component/NavbarT";
-import Navbar from "../Component/Navbar";
 import ScoreChart from "../Component/Chart";
 import "../css/infostudent.css";
 import { useNavigate } from "react-router-dom";
@@ -31,7 +30,9 @@ const Infostudent = () => {
 
   return (
     <div>
-      <header>{type === 1 ? <NavbarT /> : <Navbar />}</header>
+      <header>
+        <NavbarT />
+      </header>
 
       <br />
       <h2 className="titleText">· 내 학생관리</h2>

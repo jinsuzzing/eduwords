@@ -1,6 +1,5 @@
 import React from "react";
 import NavbarT from "../Component/NavbarT";
-import Navbar from "../Component/Navbar";
 import gptbtn from "../img/gptbtn.png";
 import btn1 from "../img/btn1.png";
 import btn2 from "../img/btn2.png";
@@ -33,7 +32,7 @@ const CreateHome = () => {
 
   return (
     <div>
-      {type === 1 ? <NavbarT /> : <Navbar />}
+      <NavbarT />
 
       <div className="contentbox1">
         <div className="gptbutton">

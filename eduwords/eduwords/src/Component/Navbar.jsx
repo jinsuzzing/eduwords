@@ -96,8 +96,8 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/sp" id="navA" onClick={handleLoginClick}>
-              마이 페이지
+            <Link to="/aw" id="navA" onClick={handleLoginClick}>
+              단어 추가하기
             </Link>
           </li>
         </ul>
