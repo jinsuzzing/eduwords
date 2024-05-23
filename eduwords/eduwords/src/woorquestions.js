@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import NavbarT from "../src/Component/NavbarT";
 import Navbar from "../src/Component/Navbar";
 import "../src/woorquestions.css";
@@ -13,13 +14,30 @@ const QuestionItem = ({ question, isSelected, onSelect, onDelete }) => {
         onSelect(question);
       }}
     >
-      <p>{question.question}</p>
-      {Array.isArray(question.options) &&
-        question.options.map((option, idx) => (
-          <p key={idx}>
-            {idx + 1}. {option}
-          </p>
-        ))}
+      <p>
+        <strong>문제:</strong> {question.qes_desc}
+      </p>
+      <p>
+        <strong>지문:</strong> {question.qes_detail}
+      </p>
+      <p>
+        <strong>①</strong> {question.ex1}
+      </p>
+      <p>
+        <strong>②</strong> {question.ex2}
+      </p>
+      <p>
+        <strong>③</strong> {question.ex3}
+      </p>
+      <p>
+        <strong>④</strong> {question.ex4}
+      </p>
+      <p>
+        <strong>⑤</strong> {question.ex5}
+      </p>
+      <p>
+        <strong>정답:</strong> {question.qes_answer}
+      </p>
       <div className="wq-btn-container">
         <button
           className="wq-btn1"
@@ -51,6 +69,7 @@ const WoorQuestions = () => {
   const [selectedCount, setSelectedCount] = useState(0);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [selectedQuestionIds, setSelectedQuestionIds] = useState([]);
+  const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     const savedQuestions =
@@ -67,10 +86,22 @@ const WoorQuestions = () => {
     );
   }, [selectedQuestions]);
 
-  const aiProblems = JSON.parse(localStorage.getItem("aiProblems")) || [];
-  const createdProblems =
-    JSON.parse(localStorage.getItem("createdProblems")) || [];
-  const questions = [...aiProblems, ...createdProblems];
+  useEffect(() => {
+    // POST 요청으로 질문을 가져옵니다.
+    const fetchQuestions = async () => {
+      try {
+        const response = await axios.post("http://localhost:8081/questions", {
+          filter: "exampleFilter", // 필요한 경우 필터를 추가합니다.
+        });
+        setQuestions(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching questions:", error);
+      }
+    };
+
+    fetchQuestions();
+  }, []);
 
   const divideIntoColumns = (arr, columns) => {
     const divided = [];
@@ -83,28 +114,33 @@ const WoorQuestions = () => {
 
   const handleSelect = (question) => {
     if (!selectedQuestionIds.includes(question.id)) {
-      setSelectedQuestions([...selectedQuestions, question]);
-      setSelectedCount(selectedCount + 1);
-      setSelectedQuestionIds([...selectedQuestionIds, question.id]);
+      setSelectedQuestions((prevQuestions) => [...prevQuestions, question]);
+      setSelectedCount((prevCount) => prevCount + 1);
+      setSelectedQuestionIds((prevIds) => [...prevIds, question.id]);
     } else {
-      setSelectedQuestions(
-        selectedQuestions.filter((q) => q.id !== question.id)
+      setSelectedQuestions((prevQuestions) =>
+        prevQuestions.filter((q) => q.id !== question.id)
       );
-      setSelectedCount(selectedCount - 1);
-      setSelectedQuestionIds(
-        selectedQuestionIds.filter((id) => id !== question.id)
+      setSelectedCount((prevCount) => prevCount - 1);
+      setSelectedQuestionIds((prevIds) =>
+        prevIds.filter((id) => id !== question.id)
       );
     }
   };
 
-  const deleteQ = (id) => {
-    setSelectedQuestions((prevQuestions) =>
-      prevQuestions.filter((question) => question.id !== id)
-    );
-    setSelectedQuestionIds((prevIds) =>
-      prevIds.filter((questionId) => questionId !== id)
-    );
-    setSelectedCount((prevCount) => prevCount - 1);
+  const deleteQ = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8081/questions/${id}`);
+      setSelectedQuestions((prevQuestions) =>
+        prevQuestions.filter((question) => question.id !== id)
+      );
+      setSelectedQuestionIds((prevIds) =>
+        prevIds.filter((questionId) => questionId !== id)
+      );
+      setSelectedCount((prevCount) => prevCount - 1);
+    } catch (error) {
+      console.error("Error deleting question:", error);
+    }
   };
 
   const columns = divideIntoColumns(questions, 2);
@@ -123,7 +159,7 @@ const WoorQuestions = () => {
 
   return (
     <div>
-      {type === 1 ? <NavbarT /> : <Navbar />}
+      {type === "1" ? <NavbarT /> : <Navbar />}
       <h2 className="wq-title">· 출제 문제 선택</h2>
       <div className="wq-container">
         <div className="wq-box">
@@ -131,7 +167,7 @@ const WoorQuestions = () => {
             <div key={index} className="wq-column">
               {column.map((question) => (
                 <QuestionItem
-                  key={question.id}
+                  key={question.id} // 여기 key prop 추가
                   question={question}
                   isSelected={selectedQuestionIds.includes(question.id)}
                   onSelect={handleSelect}

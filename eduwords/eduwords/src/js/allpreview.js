@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import "../css/allpreview.css";
 import NavbarT from "../Component/NavbarT";
 import Navbar from "../Component/Navbar";
@@ -8,25 +7,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 const AllPreview = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [selectedQuestions, setSelectedQuestions] = useState([]);
+  const selectedQuestions = location.state?.selectedQuestions || [];
   const [examName, setExamName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const type = sessionStorage.getItem("mem_type");
-
-  useEffect(() => {
-    // 모든 질문을 가져오기 위해 Axios 요청
-    const fetchQuestions = async () => {
-      try {
-        const response = await axios.get("http://localhost:8081/questions");
-        setSelectedQuestions(response.data);
-      } catch (error) {
-        console.error("Error fetching questions:", error);
-      }
-    };
-
-    fetchQuestions();
-  }, []);
 
   const divideIntoColumns = (arr, columns) => {
     const divided = [];
@@ -38,6 +22,7 @@ const AllPreview = () => {
   };
 
   const selectedColumns = divideIntoColumns(selectedQuestions, 2);
+  const type = sessionStorage.getItem("mem_type");
 
   const handleConfirm = () => {
     const examInfo = {
@@ -80,7 +65,7 @@ const AllPreview = () => {
       </div>
       <br />
       <div className="all-box2">
-        <br />
+        <br></br>
         <div className="date-picker">
           <label>시험지 이름 : </label>
           <input
@@ -109,6 +94,7 @@ const AllPreview = () => {
         </div>
       </div>
       <br />
+
       <div className="all-btnbox">
         <button className="all-back" onClick={handleBack}>
           뒤로가기
