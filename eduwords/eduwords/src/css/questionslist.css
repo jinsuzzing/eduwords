@@ -23,6 +23,23 @@ body {
   background-color: #1b3e5b;
 }
 
+.edit-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
 .t-listtable td {
   height: 14px;
   padding: 12px;

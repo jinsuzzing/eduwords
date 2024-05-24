@@ -27,6 +27,10 @@ const QuestionsList = () => {
     });
   };
 
+  const handleEditClick = (exam) => {
+    navigate("/editexam", { state: { examInfo: exam } });
+  };
+
   return (
     <div>
       <NavbarT />
@@ -42,6 +46,14 @@ const QuestionsList = () => {
             <tr className="t-listtable-tr1">
               <th colSpan={2}>
                 {exam.startDate} ~ {exam.endDate}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleEditClick(exam);
+                  }}
+                >
+                  수정
+                </button>
               </th>
             </tr>
             <tr className="t-listtable-tr2">
