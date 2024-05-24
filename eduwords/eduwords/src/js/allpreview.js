@@ -23,6 +23,7 @@ const AllPreview = () => {
           "0"
         );
         setStudents(response.data);
+        console.log("학생 데이터:", response.data);
       } catch (error) {
         console.error("학생 정보를 불러오는 중 오류 발생:", error);
       }
@@ -81,15 +82,15 @@ const AllPreview = () => {
           {selectedColumns.map((column, columnIndex) => (
             <div key={columnIndex} className="all-column">
               {column.map((question, questionIndex) => (
-                <div key={question.id} className="all-question">
+                <div key={question.qes_seq} className="all-question">
                   <p>
-                    {columnIndex * 2 + questionIndex + 1}. {question.content}
+                    {columnIndex * selectedColumns[0].length + questionIndex + 1}. {question.qes_desc}
                   </p>
-                  <p>① {question.options?.ex1}</p>
-                  <p>② {question.options?.ex2}</p>
-                  <p>③ {question.options?.ex3}</p>
-                  <p>④ {question.options?.ex4}</p>
-                  <p>⑤ {question.options?.ex5}</p>
+                  <p>① {question.ex1}</p>
+                  <p>② {question.ex2}</p>
+                  <p>③ {question.ex3}</p>
+                  <p>④ {question.ex4}</p>
+                  <p>⑤ {question.ex5}</p>
                 </div>
               ))}
             </div>

@@ -1,105 +1,35 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../src/css/allpreview.css";
 import NavbarT from "../src/Component/NavbarT";
 import Navbar from "../src/Component/Navbar";
-import "../src/woorquestions.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const QuestionItem = ({ question, isSelected, onSelect, onDelete }) => {
-  return (
-    <div
-      className={`wq-question ${isSelected ? "wq-selected" : ""}`}
-      onClick={(e) => {
-        e.stopPropagation();
-        onSelect(question);
-      }}
-    >
-      <p>
-        <strong>문제:</strong> {question.qes_desc}
-      </p>
-      <p>
-        <strong>지문:</strong> {question.qes_detail}
-      </p>
-      <p>
-        <strong>①</strong> {question.ex1}
-      </p>
-      <p>
-        <strong>②</strong> {question.ex2}
-      </p>
-      <p>
-        <strong>③</strong> {question.ex3}
-      </p>
-      <p>
-        <strong>④</strong> {question.ex4}
-      </p>
-      <p>
-        <strong>⑤</strong> {question.ex5}
-      </p>
-      <p>
-        <strong>정답:</strong> {question.qes_answer}
-      </p>
-      <div className="wq-btn-container">
-        <button
-          className="wq-btn1"
-          onClick={(e) => {
-            e.stopPropagation();
-            onSelect(question);
-          }}
-        >
-          선택
-        </button>
-        <button
-          className="wq-btn2"
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete(question.qes_seq);
-          }}
-        >
-          삭제
-        </button>
-      </div>
-    </div>
-  );
-};
-
-const type = sessionStorage.getItem("mem_type");
-
-const WoorQuestions = () => {
+const AllPreview = () => {
+  const location = useLocation();
   const navigate = useNavigate();
-  const [selectedCount, setSelectedCount] = useState(0);
-  const [selectedQuestions, setSelectedQuestions] = useState([]);
-  const [selectedQuestionIds, setSelectedQuestionIds] = useState([]);
-  const [questions, setQuestions] = useState([]);
+  const selectedQuestions = location.state?.selectedQuestions || [];
+  const [examName, setExamName] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [students, setStudents] = useState([]);
+  const [selectedStudents, setSelectedStudents] = useState([]);
 
   useEffect(() => {
-    const savedQuestions =
-      JSON.parse(localStorage.getItem("selectedQuestions")) || [];
-    setSelectedQuestions(savedQuestions);
-    setSelectedQuestionIds(savedQuestions.map((question) => question.qes_seq));
-    setSelectedCount(savedQuestions.length);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(
-      "selectedQuestions",
-      JSON.stringify(selectedQuestions)
-    );
-  }, [selectedQuestions]);
-
-  useEffect(() => {
-    const fetchQuestions = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.post("http://localhost:8081/questions", {
-          filter: "exampleFilter", // 필요한 경우 필터를 추가합니다.
-        });
-        setQuestions(response.data);
-        console.log(response.data);
+        const response = await axios.post(
+          "http://localhost:8081/studentsByType",
+          "0"
+        );
+        setStudents(response.data);
+        console.log("학생 데이터:", response.data);
       } catch (error) {
-        console.error("Error fetching questions:", error);
+        console.error("학생 정보를 불러오는 중 오류 발생:", error);
       }
     };
 
-    fetchQuestions();
+    fetchData();
   }, []);
 
   const divideIntoColumns = (arr, columns) => {
@@ -111,85 +41,171 @@ const WoorQuestions = () => {
     return divided;
   };
 
-  const handleSelect = (question) => {
-    if (!selectedQuestionIds.includes(question.qes_seq)) {
-      setSelectedQuestions((prevQuestions) => [...prevQuestions, question]);
-      setSelectedCount((prevCount) => prevCount + 1);
-      setSelectedQuestionIds((prevIds) => [...prevIds, question.qes_seq]);
-    } else {
-      setSelectedQuestions((prevQuestions) =>
-        prevQuestions.filter((q) => q.qes_seq !== question.qes_seq)
-      );
-      setSelectedCount((prevCount) => prevCount - 1);
-      setSelectedQuestionIds((prevIds) =>
-        prevIds.filter((id) => id !== question.qes_seq)
-      );
-    }
-  };
+  const selectedColumns = divideIntoColumns(selectedQuestions, 2);
+  const type = sessionStorage.getItem("mem_type");
 
-  const deleteQ = async (id) => {
+  const handleConfirm = async () => {
+    // 문제와 정답 데이터를 가져오기
+    let workbook_qes;
     try {
-      await axios.delete(`http://localhost:8081/questions/${id}`);
-      setSelectedQuestions((prevQuestions) =>
-        prevQuestions.filter((question) => question.qes_seq !== id)
-      );
-      setSelectedQuestionIds((prevIds) =>
-        prevIds.filter((questionId) => questionId !== id)
-      );
-      setSelectedCount((prevCount) => prevCount - 1);
+      const response = await axios.post("http://localhost:8081/getQuestionsAndAnswers", {
+        selectedQuestions: selectedQuestions.map((q) => q.qes_seq),
+      });
+      workbook_qes = response.data.map((question) => ({
+        qes_seq: question.qes_seq,
+        qes_desc: question.qes_desc,
+        qes_detail: question.qes_detail,
+        qes_ex1: question.qes_ex1,
+        qes_ex2: question.qes_ex2,
+        qes_ex3: question.qes_ex3,
+        qes_ex4: question.qes_ex4,
+        qes_ex5: question.qes_ex5,
+        qes_answer: question.qes_answer,
+        qes_level: question.qes_level,
+        qes_type: "객관식",
+      }));
+      console.log("workbook_qes:", workbook_qes);
     } catch (error) {
-      console.error("Error deleting question:", error);
+      console.error("문제와 정답을 가져오는 중 오류 발생:", error);
+      return;
     }
-  };
 
-  const columns = divideIntoColumns(questions, 2);
+    const answer_check = selectedStudents.map((student) => ({
+      mem_id: student.mem_id,
+      answer: workbook_qes.map((q) => ({
+        qes_seq: q.qes_seq,
+        qes_answer: q.qes_answer,
+      })),
+    }));
+
+    const tb_test = {
+      workbook_name: examName,
+      start_date: startDate,
+      end_date: endDate,
+      workbook_qes: workbook_qes,
+      answer_check: answer_check,
+    };
+
+    console.log("tb_test:", tb_test);
+
+    try {
+      const response = await axios.post("http://localhost:8081/submitWorkbook", tb_test);
+      console.log("서버 응답:", response.data);
+    } catch (error) {
+      console.error("시험지 제출 중 오류 발생:", error);
+    }
+
+    selectedStudents.forEach((student) => {
+      navigate("/studyroom", {
+        state: {
+          studentName: student.mem_name,
+          studentId: student.mem_id,
+          selectedQuestions,
+          examName,
+          startDate,
+          endDate,
+        },
+      });
+    });
+  };
 
   const handleBack = () => {
     navigate(-1);
   };
 
-  const handleGenerate = () => {
-    navigate("/allpreview", {
-      state: {
-        selectedQuestions: selectedQuestions,
-      },
-    });
+  const handleSelectStudent = (student) => {
+    if (selectedStudents.some((s) => s.mem_id === student.mem_id)) {
+      setSelectedStudents(
+        selectedStudents.filter((s) => s.mem_id !== student.mem_id)
+      );
+    } else {
+      setSelectedStudents([...selectedStudents, student]);
+    }
   };
 
   return (
     <div>
       {type === "1" ? <NavbarT /> : <Navbar />}
-      <h2 className="wq-title">· 출제 문제 선택</h2>
-      <div className="wq-container">
-        <div className="wq-box">
-          {columns.map((column, index) => (
-            <div key={index} className="wq-column">
-              {column.map((question) => (
-                <QuestionItem
-                  key={question.qes_seq} // 여기 key prop 추가
-                  question={question}
-                  isSelected={selectedQuestionIds.includes(question.qes_seq)}
-                  onSelect={handleSelect}
-                  onDelete={deleteQ}
-                />
+      <h2 className="all-title">· 미리보기</h2>
+      <div className="all-container">
+        <div className="all-box">
+          {selectedColumns.map((column, columnIndex) => (
+            <div key={columnIndex} className="all-column">
+              {column.map((question, questionIndex) => (
+                <div key={question.qes_seq} className="all-question">
+                  <p>
+                    {columnIndex * selectedColumns[0].length + questionIndex + 1}. {question.qes_desc}
+                  </p>
+                  <p>① {question.ex1}</p>
+                  <p>② {question.ex2}</p>
+                  <p>③ {question.ex3}</p>
+                  <p>④ {question.ex4}</p>
+                  <p>⑤ {question.ex5}</p>
+                </div>
               ))}
             </div>
           ))}
         </div>
       </div>
-      <p className="wq-p">현재 선택된 문제 수: {selectedCount}</p>
-      <div className="wq-btnbox">
-        <button className="wq-back" onClick={handleBack}>
-          뒤로가기
-        </button>
-        <button className="wq-btn" onClick={handleGenerate}>
-          문제생성
-        </button>
+      <br />
+      <div className="all-box2">
+        <br />
+        <div className="date-picker">
+          <label>시험지 이름 : </label>
+          <input
+            className="all-input-box1"
+            type="text"
+            value={examName}
+            onChange={(e) => setExamName(e.target.value)}
+          />
+          <br />
+          <div className="alldate-box">
+            <label>시작날짜 : </label>
+            <input
+              className="all-input-box2"
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+            <label>끝나는날짜 : </label>
+            <input
+              className="all-input-box2"
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="namelist-box">
+          <h2 className="namelist-title">학생 목록</h2>
+          <ul>
+            {students.map((student) => (
+              <li
+                className={`namelist-li ${
+                  selectedStudents.some((s) => s.mem_id === student.mem_id)
+                    ? "selected"
+                    : ""
+                }`}
+                key={student.mem_id}
+                onClick={() => handleSelectStudent(student)}
+              >
+                {student.mem_name}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <br />
-      <br />
+      <div className="all-btnbox">
+        <button className="all-back" onClick={handleBack}>
+          뒤로가기
+        </button>
+        <button className="all-btn" onClick={handleConfirm}>
+          확인
+        </button>
+      </div>
     </div>
   );
 };
 
-export default WoorQuestions;
+export default AllPreview;
