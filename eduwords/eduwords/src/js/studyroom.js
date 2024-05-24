@@ -5,7 +5,7 @@ import "../css/questionslist.css";
 import NavbarT from "../Component/NavbarT";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const QuestionsList = () => {
+const StudyRoom = () => {
   const navigate = useNavigate();
   const currentLocation = useLocation();
   const [examsInfo, setExamsInfo] = useState([]);
@@ -24,7 +24,6 @@ const QuestionsList = () => {
     axios
       .post("http://localhost:8081/getAll")
       .then((response) => {
-        console.log(response.data); // 데이터 확인
         const formattedExams = response.data.map((exam) => ({
           ...exam,
           startline: formatDate(exam.startline),
@@ -44,10 +43,6 @@ const QuestionsList = () => {
         examInfo: exam,
       },
     });
-  };
-
-  const handleEditClick = (exam) => {
-    navigate("/editexam", { state: { examInfo: exam } });
   };
 
   return (
@@ -79,4 +74,4 @@ const QuestionsList = () => {
   );
 };
 
-export default QuestionsList;
+export default StudyRoom;

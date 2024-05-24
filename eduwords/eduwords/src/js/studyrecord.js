@@ -13,7 +13,6 @@ const StudyRecord = () => {
 
   const selectedQuestions = examInfo.selectedQuestions || [];
 
-  // 임의의 최근 성적 데이터를 생성합니다. 실제 데이터로 대체해야 합니다.
   const chartData = [
     { date: "05-01", score: 60 },
     { date: "05-03", score: 88 },
@@ -62,22 +61,16 @@ const StudyRecord = () => {
       <br />
       <h3 className="sr-h3">· 최근 성적 한 눈에 보기</h3>
       <hr className="sr-hr" />
-      <br></br>
-      <br></br>
+      <br />
       <div className="chart-container">
         <div className="chart">
           <Chart data={chartData} />
         </div>
       </div>
-      <br></br>
-      <br></br>
-      <br></br>
+      <br />
       <button className="sr-btn" onClick={gostudyroom}>
         확인
       </button>
-      <br></br>
-      <br></br>
-      <br></br>
     </div>
   );
 };

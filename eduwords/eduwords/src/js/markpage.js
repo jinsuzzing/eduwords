@@ -4,17 +4,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../css/markpage.css";
 import oImg from "../img/o.png";
 import xImg from "../img/x.png";
-
-const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
+import axios from "axios";
 
 const MarkPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const examInfo = location.state?.examInfo || { selectedQuestions: [] };
   const selectedAnswers = location.state?.selectedAnswers || {};
-  const studentName = location.state?.studentName || mem_name;
+  const studentId = location.state?.studentId || "";
+  const studentName = location.state?.studentName || "";
 
   const [gradingResults, setGradingResults] = useState([]);
 
@@ -28,18 +26,17 @@ const MarkPage = () => {
     });
     setGradingResults(results);
 
-    // 점수를 계산하고 navigate를 통해 ScoreChart와 StudyRecord로 이동
     const score = results.filter((result) => result === "o").length * 5; // 문제당 5점
 
     alert("채점을 완료하였습니다!");
 
-    // ScoreChart로 이동
-    navigate(`/scorechart/${mem_id}`, {
-      state: { score, studentName },
+    // 점수를 서버로 전송
+    axios.post("/is", { mem_id: studentId, score }).catch((error) => {
+      console.error("점수를 전송하는 중 오류 발생:", error);
     });
 
     // StudyRecord로 이동
-    navigate(`/sr`, {
+    navigate("/sr", {
       state: {
         examInfo,
         gradingResults: results,

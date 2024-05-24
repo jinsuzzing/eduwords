@@ -9,10 +9,9 @@ const NameList = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const {
-    selectedAnswers = [],
+    selectedAnswers = {},
     examInfo = {},
-    mem_id,
-    mem_name,
+    studentId: testStudentId,
   } = location.state || {};
 
   const [students, setStudents] = useState([]);
@@ -25,13 +24,12 @@ const NameList = () => {
           "0"
         );
         setStudents(response.data);
-        console.log("응답", response.data);
       } catch (error) {
         console.error("학생 정보를 불러오는 중 오류 발생:", error);
       }
     };
 
-    fetchData(); // 데이터 가져오는 함수 호출
+    fetchData();
   }, []);
 
   const handleSelectStudent = (student) => {
@@ -40,10 +38,7 @@ const NameList = () => {
         studentName: student.mem_name,
         studentId: student.mem_id,
         selectedAnswers,
-        student,
         examInfo,
-        mem_id,
-        mem_name,
       },
     });
   };
@@ -52,7 +47,7 @@ const NameList = () => {
     <div>
       <NavbarT />
       <br />
-      <h2 className="titleText">·문제 제출 학생 명단</h2>
+      <h2 className="titleText">· 문제 제출 학생 명단</h2>
       <br />
       <br />
       <div className="namelist-container">
@@ -60,13 +55,16 @@ const NameList = () => {
           <h2 className="namelist-title">학생 목록</h2>
           <ul>
             {students.map((student) => (
-              <li className="namelist-li" key={student.mem_id}>
-                <button
-                  className="namelist-btn"
-                  onClick={() => handleSelectStudent(student)}
-                >
-                  {student.mem_name}
-                </button>
+              <li
+                className={`namelist-li ${
+                  student.mem_id === testStudentId
+                    ? "blue-border"
+                    : "red-border"
+                }`}
+                key={student.mem_id}
+                onClick={() => handleSelectStudent(student)}
+              >
+                {student.mem_name}
               </li>
             ))}
           </ul>

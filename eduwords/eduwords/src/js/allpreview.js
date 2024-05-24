@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/allpreview.css";
 import NavbarT from "../Component/NavbarT";
@@ -12,6 +12,24 @@ const AllPreview = () => {
   const [examName, setExamName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [students, setStudents] = useState([]);
+  const [selectedStudents, setSelectedStudents] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:8081/studentsByType",
+          "0"
+        );
+        setStudents(response.data);
+      } catch (error) {
+        console.error("학생 정보를 불러오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const divideIntoColumns = (arr, columns) => {
     const divided = [];
@@ -26,38 +44,37 @@ const AllPreview = () => {
   const type = sessionStorage.getItem("mem_type");
 
   const handleConfirm = () => {
-    const examInfo = {
-      examName: examName,
-      startDate: startDate,
-      endDate: endDate,
-      selectedQuestions: selectedQuestions.map((q) => ({
-        content: q.content,
-        ex1: q.options?.ex1,
-        ex2: q.options?.ex2,
-        ex3: q.options?.ex3,
-        ex4: q.options?.ex4,
-        ex5: q.options?.ex5,
-      })),
-    };
-
-    axios
-      .post("http://localhost:8081/getAll", examInfo)
-      .then((response) => {
-        navigate("/questionsok", { state: { examInfo: response.data } });
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error creating the exam!", error);
+    selectedStudents.forEach((student) => {
+      navigate("/studyroom", {
+        state: {
+          studentName: student.mem_name,
+          studentId: student.mem_id,
+          selectedQuestions,
+          examName,
+          startDate,
+          endDate,
+        },
       });
+    });
   };
 
   const handleBack = () => {
     navigate(-1);
   };
 
+  const handleSelectStudent = (student) => {
+    if (selectedStudents.some((s) => s.mem_id === student.mem_id)) {
+      setSelectedStudents(
+        selectedStudents.filter((s) => s.mem_id !== student.mem_id)
+      );
+    } else {
+      setSelectedStudents([...selectedStudents, student]);
+    }
+  };
+
   return (
     <div>
-      {type === 1 ? <NavbarT /> : <Navbar />}
+      {type === "1" ? <NavbarT /> : <Navbar />}
       <h2 className="all-title">· 미리보기</h2>
       <div className="all-container">
         <div className="all-box">
@@ -81,7 +98,7 @@ const AllPreview = () => {
       </div>
       <br />
       <div className="all-box2">
-        <br></br>
+        <br />
         <div className="date-picker">
           <label>시험지 이름 : </label>
           <input
@@ -108,9 +125,26 @@ const AllPreview = () => {
             />
           </div>
         </div>
+        <div className="namelist-box">
+          <h2 className="namelist-title">학생 목록</h2>
+          <ul>
+            {students.map((student) => (
+              <li
+                className={`namelist-li ${
+                  selectedStudents.some((s) => s.mem_id === student.mem_id)
+                    ? "selected"
+                    : ""
+                }`}
+                key={student.mem_id}
+                onClick={() => handleSelectStudent(student)}
+              >
+                {student.mem_name}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <br />
-
       <div className="all-btnbox">
         <button className="all-back" onClick={handleBack}>
           뒤로가기

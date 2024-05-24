@@ -48,7 +48,7 @@ body {
 
 .all-box2 {
   width: 120vh;
-  height: 100px;
+  height: 300px;
   border: solid 5px;
   border-color: #239aff;
   border-radius: 30px;
@@ -171,4 +171,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.namelist-li.selected {
+  border: 2px solid #239aff;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.blue-border {
+  border: 2px solid #239aff;
+}
+
+.red-border {
+  border: 2px solid red;
 }

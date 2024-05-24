@@ -4,15 +4,12 @@ import Navbar from "../Component/Navbar";
 import NavbarT from "../Component/NavbarT";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
-
 const TestPaper = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [examInfo, setExamInfo] = useState(location.state?.examInfo || {});
+  const { studentId, studentName } = location.state || {};
 
   useEffect(() => {
     if (!location.state?.examInfo) {
@@ -43,22 +40,19 @@ const TestPaper = () => {
   };
 
   const handleSubmit = () => {
-    if (type === "1") {
-      navigate("/namelist", {
-        state: {
-          selectedAnswers: selectedAnswers,
-          examInfo: examInfo,
-          mem_id: mem_id,
-          mem_name: mem_name,
-        },
-      });
-    } else {
-      navigate("/good");
-    }
+    navigate("/namelist", {
+      state: {
+        selectedAnswers,
+        examInfo,
+        studentId,
+        studentName,
+      },
+    });
   };
+
   return (
     <div>
-      {type === "1" ? <NavbarT /> : <Navbar />}
+      {sessionStorage.getItem("mem_type") === "1" ? <NavbarT /> : <Navbar />}
       <h2 className="testpaper-title">· 시험 보기</h2>
       <div className="testpaper-container">
         <div className="testpaper-box">
