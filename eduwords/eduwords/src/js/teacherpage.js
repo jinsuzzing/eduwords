@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import NavbarT from "../Component/NavbarT";
 import Navbar from "../Component/Navbar";
 import "../css/teacherpage.css";
@@ -7,28 +8,28 @@ import gptbtn from "../img/gptbtn.png";
 import btn1 from "../img/btn1.png";
 import btn2 from "../img/btn2.png";
 
-const type = sessionStorage.getItem("mem_type");
-
-const students = [
-  { id: 1, name: "John Doe" },
-  { id: 2, name: "김강운" },
-  { id: 3, name: "전석균" },
-  { id: 4, name: "이승재" },
-  { id: 5, name: "김민성" },
-  { id: 6, name: "문성진" },
-  { id: 7, name: "김진수" },
-  { id: 8, name: "김하늘" },
-  { id: 9, name: "전송민" },
-  { id: 10, name: "김도원" },
-  { id: 11, name: "남예하" },
-  { id: 12, name: "구희철" },
-  { id: 13, name: "손준수" },
-  { id: 14, name: "임경남" },
-  { id: 15, name: "김민수" },
-];
-
 const Teacherpage = () => {
+  const type = sessionStorage.getItem("mem_type");
   const navigate = useNavigate();
+
+  const [students, setStudents] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:8081/studentsByType",
+          "0"
+        );
+        setStudents(response.data);
+        console.log("응답", response.data);
+      } catch (error) {
+        console.error("학생 정보를 불러오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchData(); // 데이터 가져오는 함수 호출
+  }, []);
 
   const studentColumn = 5;
 
@@ -41,9 +42,14 @@ const Teacherpage = () => {
   });
 
   const handleStudentClick = (student) => {
-    navigate(`/chart/${student.id}`, {
-      state: { studentName: student.name },
-    });
+    navigate(
+      `/is`,
+      {
+        state: { studentName: student.mem_name },
+      },
+      sessionStorage.setItem("studentId", student.mem_id),
+      sessionStorage.setItem("studentName", student.mem_name)
+    );
   };
 
   return (
@@ -65,12 +71,12 @@ const Teacherpage = () => {
           {tableData.map((columnStudents, columnIndex) => (
             <tr key={columnIndex}>
               {columnStudents.map((student) => (
-                <td key={student.id}>
+                <td key={student.mem_id}>
                   <div
                     className="stu"
                     onClick={() => handleStudentClick(student)}
                   >
-                    {student.name}
+                    {student.mem_name}
                   </div>
                 </td>
               ))}

@@ -82,7 +82,7 @@ const NavbarT = () => {
         <ul>
           <li>
             <NavLink
-              to="/is"
+              to="/teacher"
               id="navA"
               className={({ isActive }) => (isActive ? "active" : "")}
               onClick={handleLoginClick}
