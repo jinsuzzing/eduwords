@@ -3,14 +3,9 @@ import Navbar from "../Component/Navbar";
 import NavbarT from "../Component/NavbarT";
 import turboimg from "../img/gptturbo.png";
 import "../css/createai.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
-const mem_address = sessionStorage.getItem("mem_address");
-const mem_number = sessionStorage.getItem("mem_number");
-const mem_email = sessionStorage.getItem("mem_email");
 
 const CreateAI = () => {
   const [problemCount, setProblemCount] = useState(0);
@@ -22,7 +17,7 @@ const CreateAI = () => {
 
   const handleNextClick = () => {
     if (problemCount > 0) {
-      navigate("/aipreview", { state: { problemCount } });
+      navigate("/loading", { state: { problemCount } });
     } else {
       alert("출제 문항 수를 입력해주세요.");
     }

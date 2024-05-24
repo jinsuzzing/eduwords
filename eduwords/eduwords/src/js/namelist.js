@@ -66,16 +66,21 @@ const NameList = () => {
       <br />
       <br />
       <div>
-        <h2>학생 목록</h2>
-        <ul>
-          {students.map((student) => (
-            <li key={student.id}>
-              <button onClick={() => handleSelectStudent(student)}>
-                {student.mem_name}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <div className="namelist-box">
+          <h2 className="namelist-title">학생 목록</h2>
+          <ul>
+            {students.map((student) => (
+              <li className="namelist-li" key={student.id}>
+                <button
+                  className="namelist-btn"
+                  onClick={() => handleSelectStudent(student)}
+                >
+                  {student.mem_name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

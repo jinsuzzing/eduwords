@@ -3,15 +3,15 @@ import "../css/loading.css";
 import NavbarT from "../Component/NavbarT";
 import Navbar from "../Component/Navbar";
 import LoadingImg from "../img/loading.png";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
-const mem_address = sessionStorage.getItem("mem_address");
-const mem_number = sessionStorage.getItem("mem_number");
-const mem_email = sessionStorage.getItem("mem_email");
+
 const Loading = () => {
   const [loadingText, setLoadingText] = useState("Loading");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { problemCount } = location.state || {};
 
   useEffect(() => {
     const textArray = ["Loading", "Loading .", "Loading ..", "Loading ..."];
@@ -22,8 +22,16 @@ const Loading = () => {
       index = (index + 1) % textArray.length; // 인덱스 순환
     }, 500); // 0.5초마다 변경
 
-    return () => clearInterval(intervalId); // 컴포넌트 언마운트 시 타이머 클리어
-  }, []);
+    const timeoutId = setTimeout(() => {
+      navigate("/aipreview", { state: { problemCount } });
+    }, 3000); // 3초 후 이동
+
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(timeoutId);
+    }; // 컴포넌트 언마운트 시 타이머 클리어
+  }, [navigate, problemCount]);
+
   return (
     <div>
       {type === 1 ? <NavbarT /> : <Navbar />}
