@@ -43,16 +43,19 @@ const TestPaper = () => {
   };
 
   const handleSubmit = () => {
-    navigate("/namelist", {
-      state: {
-        selectedAnswers: selectedAnswers,
-        examInfo: examInfo,
-        mem_id: mem_id,
-        mem_name: mem_name,
-      },
-    });
+    if (type === "1") {
+      navigate("/namelist", {
+        state: {
+          selectedAnswers: selectedAnswers,
+          examInfo: examInfo,
+          mem_id: mem_id,
+          mem_name: mem_name,
+        },
+      });
+    } else {
+      navigate("/good");
+    }
   };
-
   return (
     <div>
       {type === "1" ? <NavbarT /> : <Navbar />}

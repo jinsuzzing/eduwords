@@ -48,16 +48,16 @@ function Join() {
 
       if (response.data.exists) {
         setUsernameMessage("이미 사용 중인 아이디입니다.");
-        setUsernameMessageStyle({ color: "red", fontSize: "12px" });
+        setUsernameMessageStyle({ color: "red", fontSize: "15px" });
         setIsUsernameValid(false);
       } else {
         setUsernameMessage("사용 가능한 아이디입니다.");
-        setUsernameMessageStyle({ color: "#239aff", fontSize: "12px" });
+        setUsernameMessageStyle({ color: "#239aff", fontSize: "15px" });
         setIsUsernameValid(true);
       }
     } catch (error) {
       setUsernameMessage("아이디 중복 확인에 실패했습니다. 다시 시도해주세요.");
-      setUsernameMessageStyle({ color: "red", fontSize: "12px" });
+      setUsernameMessageStyle({ color: "red", fontSize: "15px" });
       setIsUsernameValid(false);
     }
   };
@@ -203,6 +203,8 @@ function Join() {
             </tr>
           </tbody>
         </table>
+        <br></br>
+        <br></br>
         <button type="submit" className="container" disabled={!isUsernameValid}>
           다음으로
         </button>

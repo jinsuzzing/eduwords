@@ -19,7 +19,7 @@ const Loading = () => {
 
     const intervalId = setInterval(() => {
       setLoadingText(textArray[index]);
-      index = (index + 1) % textArray.length; // 인덱스 순환
+      index = (index + 1) % textArray.length;
     }, 500); // 0.5초마다 변경
 
     const timeoutId = setTimeout(() => {
