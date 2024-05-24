@@ -23,12 +23,12 @@ const Navbar = () => {
     sessionStorage.removeItem("mem_email");
     sessionStorage.removeItem("mem_number");
     navigate("/");
+    alert("로그아웃 되었습니다!");
   };
 
   const handleLoginClick = (event) => {
     if (!mem_id) {
       event.preventDefault();
-      alert("로그인이 필요합니다!");
       navigate("/login");
     }
   };

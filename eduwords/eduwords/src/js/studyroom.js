@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import tb from "../img/tb.png";
+import sb from "../img/stb1.png";
 import "../css/questionslist.css";
 import NavbarT from "../Component/NavbarT";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -53,7 +53,7 @@ const QuestionsList = () => {
   return (
     <div>
       <NavbarT />
-      <img src={tb} className="tbimg" alt="table"></img>
+      <img src={sb} className="tbimg" alt="table"></img>
       <div className="t-margin-box"></div>
       {examsInfo.map((exam, index) => (
         <table

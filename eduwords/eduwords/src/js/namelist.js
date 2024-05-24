@@ -65,7 +65,7 @@ const NameList = () => {
       <h2 className="titleText">·문제 제출 학생 명단</h2>
       <br />
       <br />
-      <div>
+      <div className="namelist-container">
         <div className="namelist-box">
           <h2 className="namelist-title">학생 목록</h2>
           <ul>
