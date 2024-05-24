@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/termspage.css";
 import Navbar from "../Component/Navbar";
 import NavbarT from "../Component/NavbarT";
@@ -11,7 +11,21 @@ const mem_name = sessionStorage.getItem("mem_name");
 const mem_address = sessionStorage.getItem("mem_address");
 const mem_number = sessionStorage.getItem("mem_number");
 const mem_email = sessionStorage.getItem("mem_email");
+
 const Termspage = () => {
+  const [firstCheck, setFirstCheck] = useState(null); // 상태 추가
+  const [secondCheck, setSecondCheck] = useState(null); // 상태 추가
+  const [errorMessage, setErrorMessage] = useState(""); // 에러 메시지 상태 추가
+
+  const clickNext = (e) => { // 클릭 핸들러 추가
+    if (firstCheck && secondCheck) {
+      // 라디오 버튼 첫번째와 두번째 모두 체크해야 다음 페이지로 이동
+    } else {
+      e.preventDefault(); // 여기에 괄호 추가
+      setErrorMessage("약관에 동의해주세요."); // 에러 메시지 설정
+    }
+  };
+
   return (
     <div>
       {type === 1 ? <NavbarT /> : <Navbar />}
@@ -68,9 +82,9 @@ const Termspage = () => {
             해결합니다.
           </div>
           <div className="radio-group">
-            <input type="radio" id="agree" name="terms" />
+            <input type="radio" id="agree" name="terms" onChange={() => setFirstCheck(true)} />
             <label htmlFor="agree">동의합니다</label>
-            <input type="radio" id="disagree" name="terms" />
+            <input type="radio" id="disagree" name="terms" onChange={() => setFirstCheck(false)} />
             <label htmlFor="disagree">동의하지 않습니다</label>
           </div>
           <br></br>
@@ -99,18 +113,18 @@ const Termspage = () => {
           </div>
         </div>
         <div className="radio-group">
-          <input type="radio" id="agree" name="terms" />
+          <input type="radio" id="agree" name="privacy" onChange={() => setSecondCheck(true)} />
           <label htmlFor="agree">동의합니다</label>
-          <input type="radio" id="disagree" name="terms" />
+          <input type="radio" id="disagree" name="privacy" onChange={() => setSecondCheck(false)} />
           <label htmlFor="disagree">동의하지 않습니다</label>
         </div>
         <br></br>
-        <br></br>
+        {errorMessage && <p style={{ color: 'red', fontSize:'15pt',fontWeight:'bold' }}>{errorMessage}</p>} {/* 에러 메시지 표시 */}
         <div className="join2">
-          <a href="/jointeacher">선생님 가입하기</a>
+          <a href="/jointeacher" className="moveTeacher"  onClick={clickNext}>선생님 가입하기</a> {/* onClick 이벤트 추가 */}
         </div>
         <div className="button-container">
-          <Link to="/join">
+          <Link to="/join" onClick={clickNext}>
             <button id="next">다음으로</button>
           </Link>
         </div>
