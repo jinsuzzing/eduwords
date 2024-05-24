@@ -52,7 +52,7 @@ const QuestionItem = ({ question, isSelected, onSelect, onDelete }) => {
           className="wq-btn2"
           onClick={(e) => {
             e.stopPropagation();
-            onDelete(question.id);
+            onDelete(question.qes_seq);
           }}
         >
           삭제
@@ -75,7 +75,7 @@ const WoorQuestions = () => {
     const savedQuestions =
       JSON.parse(localStorage.getItem("selectedQuestions")) || [];
     setSelectedQuestions(savedQuestions);
-    setSelectedQuestionIds(savedQuestions.map((question) => question.id));
+    setSelectedQuestionIds(savedQuestions.map((question) => question.qes_seq));
     setSelectedCount(savedQuestions.length);
   }, []);
 
@@ -87,7 +87,6 @@ const WoorQuestions = () => {
   }, [selectedQuestions]);
 
   useEffect(() => {
-    // POST 요청으로 질문을 가져옵니다.
     const fetchQuestions = async () => {
       try {
         const response = await axios.post("http://localhost:8081/questions", {
@@ -113,17 +112,17 @@ const WoorQuestions = () => {
   };
 
   const handleSelect = (question) => {
-    if (!selectedQuestionIds.includes(question.id)) {
+    if (!selectedQuestionIds.includes(question.qes_seq)) {
       setSelectedQuestions((prevQuestions) => [...prevQuestions, question]);
       setSelectedCount((prevCount) => prevCount + 1);
-      setSelectedQuestionIds((prevIds) => [...prevIds, question.id]);
+      setSelectedQuestionIds((prevIds) => [...prevIds, question.qes_seq]);
     } else {
       setSelectedQuestions((prevQuestions) =>
-        prevQuestions.filter((q) => q.id !== question.id)
+        prevQuestions.filter((q) => q.qes_seq !== question.qes_seq)
       );
       setSelectedCount((prevCount) => prevCount - 1);
       setSelectedQuestionIds((prevIds) =>
-        prevIds.filter((id) => id !== question.id)
+        prevIds.filter((id) => id !== question.qes_seq)
       );
     }
   };
@@ -132,7 +131,7 @@ const WoorQuestions = () => {
     try {
       await axios.delete(`http://localhost:8081/questions/${id}`);
       setSelectedQuestions((prevQuestions) =>
-        prevQuestions.filter((question) => question.id !== id)
+        prevQuestions.filter((question) => question.qes_seq !== id)
       );
       setSelectedQuestionIds((prevIds) =>
         prevIds.filter((questionId) => questionId !== id)
@@ -167,9 +166,9 @@ const WoorQuestions = () => {
             <div key={index} className="wq-column">
               {column.map((question) => (
                 <QuestionItem
-                  key={question.id} // 여기 key prop 추가
+                  key={question.qes_seq} // 여기 key prop 추가
                   question={question}
-                  isSelected={selectedQuestionIds.includes(question.id)}
+                  isSelected={selectedQuestionIds.includes(question.qes_seq)}
                   onSelect={handleSelect}
                   onDelete={deleteQ}
                 />
