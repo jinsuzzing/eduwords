@@ -25,17 +25,20 @@ const AllPreview = () => {
   const type = sessionStorage.getItem("mem_type");
 
   const handleConfirm = () => {
-    const examInfo = {
+    const newExam = {
       examName: examName,
       startDate: startDate,
       endDate: endDate,
       selectedQuestions: selectedQuestions.map((question) => ({
         ...question,
-        correctAnswer: question.correctAnswer, // 정답을 포함
+        correctAnswer: question.correctAnswer,
       })),
     };
-    localStorage.setItem("examInfo", JSON.stringify(examInfo)); // LocalStorage에 저장
-    navigate("/questionsok", { state: { examInfo: examInfo } });
+
+    const storedExamsInfo = JSON.parse(localStorage.getItem("examsInfo")) || [];
+    storedExamsInfo.push(newExam);
+    localStorage.setItem("examsInfo", JSON.stringify(storedExamsInfo));
+    navigate("/questionsok", { state: { examInfo: newExam } });
   };
 
   const handleBack = () => {

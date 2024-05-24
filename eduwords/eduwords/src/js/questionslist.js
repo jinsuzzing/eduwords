@@ -7,28 +7,22 @@ import { useNavigate, useLocation } from "react-router-dom";
 const QuestionsList = () => {
   const navigate = useNavigate();
   const currentLocation = useLocation();
-  const [examInfo, setExamInfo] = useState({});
+  const [examsInfo, setExamsInfo] = useState([]);
 
   useEffect(() => {
-    const storedExamInfo = JSON.parse(localStorage.getItem("examInfo"));
-    if (storedExamInfo) {
-      const currentDate = new Date();
-      const endDate = new Date(storedExamInfo.endDate);
-      if (currentDate <= endDate) {
-        setExamInfo(storedExamInfo);
-      } else {
-        localStorage.removeItem("examInfo"); // 만료된 데이터 삭제
-      }
-    }
+    const storedExamsInfo = JSON.parse(localStorage.getItem("examsInfo")) || [];
+    const currentDate = new Date();
+    const validExams = storedExamsInfo.filter(
+      (exam) => new Date(exam.endDate) >= currentDate
+    );
+    setExamsInfo(validExams);
   }, []);
 
-  const { examName, startDate, endDate } = examInfo;
-
-  const handleTableClick = () => {
+  const handleTableClick = (exam) => {
     navigate("/namelist", {
       state: {
         selectedAnswers: currentLocation.state?.selectedAnswers,
-        examInfo: examInfo,
+        examInfo: exam,
       },
     });
   };
@@ -37,20 +31,27 @@ const QuestionsList = () => {
     <div>
       <NavbarT />
       <img src={tb} className="tbimg" alt="table"></img>
-      <table className="t-listtable" onClick={handleTableClick}>
-        <tbody>
-          <tr className="t-listtable-tr1">
-            <th colSpan={2}>
-              {startDate} ~ {endDate}
-            </th>
-          </tr>
-          <tr className="t-listtable-tr2">
-            <td colSpan={2} className="exam-name">
-              {examName}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="t-margin-box"></div>
+      {examsInfo.map((exam, index) => (
+        <table
+          key={index}
+          className="t-listtable"
+          onClick={() => handleTableClick(exam)}
+        >
+          <tbody>
+            <tr className="t-listtable-tr1">
+              <th colSpan={2}>
+                {exam.startDate} ~ {exam.endDate}
+              </th>
+            </tr>
+            <tr className="t-listtable-tr2">
+              <td colSpan={2} className="exam-name">
+                {exam.examName}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      ))}
     </div>
   );
 };

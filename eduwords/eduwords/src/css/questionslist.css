@@ -15,7 +15,7 @@ body {
 
 .t-listtable {
   margin-left: 7%;
-  margin-top: 23vh;
+  margin-top: 3vh;
   width: 50%;
   max-width: 650px;
   border-spacing: 0;
@@ -25,6 +25,7 @@ body {
 
 .t-listtable td {
   height: 14px;
+  padding: 12px;
   text-align: center;
   border: 3px solid #1b3e5b;
   border-bottom-right-radius: 10px;
@@ -46,7 +47,7 @@ body {
 
 .t-listtable th {
   margin-top: 10%;
-  padding: 13px;
+  padding: 12px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   color: white;
@@ -57,4 +58,8 @@ body {
 .exam-name {
   font-weight: bold;
   color: #1b3e5b;
+}
+
+.t-margin-box {
+  margin-top: 10%;
 }

@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import NavbarT from "../Component/Navbar";
 import Navbar from "../Component/Navbar";
 import "../css/namelist.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
-const mem_address = sessionStorage.getItem("mem_address");
-const mem_number = sessionStorage.getItem("mem_number");
-const mem_email = sessionStorage.getItem("mem_email");
 
 const NameList = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { selectedAnswers = [], examInfo = {} } = location.state || {};
+  const {
+    selectedAnswers = [],
+    examInfo = {},
+    mem_id,
+    mem_name,
+  } = location.state || {};
 
   const students = [
     { id: 1, mem_name: "John Doe" },
@@ -46,6 +46,8 @@ const NameList = () => {
         selectedAnswers,
         student,
         examInfo,
+        mem_id,
+        mem_name,
       },
     });
   };
@@ -59,7 +61,6 @@ const NameList = () => {
   return (
     <div>
       {type === 1 ? <NavbarT /> : <Navbar />}
-
       <br />
       <h2 className="titleText">·문제 제출 학생 명단</h2>
       <br />

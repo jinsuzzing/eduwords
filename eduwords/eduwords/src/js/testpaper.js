@@ -5,6 +5,8 @@ import NavbarT from "../Component/NavbarT";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const type = sessionStorage.getItem("mem_type");
+const mem_id = sessionStorage.getItem("mem_id");
+const mem_name = sessionStorage.getItem("mem_name");
 
 const TestPaper = () => {
   const navigate = useNavigate();
@@ -41,13 +43,14 @@ const TestPaper = () => {
   };
 
   const handleSubmit = () => {
-    if (type === "1") {
-      navigate("/markpage", {
-        state: { selectedAnswers: selectedAnswers, examInfo: examInfo },
-      });
-    } else {
-      navigate("/good");
-    }
+    navigate("/namelist", {
+      state: {
+        selectedAnswers: selectedAnswers,
+        examInfo: examInfo,
+        mem_id: mem_id,
+        mem_name: mem_name,
+      },
+    });
   };
 
   return (

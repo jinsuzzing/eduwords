@@ -9,43 +9,46 @@ const type = sessionStorage.getItem("mem_type");
 
 const StudyRoom = () => {
   const navigate = useNavigate();
-  const [examInfo, setExamInfo] = useState({});
+  const [examsInfo, setExamsInfo] = useState([]);
 
   useEffect(() => {
-    const storedExamInfo = JSON.parse(localStorage.getItem("examInfo"));
-    if (storedExamInfo) {
-      const currentDate = new Date();
-      const endDate = new Date(storedExamInfo.endDate);
-      if (currentDate <= endDate) {
-        setExamInfo(storedExamInfo);
-      } else {
-        localStorage.removeItem("examInfo");
-      }
-    }
+    const storedExamsInfo = JSON.parse(localStorage.getItem("examsInfo")) || [];
+    const currentDate = new Date();
+    const validExams = storedExamsInfo.filter(
+      (exam) => new Date(exam.endDate) >= currentDate
+    );
+    setExamsInfo(validExams);
   }, []);
 
-  const { examName, startDate, endDate } = examInfo;
-
-  const handleTableClick = () => {
-    navigate("/testpaper", { state: { examInfo: examInfo } });
+  const handleTableClick = (exam) => {
+    navigate("/testpaper", { state: { examInfo: exam } });
   };
 
   return (
     <div>
       {type === "1" ? <NavbarT /> : <Navbar />}
       <img src={stb} className="sbimg" alt="table"></img>
-      <table className="s-listtable" onClick={handleTableClick}>
-        <tbody>
-          <tr className="s-listtable-tr1">
-            <th colSpan={2}>
-              {startDate} ~ {endDate}
-            </th>
-          </tr>
-          <tr className="s-listtable-tr2">
-            <td colSpan={2}>{examName}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="s-margin-box"></div>
+      {examsInfo.map((exam, index) => (
+        <table
+          key={index}
+          className="s-listtable"
+          onClick={() => handleTableClick(exam)}
+        >
+          <tbody>
+            <tr className="s-listtable-tr1">
+              <th colSpan={2}>
+                {exam.startDate} ~ {exam.endDate}
+              </th>
+            </tr>
+            <tr className="s-listtable-tr2">
+              <td className="exam-name" colSpan={2}>
+                {exam.examName}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      ))}
     </div>
   );
 };

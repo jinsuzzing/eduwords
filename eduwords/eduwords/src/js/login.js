@@ -33,9 +33,9 @@ const Login = () => {
         const type = response.data.mem_type;
         const id = response.data.mem_id;
         const name = response.data.mem_name;
-        const address = response.data.mem_address;
-        const email = response.data.mem_email;
-        const number = response.data.mem_number;
+        const address = response.data.address;
+        const email = response.data.email;
+        const number = response.data.number;
         console.log(type);
         sessionStorage.setItem("mem_id", id);
         sessionStorage.setItem("mem_type", type);
