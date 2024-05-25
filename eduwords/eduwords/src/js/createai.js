@@ -4,6 +4,7 @@ import NavbarT from "../Component/NavbarT";
 import turboimg from "../img/gptturbo.png";
 import "../css/createai.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"; // axios 추가
 
 const type = sessionStorage.getItem("mem_type");
 
@@ -15,9 +16,19 @@ const CreateAI = () => {
     setProblemCount(e.target.value);
   };
 
-  const handleNextClick = () => {
+  const handleNextClick = async () => { // 비동기 함수로 변경
     if (problemCount > 0) {
-      navigate("/loading", { state: { problemCount } });
+      try {
+        const response = await axios.post("http://localhost:8000/runfastapi", { repeat_count: problemCount }); // 요청 보내기
+        if (response.status === 200) {
+          navigate("/loading");
+        } else {
+          alert("데이터 저장 실패");
+        }
+      } catch (error) {
+        console.error("데이터 저장 실패:", error);
+        alert("데이터 저장 실패");
+      }
     } else {
       alert("출제 문항 수를 입력해주세요.");
     }
@@ -27,7 +38,7 @@ const CreateAI = () => {
     <div>
       {type === 1 ? <NavbarT /> : <Navbar />}
       <div className="gpttrubo">
-        <img src={turboimg} className="truboimg" alt="GPT Turbo"></img>
+        <img src={turboimg} className="truboimg" alt="GPT Turbo" />
       </div>
       <table className="gpttable">
         <tbody>
@@ -65,8 +76,8 @@ const CreateAI = () => {
         </tbody>
       </table>
       <div>
-        <br></br>
-        <br></br>
+        <br />
+        <br />
         <button className="createNext" onClick={handleNextClick}>
           다음으로
         </button>
