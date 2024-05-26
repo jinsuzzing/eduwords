@@ -23,7 +23,7 @@ function Join() {
   const [mem_number, setPhone] = useState("");
   const [mem_address, setAddress] = useState("");
   const [mem_email, setEmail] = useState("");
-  const [mem_type, setType] = useState("0");
+  const [memType, setType] = useState("0");
 
   const navigate = useNavigate();
 
@@ -72,7 +72,7 @@ function Join() {
         mem_name,
         mem_number,
         mem_address,
-        mem_type,
+        memType,
         mem_email,
         joined_at,
       };

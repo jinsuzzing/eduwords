@@ -3,7 +3,7 @@ import axios from "axios";
 import NavbarT from "../Component/NavbarT";
 import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../css/infostudent.css";
 import "../css/chart.css";
 
@@ -19,21 +19,31 @@ const Infostudent = () => {
   const [chartData, setChartData] = useState([]);
   const [formattedData, setFormattedData] = useState([]);
 
+  const studentId = sessionStorage.getItem("studentId");
+  const studentName = sessionStorage.getItem("studentName");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post("http://localhost:8081/getTests", {
-          mem_id: memId,
+          mem_id: studentId,
         });
 
         const calculateScore = (studentAnswer, answerKey) => {
+          const studentAnswers = JSON.parse(studentAnswer);
+          const answerKeys = JSON.parse(answerKey);
+
           let correctAnswers = 0;
-          for (let i = 1; i < studentAnswer.length; i++) {
-            if (studentAnswer[i] === answerKey[i]) {
+          const totalQuestions = Object.keys(answerKeys).length;
+
+          for (let key in studentAnswers) {
+            if (studentAnswers[key] === answerKeys[key]) {
               correctAnswers++;
             }
           }
-          return (correctAnswers / answerKey.length) * 100;
+
+          const score = (correctAnswers / totalQuestions) * 100;
+          return Math.round(score * 10) / 10; // 소수점 첫째 자리에서 반올림
         };
 
         const formattedData = response.data.map((item) => {
@@ -52,7 +62,7 @@ const Infostudent = () => {
           return {
             date: formattedDate,
             workbookName: item.workbookName,
-            score: score,
+            score: parseFloat(score), // 소수점 이하 2자리로 제한된 점수를 숫자로 변환
           };
         });
 
@@ -65,7 +75,7 @@ const Infostudent = () => {
     };
 
     fetchData();
-  }, [memId]);
+  }, [studentId]);
 
   const navigate = useNavigate();
 
@@ -73,32 +83,19 @@ const Infostudent = () => {
     navigate("/teacher");
   };
 
-  const type = sessionStorage.getItem("mem_type");
-  const mem_id = sessionStorage.getItem("mem_id");
-  const mem_name = sessionStorage.getItem("mem_name");
-
-  const { studentId } = useParams();
-  const location = useLocation();
-  const score = location.state?.score || null;
-  const studentName = location.state?.studentName || "학생";
-
-  const studentsData = {
-    [studentId]: formattedData,
-  };
-
-  const data = studentsData[studentId] || [];
-  const reversedData = data.slice().reverse();
-
   const averageScore =
-    reversedData.reduce((sum, item) => sum + item.score, 0) /
-    reversedData.length;
+    Math.round(
+      (formattedData.reduce((sum, item) => sum + item.score, 0) /
+        formattedData.length) *
+        10
+    ) / 10;
 
   const chartIn = {
-    labels: reversedData.map((item) => item.date),
+    labels: formattedData.map((item) => item.date),
     datasets: [
       {
         label: "점수",
-        data: reversedData.map((item) => item.score),
+        data: formattedData.map((item) => item.score),
         backgroundColor: "#239aff",
         borderColor: "#239aff",
         borderWidth: 2,
@@ -137,14 +134,16 @@ const Infostudent = () => {
       <br />
       <br />
       <br />
-      <h3 className="stuName">{name}</h3>
+      <h3 className="stuName">{studentName}</h3>
       <div className="infoBody">
         <div className="doneHomework">
           <th>· 푼 문제집{"(100%)"}</th>
           <br />
           <br />
           {formattedData.map((item, index) => (
-            <tr key={index}>{`${item.date} - ${item.workbookName}`}</tr>
+            <tr key={index}>
+              <td>{`${item.date} - ${item.workbookName}`}</td>
+            </tr>
           ))}
         </div>
         <div className="lookEasy">
@@ -153,7 +152,7 @@ const Infostudent = () => {
           <div className="chart-box">
             <div className="chart">
               <Bar data={chartIn} options={options} />
-              <h3 className="chart-h3">평균 점수: {averageScore.toFixed(2)}</h3>
+              <h3 className="chart-h3">평균 점수: {averageScore.toFixed(1)}</h3>
             </div>
           </div>
         </div>

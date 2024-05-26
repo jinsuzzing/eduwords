@@ -23,7 +23,7 @@ const Loading = () => {
     }, 500); // 0.5초마다 변경
 
     const timeoutId = setTimeout(() => {
-      navigate("/aipreview", { state: { problemCount } });
+      navigate("/wq", { state: { problemCount } });
     }, 3000); // 3초 후 이동
 
     return () => {

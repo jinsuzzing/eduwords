@@ -30,13 +30,13 @@ const Login = () => {
 
       if (response.data.success) {
         // 로그인 성공 처리
-        const type = response.data.mem_type;
+        const type = response.data.memType;
         const id = response.data.mem_id;
         const name = response.data.mem_name;
         const address = response.data.address;
         const email = response.data.email;
         const number = response.data.number;
-        console.log(type);
+        console.log(response.data);
         sessionStorage.setItem("mem_id", id);
         sessionStorage.setItem("mem_type", type);
         sessionStorage.setItem("mem_name", name);

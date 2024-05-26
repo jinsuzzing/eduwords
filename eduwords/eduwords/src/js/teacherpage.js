@@ -42,14 +42,13 @@ const Teacherpage = () => {
   });
 
   const handleStudentClick = (student) => {
-    navigate(
-      `/is`,
-      {
-        state: { studentName: student.mem_name },
-      },
-      sessionStorage.setItem("studentId", student.mem_id),
-      sessionStorage.setItem("studentName", student.mem_name)
-    );
+    // student.mem_id와 student.mem_name을 sessionStorage에 저장
+    sessionStorage.setItem("studentId", student.mem_id);
+    sessionStorage.setItem("studentName", student.mem_name);
+
+    navigate(`/is`, {
+      state: { studentName: student.mem_name },
+    });
   };
 
   return (
