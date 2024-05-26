@@ -25,7 +25,14 @@ const Login = () => {
       });
 
       if (response.data.success) {
-        const { memType, mem_id, mem_name, mem_address, mem_email, mem_number } = response.data;
+        const {
+          memType,
+          mem_id,
+          mem_name,
+          mem_address,
+          mem_email,
+          mem_number,
+        } = response.data;
 
         sessionStorage.setItem("mem_id", mem_id);
         sessionStorage.setItem("mem_type", memType);
@@ -34,7 +41,7 @@ const Login = () => {
         sessionStorage.setItem("mem_email", mem_email);
         sessionStorage.setItem("mem_number", mem_number);
 
-        navigate("/"); 
+        navigate("/");
       } else {
         alert("로그인에 실패했습니다. 아이디와 비밀번호를 확인하세요.");
       }
