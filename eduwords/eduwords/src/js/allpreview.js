@@ -46,7 +46,7 @@ const AllPreview = () => {
 
   const handleConfirm = () => {
     selectedStudents.forEach((student) => {
-      navigate("/studyroom", {
+      navigate("/questionslist", {
         state: {
           studentName: student.mem_name,
           studentId: student.mem_id,
@@ -84,7 +84,10 @@ const AllPreview = () => {
               {column.map((question, questionIndex) => (
                 <div key={question.qes_seq} className="all-question">
                   <p>
-                    {columnIndex * selectedColumns[0].length + questionIndex + 1}. {question.qes_desc}
+                    {columnIndex * selectedColumns[0].length +
+                      questionIndex +
+                      1}
+                    . {question.qes_desc}
                   </p>
                   <p>① {question.ex1}</p>
                   <p>② {question.ex2}</p>
