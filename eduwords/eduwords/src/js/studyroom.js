@@ -8,11 +8,27 @@ import Navbar from "../Component/Navbar";
 
 const StudyRoom = () => {
   const type = sessionStorage.getItem("mem_type");
-
   const navigate = useNavigate();
   const currentLocation = useLocation();
   const [examsInfo, setExamsInfo] = useState([]);
   const mem_id = sessionStorage.getItem("mem_id");
+
+  useEffect(() => {
+    const fetchExams = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:8081/api/getExamsByMemId",
+          { mem_id }
+        );
+        setExamsInfo(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("시험 정보를 불러오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchExams();
+  }, [mem_id]);
 
   const formatDate = (dateString) => {
     if (!dateString) return "";
@@ -23,23 +39,8 @@ const StudyRoom = () => {
     return `${year}-${month}-${day}`;
   };
 
-  useEffect(() => {
-    axios
-      .post("http://localhost:8081/getAll")
-      .then((response) => {
-        const formattedExams = response.data.map((exam) => ({
-          ...exam,
-          startline: formatDate(exam.startline),
-          deadline: formatDate(exam.deadline),
-        }));
-        setExamsInfo(formattedExams);
-      })
-      .catch((error) => {
-        console.error("단어를 가져오는 중 오류 발생:", error);
-      });
-  }, []);
-
   const handleTableClick = (exam) => {
+    sessionStorage.setItem("test_seq", exam.test_seq); // test_seq 저장
     navigate("/testpaper", {
       state: {
         selectedAnswers: currentLocation.state?.selectedAnswers,
@@ -50,7 +51,7 @@ const StudyRoom = () => {
 
   return (
     <div>
-      {type === 1 ? <NavbarT /> : <Navbar />}
+      {type === "1" ? <NavbarT /> : <Navbar />}
       <img src={sb} className="tbimg" alt="table"></img>
       <div className="t-margin-box"></div>
       {examsInfo.map((exam, index) => (
@@ -62,12 +63,12 @@ const StudyRoom = () => {
           <tbody>
             <tr className="t-listtable-tr1">
               <th colSpan={2}>
-                {exam.startline} ~ {exam.deadline}
+                {formatDate(exam.startline)} ~ {formatDate(exam.deadline)}
               </th>
             </tr>
             <tr className="t-listtable-tr2">
               <td colSpan={2} className="exam-name">
-                {exam.work_name}
+                {exam.workbook_name}
               </td>
             </tr>
           </tbody>

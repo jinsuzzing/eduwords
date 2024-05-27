@@ -59,6 +59,9 @@ const AllPreview = () => {
         memId: student.mem_id, // 선택된 학생의 mem_id로 설정
         workbook_qes: workbookQes,
         answer_check: JSON.stringify(answerCheck), // answer_check를 JSON 형태로 변환하여 저장
+        startline, // startline 추가
+        deadline, // deadline 추가
+        workbook_name: workbookName, // workbook_name 추가
       };
 
       console.log("보낼 데이터:", data); // 데이터를 확인합니다.
@@ -74,7 +77,7 @@ const AllPreview = () => {
             studentName: student.mem_name,
             studentId: student.mem_id,
             selectedQuestions,
-            workbookName,
+            workbook_name: workbookName,
             startline,
             deadline,
           },
@@ -89,7 +92,7 @@ const AllPreview = () => {
       memId: sessionStorage.getItem("mem_id"), // 세션에서 가져온 mem_id로 설정
       deadline,
       workbook_qes: workbookQes,
-      workbook_name: workbookName,
+      work_name: workbookName,
       startline,
     };
 
