@@ -30,9 +30,16 @@ const Infostudent = () => {
         });
 
         const calculateScore = (studentAnswer, answerKey) => {
+          // studentAnswer와 answerKey가 null이거나 undefined인 경우에 대한 처리 추가
+          if (!studentAnswer || !answerKey) {
+            console.error("studentAnswer 또는 answerKey가 없습니다.");
+
+            return 0; // 또는 다른 기본값으로 설정
+          }
+
           const studentAnswers = JSON.parse(studentAnswer);
           const answerKeys = JSON.parse(answerKey);
-
+          console.log("answer" + studentAnswer + "answerkey" + answerKey);
           let correctAnswers = 0;
           const totalQuestions = Object.keys(answerKeys).length;
 
@@ -42,8 +49,7 @@ const Infostudent = () => {
             }
           }
 
-          const score = (correctAnswers / totalQuestions) * 100;
-          return Math.round(score * 10) / 10; // 소수점 첫째 자리에서 반올림
+          return ((correctAnswers / totalQuestions) * 100).toFixed(2);
         };
 
         const formattedData = response.data.map((item) => {
@@ -57,11 +63,11 @@ const Infostudent = () => {
             .replace(/\./g, "")
             .replace(/\s/g, "");
 
-          const score = calculateScore(item.answer, item.answerCheck);
+          const score = calculateScore(item.answer, item.answer_check);
 
           return {
             date: formattedDate,
-            workbookName: item.workbookName,
+            workbookName: item.workbook_name,
             score: parseFloat(score), // 소수점 이하 2자리로 제한된 점수를 숫자로 변환
           };
         });
@@ -84,11 +90,8 @@ const Infostudent = () => {
   };
 
   const averageScore =
-    Math.round(
-      (formattedData.reduce((sum, item) => sum + item.score, 0) /
-        formattedData.length) *
-        10
-    ) / 10;
+    formattedData.reduce((sum, item) => sum + item.score, 0) /
+    formattedData.length;
 
   const chartIn = {
     labels: formattedData.map((item) => item.date),
@@ -137,7 +140,7 @@ const Infostudent = () => {
       <h3 className="stuName">{studentName}</h3>
       <div className="infoBody">
         <div className="doneHomework">
-          <th>· 푼 문제집{"(100%)"}</th>
+          <th>· 문제집</th>
           <br />
           <br />
           {formattedData.map((item, index) => (
@@ -152,7 +155,7 @@ const Infostudent = () => {
           <div className="chart-box">
             <div className="chart">
               <Bar data={chartIn} options={options} />
-              <h3 className="chart-h3">평균 점수: {averageScore.toFixed(1)}</h3>
+              <h3 className="chart-h3">평균 점수: {averageScore.toFixed(2)}</h3>
             </div>
           </div>
         </div>

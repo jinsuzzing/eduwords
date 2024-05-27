@@ -12,15 +12,15 @@ const TestPaper = () => {
   const [examInfo, setExamInfo] = useState({});
   const { studentId, studentName } = location.state || {};
   const test_seq = sessionStorage.getItem("test_seq");
-
+  console.log("getItem" + test_seq);
   useEffect(() => {
     const fetchTest = async () => {
       try {
-        const response = await axios.post(
-          "http://localhost:8081/api/getTestById",
-          { testId: test_seq }
-        );
+        const response = await axios.post("http://localhost:8081/getTestById", {
+          testId: test_seq, // 수정된 부분
+        });
         const testData = response.data;
+        console.log("test_Seq" + test_seq);
         if (testData) {
           const parsedQuestions = JSON.parse(testData.workbook_qes);
           setExamInfo({ ...testData, selectedQuestions: parsedQuestions });
@@ -29,7 +29,6 @@ const TestPaper = () => {
         console.error("시험 정보를 불러오는 중 오류 발생:", error);
       }
     };
-
     fetchTest();
   }, [test_seq]);
 
@@ -52,15 +51,26 @@ const TestPaper = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    navigate("/good", {
-      state: {
+  const handleSubmit = async () => {
+    try {
+      const currentDate = new Date().toISOString().split("T")[0];
+      const response = await axios.post("http://localhost:8081/submitTest", {
+        test_seq,
         selectedAnswers,
-        examInfo,
-        studentId,
-        studentName,
-      },
-    });
+        submitted_at: currentDate,
+      });
+      console.log(response.data); // 요청이 성공하면 응답을 로그에 출력
+      navigate("/good", {
+        state: {
+          selectedAnswers,
+          examInfo,
+          studentId,
+          studentName,
+        },
+      });
+    } catch (error) {
+      console.error("시험 제출 중 오류 발생:", error);
+    }
   };
 
   return (

@@ -53,40 +53,6 @@ const AllPreview = () => {
       answerCheck[question.qes_seq] = question.qes_answer;
     });
 
-    // 선택된 각 학생에 대해 별도의 시험 정보 저장
-    selectedStudents.forEach(async (student) => {
-      const data = {
-        memId: student.mem_id, // 선택된 학생의 mem_id로 설정
-        workbook_qes: workbookQes,
-        answer_check: JSON.stringify(answerCheck), // answer_check를 JSON 형태로 변환하여 저장
-        startline, // startline 추가
-        deadline, // deadline 추가
-        workbook_name: workbookName, // workbook_name 추가
-      };
-
-      console.log("보낼 데이터:", data); // 데이터를 확인합니다.
-
-      try {
-        const response = await axios.post(
-          "http://localhost:8081/saveTest",
-          data
-        );
-        console.log("저장된 데이터:", response.data);
-        navigate("/questionslist", {
-          state: {
-            studentName: student.mem_name,
-            studentId: student.mem_id,
-            selectedQuestions,
-            workbook_name: workbookName,
-            startline,
-            deadline,
-          },
-        });
-      } catch (error) {
-        console.error("데이터 저장 중 오류 발생:", error);
-      }
-    });
-
     // tb_workbook에 저장할 데이터
     const workbookData = {
       memId: sessionStorage.getItem("mem_id"), // 세션에서 가져온 mem_id로 설정
@@ -104,6 +70,51 @@ const AllPreview = () => {
         workbookData
       );
       console.log("workbook 저장된 데이터:", workbookResponse.data);
+
+      // 저장된 workbook의 work_seq 가져오기
+      const work_seq = workbookResponse.data.work_seq;
+      if (!work_seq) {
+        throw new Error("work_seq를 가져오는 데 실패했습니다.");
+      }
+
+      // 선택된 각 학생에 대해 별도의 시험 정보 저장
+      const promises = selectedStudents.map(async (student) => {
+        const data = {
+          memId: student.mem_id, // 선택된 학생의 mem_id로 설정
+          workbook_qes: workbookQes,
+          answer_check: JSON.stringify(answerCheck), // answer_check를 JSON 형태로 변환하여 저장
+          startline, // startline 추가
+          deadline, // deadline 추가
+          workbook_name: workbookName, // workbook_name 추가
+          workSeq: work_seq, // 저장된 workbook의 work_seq 추가
+          memName: student.mem_name,
+        };
+
+        console.log("보낼 데이터:", data); // 데이터를 확인합니다.
+
+        try {
+          const response = await axios.post(
+            "http://localhost:8081/saveTest",
+            data
+          );
+          console.log("저장된 데이터:", response.data);
+          navigate("/questionslist", {
+            state: {
+              studentName: student.mem_name,
+              studentId: student.mem_id,
+              selectedQuestions,
+              workbook_name: workbookName,
+              startline,
+              deadline,
+              workSeq: work_seq,
+            },
+          });
+        } catch (error) {
+          console.error("데이터 저장 중 오류 발생:", error);
+        }
+      });
+
+      await Promise.all(promises);
     } catch (error) {
       console.error("workbook 데이터 저장 중 오류 발생:", error);
     }

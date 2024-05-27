@@ -5,10 +5,9 @@ import "../css/questionslist.css";
 import NavbarT from "../Component/NavbarT";
 import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../Component/Navbar";
-
+const type = sessionStorage.getItem("mem_type");
+console.log(type);
 const QuestionsList = () => {
-  const type = sessionStorage.getItem("mem_type");
-
   const navigate = useNavigate();
   const currentLocation = useLocation();
   const [examsInfo, setExamsInfo] = useState([]);
@@ -49,13 +48,9 @@ const QuestionsList = () => {
     });
   };
 
-  const handleEditClick = (exam) => {
-    navigate("/editexam", { state: { examInfo: exam } });
-  };
-
   return (
     <div>
-      {type === 1 ? <NavbarT /> : <Navbar />}
+      <NavbarT />
       <img src={tb} className="tbimg" alt="table"></img>
       <div className="t-margin-box"></div>
       {examsInfo.map((exam, index) => (
@@ -71,10 +66,9 @@ const QuestionsList = () => {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleEditClick(exam);
                   }}
                 >
-                  수정
+                  삭제
                 </button>
               </th>
             </tr>

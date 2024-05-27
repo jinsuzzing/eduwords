@@ -16,18 +16,29 @@ const StudyRoom = () => {
   useEffect(() => {
     const fetchExams = async () => {
       try {
+        console.log("Fetching exams for mem_id:", mem_id); // mem_id 값 로그 출력
         const response = await axios.post(
-          "http://localhost:8081/api/getExamsByMemId",
+          "http://localhost:8081/getExamsByMemId",
           { mem_id }
         );
         setExamsInfo(response.data);
-        console.log(response.data);
+        console.log("response", response.data); // 전체 response 로그 출력
+        if (response.data && response.data.length > 0) {
+          sessionStorage.setItem("test_seq", response.data[0].test_seq);
+          console.log(sessionStorage.getItem("test_seq"));
+        } else {
+          console.log("No exams found for the given mem_id");
+        }
       } catch (error) {
         console.error("시험 정보를 불러오는 중 오류 발생:", error);
       }
     };
 
-    fetchExams();
+    if (mem_id) {
+      fetchExams();
+    } else {
+      console.error("mem_id is null or undefined");
+    }
   }, [mem_id]);
 
   const formatDate = (dateString) => {
@@ -40,7 +51,6 @@ const StudyRoom = () => {
   };
 
   const handleTableClick = (exam) => {
-    sessionStorage.setItem("test_seq", exam.test_seq); // test_seq 저장
     navigate("/testpaper", {
       state: {
         selectedAnswers: currentLocation.state?.selectedAnswers,
