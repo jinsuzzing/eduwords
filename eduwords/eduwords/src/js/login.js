@@ -5,47 +5,44 @@ import "../css/login.css";
 import lg from "../img/logo.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
-const mem_address = sessionStorage.getItem("mem_address");
-const mem_number = sessionStorage.getItem("mem_number");
-const mem_email = sessionStorage.getItem("mem_email");
+
 const Login = () => {
-  const [mem_id, setUsername] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [type, setType] = useState(null); // mem_type 상태 추가
+  const [type, setType] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const memType = sessionStorage.getItem("mem_type");
-    setType(memType); // sessionStorage에서 mem_type 값 가져오기
+    setType(memType);
   }, []);
 
   const handleLogin = async () => {
     try {
       const response = await axios.post("http://localhost:8081/login", {
-        mem_id: mem_id,
+        mem_id: username,
         mem_pw: password,
       });
 
       if (response.data.success) {
-        // 로그인 성공 처리
-        const type = response.data.memType;
-        const id = response.data.mem_id;
-        const name = response.data.mem_name;
-        const address = response.data.address;
-        const email = response.data.email;
-        const number = response.data.number;
-        console.log(response.data);
-        sessionStorage.setItem("mem_id", id);
-        sessionStorage.setItem("mem_type", type);
-        sessionStorage.setItem("mem_name", name);
-        sessionStorage.setItem("mem_address", address);
-        sessionStorage.setItem("mem_email", email);
-        sessionStorage.setItem("mem_number", number);
-        navigate("/"); // 로그인 성공 시 이동할 페이지
+        const {
+          memType,
+          mem_id,
+          mem_name,
+          mem_address,
+          mem_email,
+          mem_number,
+        } = response.data;
+
+        sessionStorage.setItem("mem_id", mem_id);
+        sessionStorage.setItem("mem_type", memType);
+        sessionStorage.setItem("mem_name", mem_name);
+        sessionStorage.setItem("mem_address", mem_address);
+        sessionStorage.setItem("mem_email", mem_email);
+        sessionStorage.setItem("mem_number", mem_number);
+
+        navigate("/");
       } else {
-        console.log(response);
         alert("로그인에 실패했습니다. 아이디와 비밀번호를 확인하세요.");
       }
     } catch (error) {
@@ -63,7 +60,7 @@ const Login = () => {
         name="username"
         placeholder="아이디"
         required
-        value={mem_id}
+        value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
       <input

@@ -93,7 +93,7 @@ const Teacherpage = () => {
         <Link to="/createaproblem">
           <img src={btn1} className="button1" alt="Create Problem" />
         </Link>
-        <Link to="">
+        <Link to="/wq">
           <img src={btn2} className="button2" alt="Button 2" />
         </Link>
       </div>

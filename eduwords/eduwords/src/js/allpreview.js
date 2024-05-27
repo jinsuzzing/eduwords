@@ -9,9 +9,9 @@ const AllPreview = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const selectedQuestions = location.state?.selectedQuestions || [];
-  const [examName, setExamName] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [workbookName, setExamName] = useState("");
+  const [startline, setStartDate] = useState("");
+  const [deadline, setEndDate] = useState("");
   const [students, setStudents] = useState([]);
   const [selectedStudents, setSelectedStudents] = useState([]);
 
@@ -20,7 +20,7 @@ const AllPreview = () => {
       try {
         const response = await axios.post(
           "http://localhost:8081/studentsByType",
-          "0"
+          { type: "0" }
         );
         setStudents(response.data);
         console.log("학생 데이터:", response.data);
@@ -44,19 +44,66 @@ const AllPreview = () => {
   const selectedColumns = divideIntoColumns(selectedQuestions, 2);
   const type = sessionStorage.getItem("mem_type");
 
-  const handleConfirm = () => {
-    selectedStudents.forEach((student) => {
-      navigate("/studyroom", {
-        state: {
-          studentName: student.mem_name,
-          studentId: student.mem_id,
-          selectedQuestions,
-          examName,
-          startDate,
-          endDate,
-        },
-      });
+  const handleConfirm = async () => {
+    const workbookQes = JSON.stringify(selectedQuestions);
+
+    // answer_check를 만들기 위한 객체 생성
+    const answerCheck = {};
+    selectedQuestions.forEach((question) => {
+      answerCheck[question.qes_seq] = question.qes_answer;
     });
+
+    // 선택된 각 학생에 대해 별도의 시험 정보 저장
+    selectedStudents.forEach(async (student) => {
+      const data = {
+        memId: student.mem_id, // 선택된 학생의 mem_id로 설정
+        workbook_qes: workbookQes,
+        answer_check: JSON.stringify(answerCheck), // answer_check를 JSON 형태로 변환하여 저장
+      };
+
+      console.log("보낼 데이터:", data); // 데이터를 확인합니다.
+
+      try {
+        const response = await axios.post(
+          "http://localhost:8081/saveTest",
+          data
+        );
+        console.log("저장된 데이터:", response.data);
+        navigate("/questionslist", {
+          state: {
+            studentName: student.mem_name,
+            studentId: student.mem_id,
+            selectedQuestions,
+            workbookName,
+            startline,
+            deadline,
+          },
+        });
+      } catch (error) {
+        console.error("데이터 저장 중 오류 발생:", error);
+      }
+    });
+
+    // tb_workbook에 저장할 데이터
+    const workbookData = {
+      memId: sessionStorage.getItem("mem_id"), // 세션에서 가져온 mem_id로 설정
+      deadline,
+      workbook_qes: workbookQes,
+      workbook_name: workbookName,
+      startline,
+    };
+
+    console.log("workbook 보낼 데이터:", workbookData); // 데이터를 확인합니다.
+
+    try {
+      const workbookResponse = await axios.post(
+        "http://localhost:8081/saveWorkbook",
+        workbookData
+      );
+      console.log("workbook 저장된 데이터:", workbookResponse.data);
+    } catch (error) {
+      console.error("workbook 데이터 저장 중 오류 발생:", error);
+    }
   };
 
   const handleBack = () => {
@@ -84,7 +131,10 @@ const AllPreview = () => {
               {column.map((question, questionIndex) => (
                 <div key={question.qes_seq} className="all-question">
                   <p>
-                    {columnIndex * selectedColumns[0].length + questionIndex + 1}. {question.qes_desc}
+                    {columnIndex * selectedColumns[0].length +
+                      questionIndex +
+                      1}
+                    . {question.qes_desc}
                   </p>
                   <p>① {question.ex1}</p>
                   <p>② {question.ex2}</p>
@@ -105,7 +155,7 @@ const AllPreview = () => {
           <input
             className="all-input-box1"
             type="text"
-            value={examName}
+            value={workbookName}
             onChange={(e) => setExamName(e.target.value)}
           />
           <br />
@@ -114,14 +164,14 @@ const AllPreview = () => {
             <input
               className="all-input-box2"
               type="date"
-              value={startDate}
+              value={startline}
               onChange={(e) => setStartDate(e.target.value)}
             />
             <label>끝나는날짜 : </label>
             <input
               className="all-input-box2"
               type="date"
-              value={endDate}
+              value={deadline}
               onChange={(e) => setEndDate(e.target.value)}
             />
           </div>

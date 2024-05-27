@@ -40,7 +40,7 @@ const TestPaper = () => {
   };
 
   const handleSubmit = () => {
-    navigate("/namelist", {
+    navigate("/good", {
       state: {
         selectedAnswers,
         examInfo,
