@@ -4,8 +4,11 @@ import sb from "../img/stb1.png";
 import "../css/questionslist.css";
 import NavbarT from "../Component/NavbarT";
 import { useNavigate, useLocation } from "react-router-dom";
+import Navbar from "../Component/Navbar";
 
 const StudyRoom = () => {
+  const type = sessionStorage.getItem("mem_type");
+
   const navigate = useNavigate();
   const currentLocation = useLocation();
   const [examsInfo, setExamsInfo] = useState([]);
@@ -47,7 +50,7 @@ const StudyRoom = () => {
 
   return (
     <div>
-      <NavbarT />
+      {type === 1 ? <NavbarT /> : <Navbar />}
       <img src={sb} className="tbimg" alt="table"></img>
       <div className="t-margin-box"></div>
       {examsInfo.map((exam, index) => (
