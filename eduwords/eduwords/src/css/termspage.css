@@ -77,7 +77,6 @@ body {
 .scrollable-content {
   max-height: 300px; /* 스크롤바가 생길 만큼의 높이 설정 */
   overflow-y: scroll;
-  padding: 10px;
 }
 
 /* 스크롤바 스타일 */
@@ -89,7 +88,6 @@ body {
   background: #239aff; /* 스크롤바 핸들의 색상 */
   border-radius: 5px; /* 핸들의 모서리 둥글게 */
 }
-
 
 .scrollable-content::-webkit-scrollbar-track {
   background: transparent; /* 스크롤바 트랙의 색상 */
