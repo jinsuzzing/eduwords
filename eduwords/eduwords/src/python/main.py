@@ -10,7 +10,7 @@ from openai._client import OpenAI
 from fastapi.middleware.cors import CORSMiddleware
 
 # PostgreSQL 연결 정보 설정
-DATABASE_URL = "DB url 주소 넣기"
+DATABASE_URL = ""
 
 # SQLAlchemy 엔진 생성
 engine = create_engine(DATABASE_URL)
@@ -48,11 +48,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-api_key = 'openAI API 키'
+api_key = ''
 client = OpenAI(api_key=api_key)
 
 class CreateGPTRequest(BaseModel):
     repeat_count: int
+
+# 상태 저장을 위한 전역 변수
+status = {"completed": False}
 
 @app.post("/runfastapi")
 async def run_fastapi(request_data: CreateGPTRequest):
@@ -99,9 +102,14 @@ async def run_fastapi(request_data: CreateGPTRequest):
             finally:
                 db.close()
 
+        status["completed"] = True  # 상태 업데이트
         return {"message": "데이터 저장 성공"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/checkstatus")
+def check_status(count: int):
+    return {"completed": status["completed"]}
 
 if __name__ == "__main__":
     import uvicorn
