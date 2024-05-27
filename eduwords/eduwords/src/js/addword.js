@@ -66,7 +66,7 @@ const AddWord = () => {
 
   return (
     <div>
-      {type === "1" ? <NavbarT /> : <Navbar />}
+      <Navbar />
       <h1 className="addtitle">· 단어장</h1>
       <img src={pin} className="pinimg" alt="pin" />
       <div className="addbox">

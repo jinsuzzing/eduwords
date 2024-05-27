@@ -1,43 +1,39 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NavbarT from "../Component/NavbarT";
-import Navbar from "../Component/Navbar";
 import "../css/namelist.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const NameList = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {
-    selectedAnswers = {},
-    examInfo = {},
-    studentId: testStudentId,
-  } = location.state || {};
-
+  const { examInfo } = location.state || {};
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:8081/studentsByType",
-          "0"
+          "http://localhost:8081/getStudentsByWorkbookName",
+          { workSeq: examInfo.work_seq } // examInfo.work_seq에 work_seq가 포함되어 있다고 가정합니다.
         );
         setStudents(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("학생 정보를 불러오는 중 오류 발생:", error);
       }
     };
 
-    fetchData();
-  }, []);
+    if (examInfo && examInfo.work_seq) {
+      fetchData();
+    }
+  }, [examInfo]);
 
   const handleSelectStudent = (student) => {
     navigate("/markpage", {
       state: {
-        studentName: student.mem_name,
-        studentId: student.mem_id,
-        selectedAnswers,
+        studentName: student.memName,
+        studentId: student.memId,
         examInfo,
       },
     });
@@ -57,14 +53,12 @@ const NameList = () => {
             {students.map((student) => (
               <li
                 className={`namelist-li ${
-                  student.mem_id === testStudentId
-                    ? "blue-border"
-                    : "red-border"
+                  student.submitted_at ? "blue-border" : "red-border"
                 }`}
-                key={student.mem_id}
+                key={student.memId}
                 onClick={() => handleSelectStudent(student)}
               >
-                {student.mem_name}
+                {student.memName}
               </li>
             ))}
           </ul>

@@ -126,10 +126,15 @@ const WoorQuestions = () => {
       );
     }
   };
-
   const deleteQ = async (id) => {
     try {
-      await axios.delete(`http://localhost:8081/questions/${id}`);
+      await axios.post(`http://localhost:8081/delete`, {
+        qes_seq: id,
+      });
+      console.log("Deleted question with id: " + id);
+      setQuestions((prevQuestions) =>
+        prevQuestions.filter((question) => question.qes_seq !== id)
+      );
       setSelectedQuestions((prevQuestions) =>
         prevQuestions.filter((question) => question.qes_seq !== id)
       );
@@ -166,7 +171,7 @@ const WoorQuestions = () => {
             <div key={index} className="wq-column">
               {column.map((question) => (
                 <QuestionItem
-                  key={question.qes_seq} // 여기 key prop 추가
+                  key={question.qes_seq}
                   question={question}
                   isSelected={selectedQuestionIds.includes(question.qes_seq)}
                   onSelect={handleSelect}
