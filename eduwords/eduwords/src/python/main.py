@@ -66,51 +66,56 @@ async def run_fastapi(request_data: CreateGPTRequest):
         with open(file_md, "r", encoding="utf-8") as file:
             prompt_text = file.read()
 
-        for _ in range(request_data.repeat_count): # 요청 반복 실행
-            result = client.chat.completions.create(
-                model='gpt-3.5-turbo-0125',
-                max_tokens=200,
-                response_format={"type": "json_object"},
-                temperature=1.29,
-                messages=[
-                    {'role': 'system', 'content': prompt_text},
-                    {'role': 'user', 'content': f"age : 12 나에게 맞는 {request_data.question_type} 영어문제를 랜덤한 subject들을 사용해 심플하게 만들어줘."}
-                ]
-            )
-            inputGPT = result.choices[0].message.content.strip()
-            print(f"Generated content from OpenAI: {inputGPT}")
-
-            # JSON 데이터
-            data = json.loads(inputGPT)
-
-            # 데이터베이스에 결과 저장
-            db = SessionLocal()
+        count = 0
+        while count < request_data.repeat_count: # 요청 반복 실행
             try:
-                question = Questionqq(
-                    qes_desc=data["question"],
-                    qes_detail=data.get("example", None),
-                    ex1=data.get("option1", None),
-                    ex2=data.get("option2", None),
-                    ex3=data.get("option3", None),
-                    ex4=data.get("option4", None),
-                    ex5=data.get("option5", None),
-                    qes_answer=data["answer"],
-                    qes_level="1",  # 예시 레벨
-                    qes_type=request_data.question_type,  # 전달받은 문제 유형
+                result = client.chat.completions.create(
+                    model='gpt-3.5-turbo-0125',
+                    max_tokens=200,
+                    response_format={"type": "json_object"},
+                    temperature=1.29,
+                    messages=[
+                        {'role': 'system', 'content': prompt_text},
+                        {'role': 'user', 'content': f"12살에 맞는 subject를 골라서 {request_data.question_type} 영어문제를 만들어줘. 대신 난이도는 유치원생 수준의 난도로 하고 문제의 구성을 간단하게 만들어줘."}
+                    ]
                 )
-                db.add(question)
-                db.commit()
-            except Exception as e:
-                db.rollback()
-                logging.error(f"Database error: {str(e)}")
-                raise HTTPException(status_code=500, detail=str(e))
-            finally:
-                db.close()
+                inputGPT = result.choices[0].message.content.strip()
+                print(f"Generated content from OpenAI: {inputGPT}")
 
-        return {"message": "데이터 저장 성공"}
+                # JSON 데이터
+                data = json.loads(inputGPT)
+
+                # 데이터베이스에 결과 저장
+                db = SessionLocal()
+                try:
+                    question = Questionqq(
+                        qes_desc=data["question"],
+                        qes_detail=data.get("example", None),
+                        ex1=data.get("option1", None),
+                        ex2=data.get("option2", None),
+                        ex3=data.get("option3", None),
+                        ex4=data.get("option4", None),
+                        ex5=data.get("option5", None),
+                        qes_answer=data["answer"],
+                        qes_level="1",  # 예시 레벨
+                        qes_type=request_data.question_type,  # 전달받은 문제 유형
+                    )
+                    db.add(question)
+                    db.commit()
+                    count += 1
+                except Exception as e:
+                    db.rollback()
+                    logging.error(f"Database error: {str(e)}")
+                    # 한 요청에 대한 오류 발생해도 전체 요청이 중단되지 않도록 pass 처리
+                finally:
+                    db.close()
+            except Exception as e:
+                logging.error(f"Error in processing request: {str(e)}")
+                continue  # 오류가 발생한 경우 반복문 계속 실행
     except Exception as e:
         logging.error(f"Server error: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+    return {"message": "데이터 저장 성공"}
 
 if __name__ == "__main__":
     import uvicorn

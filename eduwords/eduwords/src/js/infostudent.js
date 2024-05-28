@@ -33,13 +33,11 @@ const Infostudent = () => {
           // studentAnswer와 answerKey가 null이거나 undefined인 경우에 대한 처리 추가
           if (!studentAnswer || !answerKey) {
             console.error("studentAnswer 또는 answerKey가 없습니다.");
-
             return 0; // 또는 다른 기본값으로 설정
           }
 
           const studentAnswers = JSON.parse(studentAnswer);
           const answerKeys = JSON.parse(answerKey);
-          console.log("answer" + studentAnswer + "answerkey" + answerKey);
           let correctAnswers = 0;
           const totalQuestions = Object.keys(answerKeys).length;
 
@@ -57,11 +55,12 @@ const Infostudent = () => {
           const formattedDate = date
             .toLocaleDateString("ko-KR", {
               year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
+              month: "long",
+              day: "numeric",
             })
-            .replace(/\./g, "")
-            .replace(/\s/g, "");
+            .replace("년 ", "년 ")
+            .replace("월 ", "월 ")
+            .replace("일", "일");
 
           const score = calculateScore(item.answer, item.answer_check);
 
@@ -163,7 +162,7 @@ const Infostudent = () => {
               <Bar data={chartIn} options={options} />
             </div>
           </div>
-           <h3 className="chart-scores">평균 점수: {averageScore}</h3>
+          <h3 className="chart-scores">평균 점수: {averageScore}</h3>
         </div>
       </div>
       <br />

@@ -30,7 +30,9 @@ const NameList = () => {
   }, [examInfo]);
 
   const handleSelectStudent = (student) => {
-    navigate("/markpage", {
+    sessionStorage.setItem("studentId", student.memId);
+    sessionStorage.setItem("studentName", student.memName);
+    navigate("/is", {
       state: {
         studentName: student.memName,
         studentId: student.memId,
