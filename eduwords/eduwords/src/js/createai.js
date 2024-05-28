@@ -44,7 +44,7 @@ const CreateAI = () => {
 
   return (
     <div>
-      {type === 1 ? <NavbarT /> : <Navbar />}
+  <NavbarT></NavbarT>
       <div className="gpttrubo">
         <img src={turboimg} className="truboimg" alt="GPT Turbo" />
       </div>

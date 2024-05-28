@@ -146,7 +146,7 @@ const Infostudent = () => {
       <h3 className="stuName">{studentName}</h3>
       <div className="infoBody">
         <div className="doneHomework">
-          <th>· 문제집</th>
+          <th>문제집</th>
           <br />
           <br />
           {formattedData.map((item, index) => (
@@ -156,14 +156,14 @@ const Infostudent = () => {
           ))}
         </div>
         <div className="lookEasy">
-          <h2 className="chart-title">학생 성적 보기</h2>
+          <h2 className="chart-titles">학생 성적 보기</h2>
           <br></br>
           <div className="chart-box">
             <div className="chart">
               <Bar data={chartIn} options={options} />
-              <h3 className="chart-h3">평균 점수: {averageScore}</h3>
             </div>
           </div>
+           <h3 className="chart-scores">평균 점수: {averageScore}</h3>
         </div>
       </div>
       <br />

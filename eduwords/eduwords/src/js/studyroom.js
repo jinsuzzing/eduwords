@@ -59,6 +59,8 @@ const StudyRoom = () => {
     <div>
       {type === "1" ? <NavbarT /> : <Navbar />}
       <img src={sb} className="tbimg" alt="table" />
+      <br/>
+      <br/>
       <div className="t-margin-box"></div>
       {examsInfo.map((exam, index) => (
         <table

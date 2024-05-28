@@ -84,7 +84,7 @@ const CreateAProblem = () => {
 
   return (
     <div>
-      {type === "1" ? <NavbarT /> : <Navbar />}
+<NavbarT></NavbarT>
       <h2 className="createproblem-title">· 직접 문제 생성</h2>
       <div>
         <table className="createproblem-table">

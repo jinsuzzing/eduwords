@@ -6,10 +6,10 @@ body {
   transform: rotate(0.04deg);
 }
 
-.studdyrecord-title {
+.studyrecord-title {
   font-size: 30px;
   color: #239aff;
-  margin-top: 10vb;
+  margin-top: 10vh;
   margin-left: 5%;
 }
 
@@ -23,20 +23,6 @@ body {
 .sr-h3 {
   color: #239aff;
   margin-left: 20%;
-}
-
-.mark-x-box {
-  width: 120vh;
-  height: 500px;
-  border: solid 3px;
-  border-color: #239aff;
-  border-radius: 30px;
-  overflow-y: auto;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  overflow-y: auto;
 }
 
 .sr-btn {
@@ -63,13 +49,40 @@ body {
 
 .srdate-box {
   width: 120vh;
-  height: 100px;
+  height: 300px;
   border: solid 3px;
   border-color: #239aff;
   border-radius: 30px;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   display: flex;
   margin: auto;
+  
+
+  
+}
+.t-listtable-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.t-listtable {
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+  text-align: center;
+}
+.exam-name2{
+  display: block;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+
 }
 
 .chart-container {
@@ -91,11 +104,21 @@ body {
   margin-bottom: 10%;
 }
 
-.srdate-box p {
-  margin-left: 20px;
-}
+
 
 .incorrect-question {
   padding: 10px;
   border-radius: 5px;
+}
+.chart-titles{
+  color: #239aff;
+  font-size: 20px;
+  display: table-cell;
+  vertical-align: inherit;
+  font-weight: bold;
+  unicode-bidi: isolate;
+
+}
+.chart-scores{
+  font-size: 30px;
 }

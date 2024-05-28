@@ -134,7 +134,10 @@ const StudyRecord = () => {
   const renderIncorrectQuestions = () => {
     if (!isAnswered) {
       return (
-        <h2 className="studdyrecord-title">아직 풀지않은 문제집입니다.</h2>
+      <div className="all-box">
+
+        <h2 className="studdyrecord-title">아직 안푼 문제집입니다.</h2>
+    </div>
       );
     }
 
@@ -258,30 +261,39 @@ const StudyRecord = () => {
 
   return (
     <div>
-      <Navbar />
-      <h2 className="studdyrecord-title">· 공부기록</h2>
+      <Navbar />  
+      <h2 className="studyrecord-title">· 공부기록</h2>
       <br />
       <h3 className="sr-h3">· 시험 날짜</h3>
       <div className="srdate-box">
-        {examsInfo.map((exam, index) => (
-          <table
-            key={index}
-            className="t-listtable"
-            onClick={() => handleTableClick(exam)}
-          >
-            <tbody>
-              <tr className="t-listtable-tr1">
-                <th colSpan={2}>
-                  {formatDate(exam.startline)} ~ {formatDate(exam.deadline)}
-                </th>
-              </tr>
-              <tr className="t-listtable-tr2">
-                <td colSpan={2} className="exam-name">
-                  {exam.workbook_name}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        {examsInfo.reduce((acc, exam, index, array) => {
+          if (index % 2 === 0) {
+            acc.push(array.slice(index, index + 2));
+          }
+          return acc;
+        }, []).map((examPair, index) => (
+          <div key={index} className="t-listtable-wrapper">
+            {examPair.map((exam, subIndex) => (
+              <table
+                key={subIndex}
+                className="t-listtable"
+                onClick={() => handleTableClick(exam)}
+              >
+                <tbody>
+                  <tr className="t-listtable-tr1">
+                    <th colSpan={2}>
+                      {formatDate(exam.startline)} ~ {formatDate(exam.deadline)}
+                    </th>
+                  </tr>
+                  <tr className="t-listtable-tr2">
+                    <td colSpan={2} className="exam-name">
+                      {exam.workbook_name}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            ))}
+          </div>
         ))}
       </div>
 
@@ -294,7 +306,7 @@ const StudyRecord = () => {
       <hr className="sr-hr" />
       <div className="sr-box1">
         <h3 className="sr-h3">· 틀린 문제 보기</h3>
-        <div className="mark-x-box">{renderIncorrectQuestions()}</div>
+        <div>{renderIncorrectQuestions()}</div>
       </div>
       <br />
       <h3 className="sr-h3">· 최근 성적 한 눈에 보기</h3>
@@ -303,7 +315,7 @@ const StudyRecord = () => {
       <h3 className="stuName">{studentName}</h3>
       <div className="infoBody">
         <div className="doneHomework">
-          <th>· 문제집</th>
+          <th>문제집</th>
           <br />
           <br />
           {formattedData.map((item, index) => (
@@ -313,16 +325,18 @@ const StudyRecord = () => {
           ))}
         </div>
         <div className="lookEasy">
-          <h2 className="chart-title">내 성적</h2>
-          <br></br>
+          <h2 className="chart-titles">내 성적</h2>
+          <br/>
+          <br/>
+          <br/>
           <div className="chart-box">
             <div className="chart">
               <Bar data={chartIn} options={options} />
-              <h3 className="chart-h3">
-                평균 점수: {Math.round(averageScore)}
-              </h3>
             </div>
           </div>
+          <h3 className="chart-scores">
+                평균 점수: {Math.round(averageScore)}
+              </h3>
         </div>
       </div>
       <br />
