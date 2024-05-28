@@ -4,22 +4,30 @@ import NavbarT from "../Component/NavbarT";
 import turboimg from "../img/gptturbo.png";
 import "../css/createai.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // axios 추가
+import axios from "axios";
 
 const type = sessionStorage.getItem("mem_type");
 
 const CreateAI = () => {
   const [problemCount, setProblemCount] = useState(0);
+  const [questionType, setQuestionType] = useState(""); // 상태 추가
   const navigate = useNavigate();
 
   const handleProblemCountChange = (e) => {
     setProblemCount(e.target.value);
   };
 
-  const handleNextClick = async () => { // 비동기 함수로 변경
-    if (problemCount > 0) {
+  const handleQuestionTypeChange = (e) => {
+    setQuestionType(e.target.value); // 상태 업데이트
+  };
+
+  const handleNextClick = async () => {
+    if (problemCount > 0 && questionType) {
       try {
-        const response = await axios.post("http://localhost:8000/runfastapi", { repeat_count: problemCount }); // 요청 보내기
+        const response = await axios.post("http://localhost:8000/runfastapi", {
+          repeat_count: problemCount,
+          question_type: questionType, // question_type 추가
+        });
         if (response.status === 200) {
           navigate("/loading");
         } else {
@@ -30,7 +38,7 @@ const CreateAI = () => {
         alert("데이터 저장 실패");
       }
     } else {
-      alert("출제 문항 수를 입력해주세요.");
+      alert("출제 문항 수와 문제 유형을 선택해주세요.");
     }
   };
 
@@ -48,11 +56,23 @@ const CreateAI = () => {
             </th>
             <td className="maketd">
               <tr>
-                <input type="radio" name="choiceQuestion" className="cq1" />{" "}
+                <input
+                  type="radio"
+                  name="choiceQuestion"
+                  value="단답형"
+                  className="cq1"
+                  onChange={handleQuestionTypeChange} // onChange 핸들러 추가
+                />{" "}
                 주관식
               </tr>
               <tr className="movetr">
-                <input type="radio" name="choiceQuestion" className="cq2" />{" "}
+                <input
+                  type="radio"
+                  name="choiceQuestion"
+                  value="객관식"
+                  className="cq2"
+                  onChange={handleQuestionTypeChange} // onChange 핸들러 추가
+                />{" "}
                 객관식
               </tr>
             </td>
