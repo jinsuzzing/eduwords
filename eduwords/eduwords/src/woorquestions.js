@@ -163,7 +163,7 @@ const WoorQuestions = () => {
 
   return (
     <div>
-      {type === "1" ? <NavbarT /> : <Navbar />}
+      <NavbarT />
       <h2 className="wq-title">· 출제 문제 선택</h2>
       <div className="wq-container">
         <div className="wq-box">

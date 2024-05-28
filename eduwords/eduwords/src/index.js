@@ -32,10 +32,10 @@ import Findpw from "./js/findpw";
 import Testpaper from "./js/testpaper";
 import Namelist from "./js/namelist";
 import Jointeacher from "./js/jointeacher";
-import Sr from "./js/studyrecord";
 import Chart from "./Component/Chart";
 import ScoreChart from "./js/scorechart";
 import EditExam from "./Component/EditExam";
+import StudyRecord from "./js/studyrecord";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -73,7 +73,7 @@ root.render(
         <Route path="/testpaper" element={<Testpaper />} />
         <Route path="/namelist" element={<Namelist />} />
         <Route path="/jointeacher" element={<Jointeacher />} />
-        <Route path="/sr" element={<Sr />} />
+        <Route path="/sr" element={<StudyRecord />} />
         <Route path="/chart/:studentId" element={<Chart />} />
         <Route path="/scorechart" element={<ScoreChart />} />
         <Route path="/editexam" element={<EditExam />} />

@@ -23,12 +23,6 @@ const StudyRoom = () => {
         );
         setExamsInfo(response.data);
         console.log("response", response.data); // 전체 response 로그 출력
-        if (response.data && response.data.length > 0) {
-          sessionStorage.setItem("test_seq", response.data[0].test_seq);
-          console.log(sessionStorage.getItem("test_seq"));
-        } else {
-          console.log("No exams found for the given mem_id");
-        }
       } catch (error) {
         console.error("시험 정보를 불러오는 중 오류 발생:", error);
       }
@@ -51,18 +45,20 @@ const StudyRoom = () => {
   };
 
   const handleTableClick = (exam) => {
+    sessionStorage.setItem("test_seq", exam.test_seq); // 클릭한 문제집의 test_seq를 저장
     navigate("/testpaper", {
       state: {
         selectedAnswers: currentLocation.state?.selectedAnswers,
         examInfo: exam,
       },
     });
+    console.log("exam", exam);
   };
 
   return (
     <div>
       {type === "1" ? <NavbarT /> : <Navbar />}
-      <img src={sb} className="tbimg" alt="table"></img>
+      <img src={sb} className="tbimg" alt="table" />
       <div className="t-margin-box"></div>
       {examsInfo.map((exam, index) => (
         <table

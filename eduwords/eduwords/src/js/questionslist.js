@@ -4,9 +4,7 @@ import tb from "../img/tb.png";
 import "../css/questionslist.css";
 import NavbarT from "../Component/NavbarT";
 import { useNavigate, useLocation } from "react-router-dom";
-import Navbar from "../Component/Navbar";
-const type = sessionStorage.getItem("mem_type");
-console.log(type);
+
 const QuestionsList = () => {
   const navigate = useNavigate();
   const currentLocation = useLocation();
@@ -17,7 +15,7 @@ const QuestionsList = () => {
     if (!dateString) return "";
     const date = new Date(dateString);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하므로 1을 더합니다.
+    const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
@@ -26,7 +24,6 @@ const QuestionsList = () => {
     axios
       .post("http://localhost:8081/getAll")
       .then((response) => {
-        console.log(response.data); // 데이터 확인
         const formattedExams = response.data.map((exam) => ({
           ...exam,
           startline: formatDate(exam.startline),
@@ -48,6 +45,24 @@ const QuestionsList = () => {
     });
   };
 
+  const handleDelete = (workSeq, e) => {
+    e.stopPropagation(); // 테이블 클릭 이벤트가 발생하지 않도록 중지
+    axios
+      .post("http://localhost:8081/deleteExam", { workSeq })
+      .then((response) => {
+        if (response.data.success) {
+          setExamsInfo(examsInfo.filter((exam) => exam.work_seq !== workSeq));
+        } else {
+          alert("시험 삭제에 실패했습니다.");
+          console.log(workSeq);
+        }
+      })
+      .catch((error) => {
+        console.error("시험 삭제 중 오류 발생:", error);
+        alert("시험 삭제 중 오류가 발생했습니다.");
+      });
+  };
+
   return (
     <div>
       <NavbarT />
@@ -63,11 +78,7 @@ const QuestionsList = () => {
             <tr className="t-listtable-tr1">
               <th colSpan={2}>
                 {exam.startline} ~ {exam.deadline}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
-                >
+                <button onClick={(e) => handleDelete(exam.work_seq, e)}>
                   삭제
                 </button>
               </th>

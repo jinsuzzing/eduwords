@@ -150,6 +150,7 @@ const AllPreview = () => {
                       1}
                     . {question.qes_desc}
                   </p>
+                  <p>{question.qes_detail}</p>
                   <p>① {question.ex1}</p>
                   <p>② {question.ex2}</p>
                   <p>③ {question.ex3}</p>

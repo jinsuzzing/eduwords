@@ -1,26 +1,38 @@
 import React, { useState } from "react";
+import axios from "axios";
 import NavbarT from "../Component/NavbarT";
 import Navbar from "../Component/Navbar";
 import "../css/outservice.css";
 import { useNavigate } from "react-router-dom";
 
 const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-const mem_name = sessionStorage.getItem("mem_name");
-const mem_address = sessionStorage.getItem("mem_address");
-const mem_number = sessionStorage.getItem("mem_number");
-const mem_email = sessionStorage.getItem("mem_email");
 
 const OutService = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [mem_id, setMemId] = useState("");
+  const [mem_pw, setMemPw] = useState("");
   const navigate = useNavigate();
 
-  const handleOutservice = () => {
-    if (username && password) {
-      navigate("/os", {
-        state: { username },
-      });
+  const handleOutservice = async () => {
+    if (mem_id && mem_pw) {
+      try {
+        const response = await axios.post("http://localhost:8081/deleteById", {
+          mem_id,
+          mem_pw,
+        });
+
+        if (response.data.success) {
+          // 탈퇴 성공 시 세션 데이터 삭제 및 페이지 이동
+          sessionStorage.clear();
+          navigate("/os", {
+            state: { mem_id },
+          });
+        } else {
+          alert("회원 탈퇴에 실패했습니다. 아이디와 비밀번호를 확인해주세요.");
+        }
+      } catch (error) {
+        console.error("회원 탈퇴 중 오류 발생:", error);
+        alert("회원 탈퇴 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
     } else {
       alert("아이디와 비밀번호를 입력해주세요.");
     }
@@ -28,7 +40,7 @@ const OutService = () => {
 
   return (
     <div>
-      {type === 1 ? <NavbarT /> : <Navbar />}
+      {type === "1" ? <NavbarT /> : <Navbar />}
       <br />
       <br />
       <br />
@@ -41,22 +53,22 @@ const OutService = () => {
         <tr id="outtr2">삭제된 데이터는 복구되지 않습니다.</tr>
         <input
           type="text"
-          name="username"
+          name="mem_id"
           id="eraseId"
           placeholder="삭제하실 아이디 입력"
           required
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={mem_id}
+          onChange={(e) => setMemId(e.target.value)}
         ></input>
         <br />
         <input
           type="password"
-          name="password"
+          name="mem_pw"
           id="erasepw"
           placeholder="삭제하실 아이디의 비밀번호 확인"
           required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={mem_pw}
+          onChange={(e) => setMemPw(e.target.value)}
         ></input>
         <br />
         <br />

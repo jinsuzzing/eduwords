@@ -37,9 +37,6 @@ const Outsuccess = () => {
         <br />
         <br />
         <br />
-        <table className="osBody">
-          <td>탈퇴한 아이디 : {username}</td>
-        </table>
       </div>
       <br></br>
       <br></br>
