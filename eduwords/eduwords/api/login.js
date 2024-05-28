@@ -17,10 +17,13 @@
 
 //     try {
 //       const client = await pool.connect();
+      
+//       // 로그인 쿼리 실행
 //       const result = await client.query(
 //         'SELECT * FROM tb_member WHERE mem_id = $1 AND mem_pw = $2',
 //         [mem_id, mem_pw]
 //       );
+
 //       client.release();
 
 //       if (result.rows.length > 0) {

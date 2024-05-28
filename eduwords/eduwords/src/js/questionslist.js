@@ -82,7 +82,7 @@ const QuestionsList = () => {
             <tr className="t-listtable-tr1">
               <th colSpan={2}>
                 {exam.startline} ~ {exam.deadline}
-                <button onClick={(e) => handleDelete(exam.work_seq, e)}>
+                <button  onClick={(e) => handleDelete(exam.work_seq, e)} id="deletebtns">
                   삭제
                 </button>
               </th>
