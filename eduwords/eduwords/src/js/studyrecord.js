@@ -136,7 +136,7 @@ const StudyRecord = () => {
       return (
       <div className="all-box">
 
-        <h2 className="studdyrecord-title">아직 안푼 문제집입니다.</h2>
+        <h2 className="studyrecord-title">아직 안푼 문제집입니다.</h2>
     </div>
       );
     }
@@ -243,7 +243,7 @@ const StudyRecord = () => {
       {
         label: "점수",
         data: chartData.map((item) => Math.round(item.score)),
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        backgroundColor: "#239aff",
         borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1,
       },
@@ -251,6 +251,8 @@ const StudyRecord = () => {
   };
 
   const options = {
+    maintainAspectRatio: false,
+    aspectRatio: 2,
     scales: {
       y: {
         beginAtZero: true,
@@ -261,7 +263,7 @@ const StudyRecord = () => {
 
   return (
     <div>
-      <Navbar />  
+      <Navbar />
       <h2 className="studyrecord-title">· 공부기록</h2>
       <br />
       <h3 className="sr-h3">· 시험 날짜</h3>
@@ -331,7 +333,9 @@ const StudyRecord = () => {
           <br/>
           <div className="chart-box">
             <div className="chart">
-              <Bar data={chartIn} options={options} />
+              <div className="chart-container" style={{ width: '400px', height: '300px' }}>
+                <Bar data={chartIn} options={options} />
+              </div>
             </div>
           </div>
           <h3 className="chart-scores">

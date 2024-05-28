@@ -9,7 +9,7 @@ body {
 .studyrecord-title {
   font-size: 30px;
   color: #239aff;
-  margin-top: 10vh;
+  margin-top: 10vb;
   margin-left: 5%;
 }
 
@@ -70,12 +70,12 @@ body {
   margin-bottom: 10px;
 }
 
-.t-listtable {
+.t-listtables {
   margin: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 200px;
-  text-align: center;
+  text-align: center; 
 }
 .exam-name2{
   display: block;
@@ -87,18 +87,10 @@ body {
 
 .chart-container {
   padding-bottom: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 120vh;
-  margin: auto;
-  border: 3px solid #239aff;
-  height: 300px;
-  border-radius: 20px;
 }
 
 .chart {
-  width: 300px;
+  width: 400px;
   height: 300px;
   flex: 1;
   margin-bottom: 10%;

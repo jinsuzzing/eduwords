@@ -81,8 +81,8 @@ const QuestionsList = () => {
           <tbody>
             <tr className="t-listtable-tr1">
               <th colSpan={2}>
-                {exam.startline} ~ {exam.deadline+" "}
-                <button  onClick={(e) => handleDelete(exam.work_seq, e)} id="deletebtns">
+                <div>{exam.startline} ~ {exam.deadline}</div>
+                <button onClick={(e) => handleDelete(exam.work_seq, e)} id="deletebtns">
                   삭제
                 </button>
               </th>
