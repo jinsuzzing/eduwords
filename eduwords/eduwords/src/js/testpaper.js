@@ -12,15 +12,14 @@ const TestPaper = () => {
   const [examInfo, setExamInfo] = useState({});
   const { studentId, studentName } = location.state || {};
   const test_seq = sessionStorage.getItem("test_seq");
-  console.log("getItem" + test_seq);
+
   useEffect(() => {
     const fetchTest = async () => {
       try {
         const response = await axios.post("http://localhost:8081/getTestById", {
-          testId: test_seq, // 수정된 부분
+          testId: test_seq,
         });
         const testData = response.data;
-        console.log("test_Seq" + test_seq);
         if (testData) {
           const parsedQuestions = JSON.parse(testData.workbook_qes);
           setExamInfo({ ...testData, selectedQuestions: parsedQuestions });
@@ -59,7 +58,7 @@ const TestPaper = () => {
         selectedAnswers,
         submitted_at: currentDate,
       });
-      console.log(response.data); // 요청이 성공하면 응답을 로그에 출력
+      console.log(response.data);
       navigate("/good", {
         state: {
           selectedAnswers,
@@ -89,33 +88,52 @@ const TestPaper = () => {
                   {question.qes_detail && (
                     <p className="question-detail">{question.qes_detail}</p>
                   )}
-                  <p>① {question.ex1}</p>
-                  <p>② {question.ex2}</p>
-                  <p>③ {question.ex3}</p>
-                  <p>④ {question.ex4}</p>
-                  <p>⑤ {question.ex5}</p>
+                  {question.ex1 && <p>① {question.ex1}</p>}
+                  {question.ex2 && <p>② {question.ex2}</p>}
+                  {question.ex3 && <p>③ {question.ex3}</p>}
+                  {question.ex4 && <p>④ {question.ex4}</p>}
+                  {question.ex5 && <p>⑤ {question.ex5}</p>}
                   <div className="answer-options">
-                    {[
-                      question.ex1,
-                      question.ex2,
-                      question.ex3,
-                      question.ex4,
-                      question.ex5,
-                    ].map((option, index) => (
-                      <button
-                        key={index}
-                        className={`option-button ${
-                          selectedAnswers[question.qes_seq] === option
-                            ? "selected"
-                            : ""
-                        }`}
-                        onClick={() =>
-                          updateSelectedAnswer(question.qes_seq, option)
+                    {question.ex1 ||
+                    question.ex2 ||
+                    question.ex3 ||
+                    question.ex4 ||
+                    question.ex5 ? (
+                      [
+                        question.ex1,
+                        question.ex2,
+                        question.ex3,
+                        question.ex4,
+                        question.ex5,
+                      ].map(
+                        (option, index) =>
+                          option && (
+                            <button
+                              key={index}
+                              className={`option-button ${
+                                selectedAnswers[question.qes_seq] === option
+                                  ? "selected"
+                                  : ""
+                              }`}
+                              onClick={() =>
+                                updateSelectedAnswer(question.qes_seq, option)
+                              }
+                            >
+                              {option}
+                            </button>
+                          )
+                      )
+                    ) : (
+                      <input
+                        type="text"
+                        placeholder="정답을 입력하세요"
+                        className="answer-input"
+                        value={selectedAnswers[question.qes_seq] || ""}
+                        onChange={(e) =>
+                          updateSelectedAnswer(question.qes_seq, e.target.value)
                         }
-                      >
-                        {option}
-                      </button>
-                    ))}
+                      />
+                    )}
                   </div>
                 </div>
               ))}

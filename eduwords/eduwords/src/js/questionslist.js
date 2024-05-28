@@ -47,6 +47,10 @@ const QuestionsList = () => {
 
   const handleDelete = (workSeq, e) => {
     e.stopPropagation(); // 테이블 클릭 이벤트가 발생하지 않도록 중지
+
+    const confirmDelete = window.confirm("정말로 이 시험을 삭제하시겠습니까?");
+    if (!confirmDelete) return;
+
     axios
       .post("http://localhost:8081/deleteExam", { workSeq })
       .then((response) => {

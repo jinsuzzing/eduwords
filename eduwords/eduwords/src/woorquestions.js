@@ -17,24 +17,36 @@ const QuestionItem = ({ question, isSelected, onSelect, onDelete }) => {
       <p>
         <strong>문제:</strong> {question.qes_desc}
       </p>
-      <p>
-        <strong>지문:</strong> {question.qes_detail}
-      </p>
-      <p>
-        <strong>①</strong> {question.ex1}
-      </p>
-      <p>
-        <strong>②</strong> {question.ex2}
-      </p>
-      <p>
-        <strong>③</strong> {question.ex3}
-      </p>
-      <p>
-        <strong>④</strong> {question.ex4}
-      </p>
-      <p>
-        <strong>⑤</strong> {question.ex5}
-      </p>
+      {question.qes_detail && (
+        <p>
+          <strong>지문:</strong> {question.qes_detail}
+        </p>
+      )}
+      {question.ex1 && (
+        <p>
+          <strong>①</strong> {question.ex1}
+        </p>
+      )}
+      {question.ex2 && (
+        <p>
+          <strong>②</strong> {question.ex2}
+        </p>
+      )}
+      {question.ex3 && (
+        <p>
+          <strong>③</strong> {question.ex3}
+        </p>
+      )}
+      {question.ex4 && (
+        <p>
+          <strong>④</strong> {question.ex4}
+        </p>
+      )}
+      {question.ex5 && (
+        <p>
+          <strong>⑤</strong> {question.ex5}
+        </p>
+      )}
       <p>
         <strong>정답:</strong> {question.qes_answer}
       </p>
@@ -126,6 +138,7 @@ const WoorQuestions = () => {
       );
     }
   };
+
   const deleteQ = async (id) => {
     try {
       await axios.post(`http://localhost:8081/delete`, {

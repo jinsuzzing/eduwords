@@ -55,6 +55,7 @@ const CreateAProblem = () => {
       if (response.status === 200) {
         setProblemCount((prevCount) => prevCount + 1);
         alert("문제가 성공적으로 저장되었습니다.");
+        resetForm(); // 입력 필드를 초기화하는 함수 호출
       } else {
         alert("문제 저장에 실패했습니다.");
       }
@@ -62,6 +63,19 @@ const CreateAProblem = () => {
       console.error("Error saving problem:", error);
       alert("문제 저장 중 오류가 발생했습니다.");
     }
+  };
+
+  const resetForm = () => {
+    setQes_detail("");
+    setQes_type("객관식");
+    setQes_level(1);
+    setQes_desc("");
+    setQes_answer("");
+    setEx1("");
+    setEx2("");
+    setEx3("");
+    setEx4("");
+    setEx5("");
   };
 
   const handleNavigateWQ = () => {
@@ -98,8 +112,8 @@ const CreateAProblem = () => {
                 객관식
               </td>
             </tr>
-            <hr />
-            <tr>
+            {/* <hr /> */}
+            {/* <tr>
               <th className="createproblem-th2" colSpan={2}>
                 난이도
               </th>
@@ -113,7 +127,7 @@ const CreateAProblem = () => {
                   onChange={(e) => setQes_level(Number(e.target.value))}
                 />
               </td>
-            </tr>
+            </tr> */}
             <hr />
             <tr>
               <th className="createproblem-th2" colSpan={2}>
@@ -243,6 +257,22 @@ const CreateAProblem = () => {
                   </td>
                 </tr>
               </>
+            )}
+            {qes_type === "주관식" && (
+              <tr>
+                <th className="createproblem-th4" colSpan={2}>
+                  정답
+                </th>
+                <td>
+                  <input
+                    type="text"
+                    className="createproblem-answer"
+                    placeholder="정답을 입력해주세요."
+                    value={qes_answer}
+                    onChange={(e) => setQes_answer(e.target.value)}
+                  />
+                </td>
+              </tr>
             )}
           </tbody>
         </table>

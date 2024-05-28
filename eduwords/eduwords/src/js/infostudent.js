@@ -89,9 +89,15 @@ const Infostudent = () => {
     navigate("/teacher");
   };
 
-  const averageScore =
+  let averageScore =
     formattedData.reduce((sum, item) => sum + item.score, 0) /
     formattedData.length;
+
+  if (isNaN(averageScore)) {
+    averageScore = 0;
+  }
+
+  averageScore = Math.round(averageScore);
 
   const chartIn = {
     labels: formattedData.map((item) => item.date),
@@ -155,7 +161,7 @@ const Infostudent = () => {
           <div className="chart-box">
             <div className="chart">
               <Bar data={chartIn} options={options} />
-              <h3 className="chart-h3">평균 점수: {averageScore.toFixed(2)}</h3>
+              <h3 className="chart-h3">평균 점수: {averageScore}</h3>
             </div>
           </div>
         </div>
