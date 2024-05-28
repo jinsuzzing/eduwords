@@ -18,12 +18,19 @@ module.exports = async (req, res) => {
     
     // 여러 테이블에서 데이터 가져오기
     const memberResult = await client.query('SELECT * FROM tb_member');
+    console.log(memberResult.rows);
     const questionResult = await client.query('SELECT * FROM tb_question');
+    console.log(questionResult.rows);
     const embedding = await client.query('SELECT * FROM tb_embedding');
+    console.log(embedding.rows);
     const test = await client.query('SELECT * FROM tb_test');
+    console.log(test.rows);
     const vector = await client.query('SELECT * FROM tb_vector');
+    console.log(vector.rows);
     const voca = await client.query('SELECT * FROM tb_voca');
+    console.log(voca.rows);
     const workbook = await client.query('SELECT * FROM tb_workbook');
+    console.log(workbook.rows);
     // 필요에 따라 더 많은 테이블에서 데이터를 가져올 수 있습니다.
     
     // 연결 종료
