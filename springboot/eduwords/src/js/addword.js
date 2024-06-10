@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../Component/Navbar";
 import NavbarT from "../Component/NavbarT";
 import "../css/addword.css";
@@ -6,15 +6,28 @@ import pin from "../img/notepin1.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const type = sessionStorage.getItem("mem_type");
-const mem_id = sessionStorage.getItem("mem_id");
-
 const AddWord = () => {
   const [word, setWord] = useState("");
   const [vocaMean, setTranslation] = useState("");
   const [error, setError] = useState(null);
-  const vocaWord = word;
-  const memId = mem_id;
+  const [memId, setMemId] = useState("");
+  const [memType, setMemType] = useState("");
+
+  useEffect(() => {
+    const updateSessionData = () => {
+      setMemId(sessionStorage.getItem("mem_id"));
+      setMemType(sessionStorage.getItem("mem_type"));
+    };
+
+    updateSessionData();
+
+    window.addEventListener("storage", updateSessionData);
+
+    return () => {
+      window.removeEventListener("storage", updateSessionData);
+    };
+  }, []);
+
   const handleInputChange = (e) => {
     setWord(e.target.value);
   };
@@ -38,15 +51,12 @@ const AddWord = () => {
   };
 
   const handleAddWordToDB = async () => {
-    console.log(memId);
-    console.log(vocaWord);
-    console.log(vocaMean);
     try {
       const response = await axios.post(
         "http://localhost:8081/addWord",
         {
           memId,
-          vocaWord,
+          vocaWord: word,
           vocaMean,
         },
         {
@@ -66,7 +76,7 @@ const AddWord = () => {
 
   return (
     <div>
-      <Navbar />
+      {memType === "1" ? <NavbarT /> : <Navbar />}
       <h1 className="addtitle">· 단어장</h1>
       <img src={pin} className="pinimg" alt="pin" />
       <div className="addbox">

@@ -73,7 +73,7 @@ async def run_fastapi(request_data: CreateGPTRequest):
                     model='gpt-3.5-turbo-0125',
                     max_tokens=200,
                     response_format={"type": "json_object"},
-                    temperature=1.29,
+                    temperature=1,
                     messages=[
                         {'role': 'system', 'content': prompt_text},
                         {'role': 'user', 'content': f"12살에 맞는 subject를 골라서 {request_data.question_type} 영어문제를 만들어줘. 대신 난이도는 유치원생 수준의 난도로 하고 문제의 구성을 간단하게 만들어줘."}

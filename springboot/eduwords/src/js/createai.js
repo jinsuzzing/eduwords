@@ -4,7 +4,6 @@ import NavbarT from "../Component/NavbarT";
 import turboimg from "../img/gptturbo.png";
 import "../css/createai.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const type = sessionStorage.getItem("mem_type");
 
@@ -21,22 +20,9 @@ const CreateAI = () => {
     setQuestionType(e.target.value); // 상태 업데이트
   };
 
-  const handleNextClick = async () => {
+  const handleNextClick = () => {
     if (problemCount > 0 && questionType) {
-      try {
-        const response = await axios.post("http://localhost:8000/runfastapi", {
-          repeat_count: problemCount,
-          question_type: questionType, // question_type 추가
-        });
-        if (response.status === 200) {
-          navigate("/loading");
-        } else {
-          alert("데이터 저장 실패");
-        }
-      } catch (error) {
-        console.error("데이터 저장 실패:", error);
-        alert("데이터 저장 실패");
-      }
+      navigate("/loading", { state: { problemCount, questionType } }); // 문제 유형과 문항 수를 loading 페이지로 전달
     } else {
       alert("출제 문항 수와 문제 유형을 선택해주세요.");
     }
@@ -44,7 +30,7 @@ const CreateAI = () => {
 
   return (
     <div>
-  <NavbarT></NavbarT>
+      <NavbarT />
       <div className="gpttrubo">
         <img src={turboimg} className="truboimg" alt="GPT Turbo" />
       </div>
