@@ -53,16 +53,57 @@ const AllPreview = () => {
       answerCheck[question.qes_seq] = question.qes_answer;
     });
 
+<<<<<<< Updated upstream:react/src/js/allpreview.js
+=======
+    // 선택된 각 학생에 대해 별도의 시험 정보 저장
+    selectedStudents.forEach(async (student) => {
+      const data = {
+        memId: student.mem_id,
+        workbook_qes: workbookQes,
+        answer_check: JSON.stringify(answerCheck),
+        deadline, // deadline 추가
+        startline, // startline 추가
+        workbook_name: workbookName,
+      };
+
+      console.log("보낼 데이터:", data);
+
+      try {
+        const response = await axios.post(
+          "http://localhost:8081/saveTest",
+          data
+        );
+        console.log("저장된 데이터:", response.data);
+        navigate("/questionslist", {
+          state: {
+            studentName: student.mem_name,
+            studentId: student.mem_id,
+            selectedQuestions,
+            workbook_name: workbookName, // 수정된 부분: workbookName을 workbook_name으로 변경
+            startline,
+            deadline,
+          },
+        });
+      } catch (error) {
+        console.error("데이터 저장 중 오류 발생:", error);
+      }
+    });
+
+>>>>>>> Stashed changes:eduwords/eduwords/src/js/allpreview.js
     // tb_workbook에 저장할 데이터
     const workbookData = {
-      memId: sessionStorage.getItem("mem_id"), // 세션에서 가져온 mem_id로 설정
+      memId: sessionStorage.getItem("mem_id"),
       deadline,
       workbook_qes: workbookQes,
+<<<<<<< Updated upstream:react/src/js/allpreview.js
       work_name: workbookName,
+=======
+      work_name: workbookName, // 수정된 부분: workbookName을 workbook_name으로 변경
+>>>>>>> Stashed changes:eduwords/eduwords/src/js/allpreview.js
       startline,
     };
 
-    console.log("workbook 보낼 데이터:", workbookData); // 데이터를 확인합니다.
+    console.log("workbook 보낼 데이터:", workbookData);
 
     try {
       const workbookResponse = await axios.post(
