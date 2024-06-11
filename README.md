@@ -75,7 +75,8 @@
 <br>
 
 ## 🖥️시스템 아키텍처
-![image](https://github.com/subhun/react/assets/158446938/3b25169b-673a-490e-bd22-c9b8be4fcd47)
+![캡처](https://github.com/jinsuzzing/eduwords/assets/158446938/e769bf05-802d-4aba-95f3-2aa3a3193c84)
+
 
 
 <br>
