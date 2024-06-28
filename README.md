@@ -155,6 +155,6 @@
 <hr>
 
 ## 🧑‍🤝‍🧑팀원소개
-![image](https://github.com/subhun/react/assets/158446938/f07aaa32-7af1-44f9-a28a-7c264056ffae)
+![제목 없음](https://github.com/jinsuzzing/eduwords/assets/80892395/191c4fd5-ce25-49ff-8d4b-c25e327b8678)
 
 
